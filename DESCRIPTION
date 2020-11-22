@@ -1,13 +1,22 @@
 Package: cas
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
+Title: Create custom research compendiums  
+Version: 1.0.2
+Date: 2020-06-05
+Author: Marcelo Araya-Salas [aut, cre]
+Maintainer: Marcelo Araya-Salas <marceloa27@gmail.com>
+Description: Provides functions to create and manage research compendiums for data analysis
+License: GPL (>= 2)
+Imports: 
+Depends: R (>= 3.2.1)
+LazyData: TRUE
+URL: https://github.com/maRce10/cas
+BugReports: https://github.com/maRce10/cas/issues
+NeedsCompilation: no
 Suggests: 
     testthat
+VignetteBuilder: knitr
+RoxygenNote: 7.1.1
+Repository: CRANs
+Language: en-US
+Authors@R: person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "marceloa27@gmail.com")

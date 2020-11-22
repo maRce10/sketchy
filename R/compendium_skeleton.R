@@ -1,9 +1,9 @@
-compendium_skeleton <- function(name = "research_compendium", list = character(),
-            path = ".", force = FALSE, encoding = "unknown", format = format)
+compendium_skeleton <- function(name = "research_compendium", path = ".", force = FALSE, encoding = "unknown", format = format)
   {
     if (!grepl(sprintf("^%s$", .standard_regexps()$valid_package_name),
                name))
       stop("Malformed package name.")
+
     safe.dir.create <- function(path) {
       if (!dir.exists(path) && !dir.create(path))
         stop(gettextf("cannot create directory '%s'", path),
@@ -12,14 +12,14 @@ compendium_skeleton <- function(name = "research_compendium", list = character()
 
     message("Creating directories ...", domain = NA)
     dir <- file.path(path, name)
+
     if (file.exists(dir) && !force)
       stop(gettextf("directory '%s' already exists", dir),
            domain = NA)
     safe.dir.create(dir)
 
     for(i in format)
-    safe.dir.create(code_dir <- file.path(dir, i))
-
+    safe.dir.create(file.path(dir, i))
 
     message("Done.", domain = NA)
 
@@ -43,9 +43,9 @@ compendium_skeleton <- function(name = "research_compendium", list = character()
     # remove backbone in secondary subfolders
     df$edges[1:nrow(df) > max(which(df$dir.name == "."))] <- gsub("\\|", " ", df$edges[1:nrow(df) > max(which(df$dir.name == "."))])
 
-    co <- paste(df$edges, collapse = "\n")
+    folder_structure <- paste0(name, "\n|\n", paste(df$edges, collapse = "\n"))
 
-    cat(co)
+    cat(folder_structure)
 
     }
 
