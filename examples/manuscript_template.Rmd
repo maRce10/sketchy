@@ -1,0 +1,91 @@
+---
+title: A study about the effect of X on Y
+author:
+ - Author 1 (author_1@email)^1^ * 
+ - Author 2 (author_2@email)^2^ 
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+bibliography: combined_bibs.bib
+citation-style: sysbio.csl
+link-citations: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, fixing citation .bib files, eval = TRUE, echo = FALSE}
+
+# how to cite in Rmarkdown
+# https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+
+
+# Here include the path to the libraries for each author. This code will copy/update the library each time the Rmarkdown file is compiled
+# Alternatively authors ca
+personal_libraries <- c(author_1 = "path/to/lib.file/from/author1/library.bib", author_2 = "path/to/lib.file/from/author2/library.bib")
+
+# update bibtex library
+for (i in 1:length(personal_libraries))
+if (file.exists(personal_libraries[i]))
+ file.copy(from = personal_libraries[i], to = file.path(getwd(), paste0(names(personal_libraries)[i], ".bib")), overwrite = TRUE)
+
+## combine .bib files in compiled.bib ###
+# list bib files
+bibs <- list.files(pattern = ".bib$")
+
+# remove combined from pool
+bibs <- bibs[bibs != "combined_bibs.bib"]
+
+#  read in a list
+if (length(bibs) > 0){
+  combined_bibs_l <- lapply(bibs, readLines)
+  names(combined_bibs_l) <- gsub("\\.bib$", "", bibs)
+}
+
+# combine bibs in a single one
+combined_bibs <- unlist(combined_bibs_l)
+
+# save pool libraries as combined_bibs.bib
+writeLines(text = combined_bibs, "combined_bibs.bib")
+
+# check if there are duplicated keys
+keys <- grep("@article{", combined_bibs, fixed = TRUE, value = TRUE)
+keys <- gsub("@article{", "", keys, fixed = TRUE)
+keys <- gsub(",", "", keys, fixed = TRUE)
+
+tab_keys <- table(keys)
+
+if (anyDuplicated(keys)){
+  print(paste0(sum(tab_keys > 1), " duplicate(s) references found in combined_bibs.bib"))
+}
+
+
+
+```
+
+
+^1^ Affiliation # 1
+
+^2^ Affiliation # 2
+
+
+\*To whom correspondence should be addressed
+
+**Keywords:** 
+---
+
+## Abstract
+
+## Introduction
+
+## Methods
+
+## Results
+
+## Discusion
+
+## References

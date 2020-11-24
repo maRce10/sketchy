@@ -1,17 +1,17 @@
-Package: cas
+Package: sketchy
 Type: Package
 Title: Create custom research compendiums  
 Version: 1.0.2
 Date: 2020-06-05
 Author: Marcelo Araya-Salas [aut, cre]
 Maintainer: Marcelo Araya-Salas <marceloa27@gmail.com>
-Description: Provides functions to create and manage research compendiums for data analysis
+Description: Provides functions to create and manage research compendiums for data analysis.
 License: GPL (>= 2)
-Imports: 
-Depends: R (>= 3.2.1)
+Imports: knitr, stringi, crayon
+Depends: R (>= 3.5.0)
 LazyData: TRUE
-URL: https://github.com/maRce10/cas
-BugReports: https://github.com/maRce10/cas/issues
+URL: https://github.com/maRce10/sketchy
+BugReports: https://github.com/maRce10/sketchy/issues
 NeedsCompilation: no
 Suggests: 
     testthat
@@ -19,4 +19,4 @@ VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Repository: CRANs
 Language: en-US
-Authors@R: person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "marceloa27@gmail.com")
+Authors@R:  c(person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "marcelo.araya@ucr.ac.cr", comment = c(ORCID = "0000-0003-3594-619X")), person("Beatriz", "Willink", role = c("aut"), email = "BEATRIZ.WILLINK@ucr.ac.cr"), person("Andrea Yure", "Arriaga Madrigal", role = c("aut"), email = "arriagamadrigal@gmail.com"))

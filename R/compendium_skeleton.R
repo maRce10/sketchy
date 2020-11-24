@@ -1,16 +1,37 @@
-compendium_skeleton <- function(name = "research_compendium", path = ".", force = FALSE, encoding = "unknown", format = format)
-  {
-    if (!grepl(sprintf("^%s$", .standard_regexps()$valid_package_name),
-               name))
-      stop("Malformed package name.")
+#' Generate folder structures for research compendiums
+#'
+#' \code{compendium_skeleton} generates the folder structure of a research compendium.
+#' @usage compendium_skeleton(name = "research_compendium", path = ".", force = FALSE, format,
+#' comments = NULL)
+#' @param name character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".
+#' @param path path to put the package directory in. Default is current directory.
+#' @param force	Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.
+#' @param path Character string containing the directory path where test (re-recorded) sound files are found.
+#' @param format A character vector with the names of the folders and subfolders to be included. Take a look at `compendiums$basic` for an example.
+#' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
+#' @return A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console.
+#' @export
+#' @name compendium_skeleton
+#' @details The function takes predefined folder structures to generate the directory skeleton of a research compendium.
+#' @examples{
+#' compendium_skeleton(name = "mycompendium", path = tempdir(), format = compendiums$basic)
+#' }
+#'
+#' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
+#' @references {
+#' Araya-Salas, M. (2020), *sketchy:research compendiums for data analysis in R*. R package version 1.0.0.
+#' }
+#last modification on dec-26-2019 (MAS)
 
+compendium_skeleton <- function(name = "research_compendium", path = ".", force = FALSE, format, comments = NULL)
+  {
     safe.dir.create <- function(path) {
       if (!dir.exists(path) && !dir.create(path))
         stop(gettextf("cannot create directory '%s'", path),
              domain = NA)
     }
 
-    message("Creating directories ...", domain = NA)
+    cat(crayon::green("Creating directories ...\n"))
     dir <- file.path(path, name)
 
     if (file.exists(dir) && !force)
@@ -21,32 +42,164 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
     for(i in format)
     safe.dir.create(file.path(dir, i))
 
-    message("Done.", domain = NA)
+    cat(crayon::green("Done.\n"))
 
-    df <- data.frame(org = format, last.dir = paste0(basename(format), "/"), dir.name = dirname(format), subfolers = lengths(regmatches(format, gregexpr("/", format))))
+    df <- data.frame(original_path = format, last.dir = paste0(basename(format), "/"), dir.name = dirname(format), subfolers = lengths(regmatches(format, gregexpr("/", format))))
 
-    backbone <- c("|     ", rep("      ", 100))
+    # order by original path
+    df <- df[order(df$original_path),  ]
 
-    df$edges <- sapply(1:nrow(df), function(x) paste(paste(if (df$subfolers[x] > 0) backbone[1:df$subfolers[x]] else "", collapse = ""), "├── ", df$last.dir[x], sep = ""))
 
-    if (nrow(df) > 1)
-      for(i in 2:nrow(df))
-        if (df$dir.name[i - 1] != df$dir.name[i]) df$edges[i - 1] <- gsub("├──", "└──", df$edges[i - 1])
+    # get names of folders and subfolders in a data frame
+    folders_l <- lapply(df$original_path, function(x) strsplit(x, "\\/")[[1]])
 
-    # replace last T
-    df$edges[nrow(df)] <- gsub("├──", "└──", df$edges[nrow(df)])
+    folders <- as.data.frame(t(data.frame(lapply(folders_l, function(x) c(x, rep("", max(sapply(folders_l, length)) - length(x)))))))
+    rownames(folders) <- 1:nrow(folders)
+
+    folders$level <- apply(folders, 1, function(x) length(x[x != ""]))
+
+    edges <- as.data.frame(matrix(rep(NA, nrow(folders) * (ncol(folders) - 1)), ncol = ncol(folders) - 1))
+
+    Tpipe <- crayon::cyan(stri_unescape_unicode("\\u251c\\u2500\\u2500"))
+    Ipipe <- crayon::cyan(stri_unescape_unicode("\\u2502   "))
+    Lpipe <- crayon::cyan(stri_unescape_unicode("\\u2514\\u2500\\u2500"))
+    empty <- '    '
+
+
+    # add Ts to bifurcations
+    for(i in 1:(ncol(folders) - 1))
+      edges[, i] <-  ifelse(folders$level == i, Tpipe, Ipipe)
+
+    for (i in 1:nrow(folders)){
+
+      # Remove Ts
+      wich_t <- which(edges[i, ] == Tpipe)
+      if (length(wich_t) > 0)
+      if (wich_t < ncol(edges))
+        edges[i, (wich_t + 1):ncol(edges)] <- ""
+
+    # change Ts for Ls
+      if (folders$level[i] > 1){
+        if (max(which(folders$level == folders$level[i] & folders[, folders$level[i] - 1] == folders[i, folders$level[i] - 1])) == i)
+        edges[i, folders$level[i]] <- gsub(Tpipe, Lpipe, fixed = TRUE, edges[i, folders$level[i]])
+    }
+    }
+
+    # remove | below and L
+    for(i in 1:nrow(folders)){
+      if(any(edges[i, ] == Lpipe)){
+        previous_Ls <- which(edges[,which(edges[i, ] == Lpipe) - 1] ==  Lpipe)
+
+        if (any(previous_Ls < i)){
+            previous_L <- max(previous_Ls[previous_Ls < i])
+        edges[previous_L:i, which(edges[i, ] == Lpipe) - 1] <- gsub(Ipipe, empty, edges[previous_L:i, which(edges[i, ] == Lpipe) - 1], fixed = TRUE)
+        }
+      }
+    }
+
+  # Fix empty spaces above an L
+  for(e in 1:ncol(edges)){
+
+    for (u in 1:nrow(edges)){
+
+      if (edges[u, e] == Lpipe){
+        wich_Ts <- which(edges[,e] == Tpipe)
+        wich_Ts <- wich_Ts[wich_Ts < u]
+
+        if (length(wich_Ts) > 0){
+          wich_Ts <- max(wich_Ts)
+        edges[(wich_Ts + 1):(u - 1), e] <-  gsub(empty, Ipipe,  edges[(wich_Ts + 1):(u - 1), e], fixed = TRUE)
+        }
+      }
+    }
+  }
+
+    # Fix empty spaces below a T
+    for(e in 2:ncol(edges)){
+
+      for (u in 1:nrow(edges)){
+
+        if (edges[u, e] == Tpipe)
+          edges[u:max(which(df$dir.name == df$dir.name[u])),e] <-  gsub(empty, Ipipe, edges[u:max(which(df$dir.name == df$dir.name[u])),e], fixed = TRUE)
+
+        if (edges[u, e] == Tpipe)
+          edges[u:max(which(df$dir.name == df$dir.name[u])),e] <-  gsub(empty, Ipipe, edges[u:max(which(df$dir.name == df$dir.name[u])),e], fixed = TRUE)
+
+        if (u > 1)
+          if (edges[u, e] == Ipipe &  edges[u - 1, e] %in% c(empty, Lpipe, ""))
+          edges[u, e] <- empty
+
+
+      if (u < nrow(edges)){
+        if (edges[u, e] == Lpipe &  edges[u + 1, e] %in% c(Tpipe, Lpipe))
+          edges[u, e] <- Tpipe
+
+        if (edges[u, e] == Ipipe &  edges[u + 1, e] %in% c(empty, ""))
+          edges[u, e] <- empty
+
+        if (edges[u, e] == Tpipe &  edges[u + 1, e] %in% c("", empty))
+          edges[u, e] <- Lpipe
+        }
+      }
+    }
+
+    # Fix empty spaces below a T
+    for(e in 2:ncol(edges)){
+
+      for (u in nrow(edges):1){
+
+        if (edges[u, e] == Tpipe)
+          edges[u:max(which(df$dir.name == df$dir.name[u])),e] <-  gsub(empty, Ipipe, edges[u:max(which(df$dir.name == df$dir.name[u])),e], fixed = TRUE)
+
+        if (edges[u, e] == Tpipe)
+          edges[u:max(which(df$dir.name == df$dir.name[u])),e] <-  gsub(empty, Ipipe, edges[u:max(which(df$dir.name == df$dir.name[u])),e], fixed = TRUE)
+
+        if (u > 1)
+          if (edges[u, e] == Ipipe &  edges[u - 1, e] %in% c(empty, Lpipe, ""))
+            edges[u, e] <- empty
+
+
+          if (u < nrow(edges)){
+            if (edges[u, e] == Lpipe &  edges[u + 1, e] %in% c(Tpipe, Lpipe))
+              edges[u, e] <- Tpipe
+
+            if (edges[u, e] == Ipipe &  edges[u + 1, e] %in% c(empty, ""))
+              edges[u, e] <- empty
+
+            if (edges[u, e] == Tpipe &  edges[u + 1, e] %in% c("", empty))
+              edges[u, e] <- Lpipe
+          }
+      }
+    }
 
     # replace last T in backbone
-    df$edges[max(which(df$dir.name == "."))] <- gsub("├──", "└──", df$edges[max(which(df$dir.name == "."))])
+    last_T_col1 <- max(which(edges[, 1] == Tpipe))
+    edges[last_T_col1, 1] <- Lpipe
 
+    # remove | after L in first column
+    if (last_T_col1 < nrow(edges))
+      edges[(last_T_col1 + 1):nrow(edges), 1] <- empty
 
-    # remove backbone in secondary subfolders
-    df$edges[1:nrow(df) > max(which(df$dir.name == "."))] <- gsub("\\|", " ", df$edges[1:nrow(df) > max(which(df$dir.name == "."))])
+    if (!is.null(comments)){
+      if(length(comments) < nrow(df))
+        comments <- c(comments, rep("", nrow(df)- length(comments)))
 
-    folder_structure <- paste0(name, "\n|\n", paste(df$edges, collapse = "\n"))
+      if(length(comments) < nrow(df))
+        comments <- comments[1:nrow(df)]
 
+      # add to dir name
+      df$last.dir <- sapply(1:nrow(df), function(x) paste(df$last.dir[x], crayon::silver(paste(if(comments[x] == "") ""  else " #", comments[x]))))
+
+      }
+
+    # put all in a single vector
+    edge <- paste(apply(edges, 1, paste, collapse = ""), df$last.dir)
+
+    # add page breaks
+    folder_structure <- paste0(crayon::bgWhite(crayon::bold(name)), "\n", crayon::bold(Ipipe),"\n", paste(edge, collapse = "\n"))
+
+    # print
     cat(folder_structure)
-
-    }
+}
 
 
