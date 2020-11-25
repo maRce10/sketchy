@@ -35,7 +35,7 @@ library(sketchy)
 The package comes with 2 default compendium skeletons (i.e. folder
 structures). They can be used with the function `compendium_skeleton()`:
 
-## Basic compendium
+### Basic compendium
 
 ``` r
 
@@ -51,7 +51,7 @@ compendium_skeleton(name = "research_proyect_x", path = path, format = compendiu
 (*in these examples compendiums is created in a temporary directory,
 change ‘path’ to create it in a different directory*)
 
-## Output/figures
+### Output/figures
 
 ``` r
 
