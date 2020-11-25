@@ -7,6 +7,6 @@ citEntry(entry = "MISC",
         year = "2020",
 #        journal = "Methods in Ecology and Evolution",
 #        url = "http://dx.doi.org/10.1111/2041-210X.12624",
-        textVersion = "Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy:research compendiums for data analysis in R. R package version 1.0.0."
+        textVersion = "Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.0."
 
 )

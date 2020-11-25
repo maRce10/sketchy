@@ -33,7 +33,9 @@ library(sketchy)
 ## Default compendium skeletons
 
 The package comes with 2 default compendium skeletons (i.e. folder
-structures). They can be used with the function `compendium_skeleton()`:
+structures). They can be used with the function `compendium_skeleton()`.
+The function creates the folder/subfolder structure and prints a diagram
+of the skeleton in the console:
 
 ### Basic compendium
 
@@ -79,7 +81,7 @@ compendium_skeleton(name = "research_proyect_z", path = path, format = compendiu
 
 Please cite [sketchy](https://marce10.github.io/sketchy/) as follows:
 
-Araya-Salas, M., Willink, B., Arriaga, A. (2020), *sketchy:research
+Araya-Salas, M., Willink, B., Arriaga, A. (2020), *sketchy: research
 compendiums for data analysis in R*. R package version 1.0.0.
 
 # References
