@@ -8,7 +8,7 @@ compendium_skeleton(name = "research_compendium", path = ".", force = FALSE, for
 comments = NULL)
 }
 \arguments{
-\item{name}{character string: the research compendium directory name. No special characters shoud be used. Default is "research_compendium".}
+\item{name}{character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".}
 
 \item{path}{Character string containing the directory path where test (re-recorded) sound files are found.}
 
@@ -19,7 +19,7 @@ comments = NULL)
 \item{comments}{A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.}
 }
 \value{
-A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console.
+A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" folder the function saves a manuscript template in Rmd format inside that folder.
 }
 \description{
 \code{compendium_skeleton} generates the folder structure of a research compendium.
@@ -29,13 +29,19 @@ The function takes predefined folder structures to generate the directory skelet
 }
 \examples{
 {
-compendium_skeleton(name = "mycompendium", path = tempdir(), format = compendiums$basic)
+data(compendiums)
+
+compendium_skeleton(name = "mycompendium", path = tempdir(), format = compendiums$basic$skeleton)
 }
 
 }
 \references{
 {
-Araya-Salas, M. (2020), *sketchy:research compendiums for data analysis in R*. R package version 1.0.0.
+Araya-Salas, M., Willink, B., Arriaga, A. (2020), *sketchy:research compendiums for data analysis in R*. R package version 1.0.0.
+
+Marwick, B., Boettiger, C., & Mullen, L. (2018). *Packaging Data Analytical Work Reproducibly Using R (and Friends)*. American Statistician, 72(1), 80-88.
+
+Alston, J., & Rick, J. (2020). *A Beginners Guide to Conducting Reproducible Research*.
 }
 }
 \author{

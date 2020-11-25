@@ -9,17 +9,23 @@
 #' @param path Character string containing the directory path where test (re-recorded) sound files are found.
 #' @param format A character vector with the names of the folders and subfolders to be included. Take a look at `compendiums$basic` for an example.
 #' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
-#' @return A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console.
+#' @return A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" folder the function saves a manuscript template in Rmd format inside that folder.
 #' @export
 #' @name compendium_skeleton
 #' @details The function takes predefined folder structures to generate the directory skeleton of a research compendium.
-#' @examples{
-#' compendium_skeleton(name = "mycompendium", path = tempdir(), format = compendiums$basic)
+#' @examples {
+#' data(compendiums)
+#'
+#'compendium_skeleton(name = "mycompendium", path = tempdir(), format = compendiums$basic$skeleton)
 #' }
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #' @references {
-#' Araya-Salas, M. (2020), *sketchy:research compendiums for data analysis in R*. R package version 1.0.0.
+#' Araya-Salas, M., Willink, B., Arriaga, A. (2020), *sketchy:research compendiums for data analysis in R*. R package version 1.0.0.
+#'
+#' Marwick, B., Boettiger, C., & Mullen, L. (2018). *Packaging Data Analytical Work Reproducibly Using R (and Friends)*. American Statistician, 72(1), 80-88.
+#'
+#' Alston, J., & Rick, J. (2020). *A Beginners Guide to Conducting Reproducible Research*.
 #' }
 #last modification on dec-26-2019 (MAS)
 
@@ -42,6 +48,10 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
     for(i in format)
     safe.dir.create(file.path(dir, i))
 
+    if (any(basename(format) == "manuscript")){
+      writeLines(internal_files$manuscript_template, file.path(path, name, grep("manuscript$", format, ignore.case = TRUE, value = TRUE)[1],"manuscript.Rmd"))
+      writeLines(internal_files$apa.csl, file.path(path, name, grep("manuscript$", format, ignore.case = TRUE, value = TRUE)[1], "apa.csl"))
+      }
     cat(crayon::green("Done.\n"))
 
     df <- data.frame(original_path = format, last.dir = paste0(basename(format), "/"), dir.name = dirname(format), subfolers = lengths(regmatches(format, gregexpr("/", format))))
@@ -60,9 +70,9 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
 
     edges <- as.data.frame(matrix(rep(NA, nrow(folders) * (ncol(folders) - 1)), ncol = ncol(folders) - 1))
 
-    Tpipe <- crayon::cyan(stri_unescape_unicode("\\u251c\\u2500\\u2500"))
-    Ipipe <- crayon::cyan(stri_unescape_unicode("\\u2502   "))
-    Lpipe <- crayon::cyan(stri_unescape_unicode("\\u2514\\u2500\\u2500"))
+    Tpipe <- crayon::cyan(stringi::stri_unescape_unicode("\\u251c\\u2500\\u2500"))
+    Ipipe <- crayon::cyan(stringi::stri_unescape_unicode("\\u2502   "))
+    Lpipe <- crayon::cyan(stringi::stri_unescape_unicode("\\u2514\\u2500\\u2500"))
     empty <- '    '
 
 

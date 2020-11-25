@@ -1,43 +1,92 @@
-# sketchy
+sketchy
+================
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sketchy)](http://www.r-pkg.org/pkg/sketchy)
-[![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy)
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<!-- [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy) -->
+
+<!-- [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sketchy)](http://www.r-pkg.org/pkg/sketchy) -->
+
+<!-- [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy) -->
+
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-`sketchy` is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing  other researchers to inspect, reproduce, and build upon that research.
+`sketchy` is intended to facilitate the use of research compendiums for
+data analysis in the R environment. Standard research compendiums
+provide a easily recognizable means for organizing digital materials,
+allowing other researchers to inspect, reproduce, and build upon that
+research.
 
-Install/load the package from CRAN as follows:
+To install the latest developmental version from
+[github](http://github.com/) you will need the R package
+[devtools](https://cran.r-project.org/package=devtools):
 
-```r
-
-# From CRAN would be
-#install.packages("cas")
-
-#load package
-library(sketchy)
-
-```
-
-To install the latest developmental version from [github](http://github.com/) you will need the R package [devtools](https://cran.r-project.org/package=devtools):
-
-```r
+``` r
 
 # From github
 devtools::install_github("maRce10/sketchy")
 
 #load package
 library(sketchy)
-
 ```
+
+## Default compendium skeletons
+
+The package comes with 2 default compendium skeletons (i.e. folder
+structures). They can be used with the function `compendium_skeleton()`:
+
+## Basic compendium
+
+``` r
+
+path = tempdir()
+
+compendium_skeleton(name = "research_proyect_x", path = path, format = compendiums$basic$skeleton)
+```
+
+<img src="./inst/compendium_1.png" width="22%" />
+
+ 
+
+(*in these examples compendiums is created in a temporary directory,
+change ‘path’ to create it in a different directory*)
+
+## Output/figures
+
+``` r
+
+compendium_skeleton(name = "research_proyect_y", path = path, format = compendiums$output_figures$skeleton)
+```
+
+<img src="./inst/compendium_2.png" width="22%" />
+
+ 
+
+We can also add comments to the folders to explain what kind of files
+they are supposed to contain:
+
+``` r
+
+compendium_skeleton(name = "research_proyect_z", path = path, format = compendiums$output_figures$skeleton, 
+                    comments = compendiums$output_figures$comments)
+```
+
+<img src="./inst/compendium_3.png" width="60%" />
+
+ 
+
+-----
 
 Please cite [sketchy](https://marce10.github.io/sketchy/) as follows:
 
-Araya-Salas, M. (2020), *sketchy:research compendiums for data analysis in R*. R package version 1.0.0.
+Araya-Salas, M., Willink, B., Arriaga, A. (2020), *sketchy:research
+compendiums for data analysis in R*. R package version 1.0.0.
 
 # References
 
-1. Marwick, B., Boettiger, C., & Mullen, L. (2018). *Packaging Data Analytical Work Reproducibly Using R (and Friends)*. American Statistician, 72(1), 80–88.
+1.  Marwick, B., Boettiger, C., & Mullen, L. (2018). *Packaging Data
+    Analytical Work Reproducibly Using R (and Friends)*. American
+    Statistician, 72(1), 80–88.
 
-1. Alston, J., & Rick, J. (2020). *A Beginner’s Guide to Conducting Reproducible Research*. 
-
+2.  Alston, J., & Rick, J. (2020). *A Beginner’s Guide to Conducting
+    Reproducible Research*.

@@ -1,0 +1,12 @@
+citHeader("Please cite 'warbleR' as follows:")
+
+
+citEntry(entry = "MISC",
+        title = "sketchy:research compendiums for data analysis in R",
+        author = personList(as.person("M. Araya-Salas"),as.person("B. Willink"),as.person("A.Y. Arriaga")),
+        year = "2020",
+#        journal = "Methods in Ecology and Evolution",
+#        url = "http://dx.doi.org/10.1111/2041-210X.12624",
+        textVersion = "Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy:research compendiums for data analysis in R. R package version 1.0.0."
+
+)

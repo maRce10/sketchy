@@ -12,11 +12,13 @@ output:
       collapsed: no
       smooth_scroll: no
 bibliography: combined_bibs.bib
-citation-style: sysbio.csl
+citation-style: apa.csl
 link-citations: true
 editor_options: 
   chunk_output_type: console
 ---
+
+
 
 ```{r, fixing citation .bib files, eval = TRUE, echo = FALSE}
 
@@ -44,7 +46,7 @@ bibs <- bibs[bibs != "combined_bibs.bib"]
 if (length(bibs) > 0){
   combined_bibs_l <- lapply(bibs, readLines)
   names(combined_bibs_l) <- gsub("\\.bib$", "", bibs)
-}
+
 
 # combine bibs in a single one
 combined_bibs <- unlist(combined_bibs_l)
@@ -62,6 +64,7 @@ tab_keys <- table(keys)
 if (anyDuplicated(keys)){
   print(paste0(sum(tab_keys > 1), " duplicate(s) references found in combined_bibs.bib"))
 }
+} else writeLines(text = "empty", "combined_bibs.bib")
 
 
 
@@ -75,7 +78,10 @@ if (anyDuplicated(keys)){
 
 \*To whom correspondence should be addressed
 
-**Keywords:** 
+### Keywords:
+
+Check [this link](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) for details on how to add citations/bibliography in Rmarkdown
+
 ---
 
 ## Abstract
