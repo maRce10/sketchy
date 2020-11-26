@@ -9,10 +9,11 @@ editor_options:
 
 ```{r setup, include = FALSE}
 
-
+# knitr global options
 knitr::opts_chunk$set(
   collapse = TRUE,
-  out.width = "100%"
+  out.width = "100%",
+  tidy = TRUE
 )
 library(sketchy)
 ```
@@ -22,7 +23,9 @@ library(sketchy)
 <!-- [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy) -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-`sketchy` is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing  other researchers to inspect, reproduce, and build upon that research.
+`sketchy` is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing  other researchers to inspect, reproduce, and build upon that research. 
+
+Unlike other R packages for creating research compendiums (e.g. [vertical](https://github.com/CrumpLab/vertical), [rrtools](https://github.com/benmarwick/rrtools)), `sketchy` isn't  wedded to a particular folder structure. The package provides several alternative structures (see object `compendiums`) and allows users to modify or input their own structures.   
 
 To install the latest developmental version from [github](http://github.com/) you will need the R package [devtools](https://cran.r-project.org/package=devtools):
 
@@ -51,7 +54,7 @@ compendium_skeleton(name = "research_proyect_x", path = path, format = compendiu
 
 ```
 
-```{r echo=FALSE, out.width='22%'}
+```{r echo=FALSE, out.width='55%'}
 knitr::include_graphics('./inst/compendium_1.png')
 ```
 
@@ -68,7 +71,7 @@ compendium_skeleton(name = "research_proyect_y", path = path, format = compendiu
 
 ```
 
-```{r echo=FALSE, out.width='22%'}
+```{r echo=FALSE, out.width='55%'}
 knitr::include_graphics('./inst/compendium_2.png')
 ```
 
@@ -83,11 +86,13 @@ compendium_skeleton(name = "research_proyect_z", path = path, format = compendiu
 
 ```
 
-```{r echo=FALSE, out.width='60%'}
+```{r echo=FALSE, out.width='55%'}
 knitr::include_graphics('./inst/compendium_3.png')
 ```
 
 &nbsp; 
+
+When creating a compendium that includes a "manuscript" folder the package adds a "manuscript_template.Rmd" file for facilitating paper writing within the compendium itself.
 
 ---
 

@@ -5,7 +5,7 @@
 #' The main features of the package are:
 #'   \itemize{
 #'   \item Creation of (customized) folder structure
-#'   \item Simpify the inclusion of big data files with version control software and online collaborative platforms (e.g. github)
+#'   \item Simplify the inclusion of big data files with version control software and online collaborative platforms (e.g. github)
 #'   }
 #'
 #' @import utils

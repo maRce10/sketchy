@@ -54,7 +54,16 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
       }
     cat(crayon::green("Done.\n"))
 
-    df <- data.frame(original_path = format, last.dir = paste0(basename(format), "/"), dir.name = dirname(format), subfolers = lengths(regmatches(format, gregexpr("/", format))))
+    # fix comments vector
+    if (!is.null(comments)){
+      if(length(comments) < length(format))
+        comments <- c(comments, rep("", length(format)- length(comments)))
+
+      if(length(comments) < length(format))
+        comments <- comments[1:length(format)]
+    } else comments <- rep("", length(format))
+
+    df <- data.frame(original_path = format, last.dir = paste0(basename(format), "/"), dir.name = dirname(format), subfolers = lengths(regmatches(format, gregexpr("/", format))), comments = comments)
 
     # order by original path
     df <- df[order(df$original_path),  ]
@@ -190,23 +199,16 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
     if (last_T_col1 < nrow(edges))
       edges[(last_T_col1 + 1):nrow(edges), 1] <- empty
 
-    if (!is.null(comments)){
-      if(length(comments) < nrow(df))
-        comments <- c(comments, rep("", nrow(df)- length(comments)))
 
-      if(length(comments) < nrow(df))
-        comments <- comments[1:nrow(df)]
+      # add comments to dir name
+      df$last.dir <- sapply(1:nrow(df), function(x) paste(df$last.dir[x], crayon::silver(paste(if(df$comments[x] == "") ""  else " #", df$comments[x]))))
 
-      # add to dir name
-      df$last.dir <- sapply(1:nrow(df), function(x) paste(df$last.dir[x], crayon::silver(paste(if(comments[x] == "") ""  else " #", comments[x]))))
-
-      }
 
     # put all in a single vector
     edge <- paste(apply(edges, 1, paste, collapse = ""), df$last.dir)
 
     # add page breaks
-    folder_structure <- paste0(crayon::bgWhite(crayon::bold(name)), "\n", crayon::bold(Ipipe),"\n", paste(edge, collapse = "\n"))
+    folder_structure <- paste0(crayon::bold(name), "\n", crayon::bold(Ipipe),"\n", paste(edge, collapse = "\n"))
 
     # print
     cat(folder_structure)

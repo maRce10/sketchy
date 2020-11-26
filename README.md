@@ -17,6 +17,13 @@ provide a easily recognizable means for organizing digital materials,
 allowing other researchers to inspect, reproduce, and build upon that
 research.
 
+Unlike other R packages for creating research compendiums
+(e.g. [vertical](https://github.com/CrumpLab/vertical),
+[rrtools](https://github.com/benmarwick/rrtools)), `sketchy` isn’t
+wedded to a particular folder structure. The package provides several
+alternative structures (see object `compendiums`) and allows users to
+modify or input their own structures.
+
 To install the latest developmental version from
 [github](http://github.com/) you will need the R package
 [devtools](https://cran.r-project.org/package=devtools):
@@ -26,7 +33,7 @@ To install the latest developmental version from
 # From github
 devtools::install_github("maRce10/sketchy")
 
-#load package
+# load package
 library(sketchy)
 ```
 
@@ -46,7 +53,7 @@ path = tempdir()
 compendium_skeleton(name = "research_proyect_x", path = path, format = compendiums$basic$skeleton)
 ```
 
-<img src="./inst/compendium_1.png" width="22%" />
+<img src="./inst/compendium_1.png" width="55%" />
 
  
 
@@ -60,7 +67,7 @@ change ‘path’ to create it in a different directory*)
 compendium_skeleton(name = "research_proyect_y", path = path, format = compendiums$output_figures$skeleton)
 ```
 
-<img src="./inst/compendium_2.png" width="22%" />
+<img src="./inst/compendium_2.png" width="55%" />
 
  
 
@@ -70,12 +77,16 @@ they are supposed to contain:
 ``` r
 
 compendium_skeleton(name = "research_proyect_z", path = path, format = compendiums$output_figures$skeleton, 
-                    comments = compendiums$output_figures$comments)
+    comments = compendiums$output_figures$comments)
 ```
 
-<img src="./inst/compendium_3.png" width="60%" />
+<img src="./inst/compendium_3.png" width="55%" />
 
  
+
+When creating a compendium that includes a “manuscript” folder the
+package adds a “manuscript\_template.Rmd” file for facilitating paper
+writing within the compendium itself.
 
 -----
 
