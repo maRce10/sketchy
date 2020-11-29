@@ -1,22 +1,23 @@
 #' Generate folder structures for research compendiums
 #'
-#' \code{compendium_skeleton} generates the folder structure of a research compendium.
-#' @usage compendium_skeleton(name = "research_compendium", path = ".", force = FALSE, format,
-#' comments = NULL)
+#' \code{make_compendium} generates the folder structure of a research compendium.
+#' @usage make_compendium(name = "research_compendium", path = ".", force = FALSE, format,
+#' comments = NULL, packrat = FALSE)
 #' @param name character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".
 #' @param path path to put the package directory in. Default is current directory.
 #' @param force	Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.
 #' @param path Character string containing the directory path where test (re-recorded) sound files are found.
 #' @param format A character vector with the names of the folders and subfolders to be included. Take a look at `compendiums$basic` for an example.
 #' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
+#' @param packrat Logical to control if packrat is initiallized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.
 #' @return A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" folder the function saves a manuscript template in Rmd format inside that folder.
 #' @export
-#' @name compendium_skeleton
+#' @name make_compendium
 #' @details The function takes predefined folder structures to generate the directory skeleton of a research compendium.
 #' @examples {
 #' data(compendiums)
 #'
-#'compendium_skeleton(name = "mycompendium", path = tempdir(), format = compendiums$basic$skeleton)
+#'make_compendium(name = "mycompendium", path = tempdir(), format = compendiums$basic$skeleton)
 #' }
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
@@ -29,7 +30,7 @@
 #' }
 #last modification on dec-26-2019 (MAS)
 
-compendium_skeleton <- function(name = "research_compendium", path = ".", force = FALSE, format, comments = NULL)
+make_compendium <- function(name = "research_compendium", path = ".", force = FALSE, format, comments = NULL, packrat = FALSE)
   {
     safe.dir.create <- function(path) {
       if (!dir.exists(path) && !dir.create(path))
@@ -54,6 +55,9 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
       }
     cat(crayon::green("Done.\n"))
 
+    if (packrat)
+     packrat::init(project = file.path(".", name))
+
     # fix comments vector
     if (!is.null(comments)){
       if(length(comments) < length(format))
@@ -67,7 +71,6 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
 
     # order by original path
     df <- df[order(df$original_path),  ]
-
 
     # get names of folders and subfolders in a data frame
     folders_l <- lapply(df$original_path, function(x) strsplit(x, "\\/")[[1]])
@@ -134,6 +137,7 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
   }
 
     # Fix empty spaces below a T
+    if (ncol(edges) > 1){
     for(e in 2:ncol(edges)){
 
       for (u in 1:nrow(edges)){
@@ -190,7 +194,7 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
           }
       }
     }
-
+}
     # replace last T in backbone
     last_T_col1 <- max(which(edges[, 1] == Tpipe))
     edges[last_T_col1, 1] <- Lpipe
@@ -208,10 +212,10 @@ compendium_skeleton <- function(name = "research_compendium", path = ".", force 
     edge <- paste(apply(edges, 1, paste, collapse = ""), df$last.dir)
 
     # add page breaks
-    folder_structure <- paste0(crayon::bold(name), "\n", crayon::bold(Ipipe),"\n", paste(edge, collapse = "\n"))
+    folder_structure <- paste0(crayon::bold(name), "\n", crayon::bold(Ipipe),"\n", paste(edge, collapse = "\n"), "\n")
 
     # print
-    cat(folder_structure)
+    on.exit(cat(folder_structure))
 }
 
 

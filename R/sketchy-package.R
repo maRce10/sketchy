@@ -9,6 +9,7 @@
 #'   }
 #'
 #' @import utils
+#' @import packrat
 #' @import knitr
 #' @importFrom stringi stri_unescape_unicode
 #' @importFrom crayon cyan bold

@@ -7,14 +7,14 @@ Author: Marcelo Araya-Salas [aut, cre]
 Maintainer: Marcelo Araya-Salas <marceloa27@gmail.com>
 Description: Provides functions to create and manage research compendiums for data analysis.
 License: GPL (>= 2)
-Imports: knitr, stringi, crayon
+Imports: knitr, stringi, crayon, packrat
 Depends: R (>= 3.5.0)
 LazyData: TRUE
 URL: https://github.com/maRce10/sketchy
 BugReports: https://github.com/maRce10/sketchy/issues
 NeedsCompilation: no
 Suggests: 
-    testthat
+    testthat, formatR
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Repository: CRANs
