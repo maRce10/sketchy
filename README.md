@@ -35,13 +35,13 @@ To install the latest developmental version from
 # From github
 devtools::install_github("maRce10/sketchy")
 
-#load package
+# load package
 library(sketchy)
 ```
 
 ## Default compendium skeletons
 
-The package comes with 2 default compendium skeletons (i.e. folder
+The package comes with 13 default compendium skeletons (i.e. folder
 structures). They can be used with the function `make_compendium()`. The
 function creates the folder/subfolder structure and prints a diagram of
 the skeleton in the console:
@@ -59,8 +59,8 @@ make_compendium(name = "proyect_x", path = path, format = compendiums$basic$skel
 
  
 
-(*in these examples compendiums is created in a temporary directory,
-change ‘path’ to create it in a different directory*)
+(*in these examples the compendiums are created in a temporary
+directory, change ‘path’ to create it in a different directory*)
 
 ### Boettiger
 
@@ -79,10 +79,10 @@ they are supposed to contain:
 ``` r
 
 make_compendium(name = "proyect_z", path = path, format = compendiums$large_compendium$skeleton, 
-                    comments = compendiums$large_compendium$comments)
+    comments = compendiums$large_compendium$comments)
 ```
 
-<img src="./inst/compendium_3.png" width="55%" />
+<img src="./inst/compendium_3.png" width="65%" />
 
  
 
