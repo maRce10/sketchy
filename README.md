@@ -41,8 +41,7 @@ library(sketchy)
 
 ## Default compendium skeletons
 
-The package comes with 13 default compendium skeletons (i.e. folder
-structures). They can be used with the function `make_compendium()`. The
+Compendiums can be set up with the function `make_compendium()`. The
 function creates the folder/subfolder structure and prints a diagram of
 the skeleton in the console:
 
