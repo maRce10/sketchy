@@ -3,7 +3,7 @@ Type: Package
 Title: Create custom research compendiums  
 Version: 1.0.2
 Date: 2020-06-05
-Author: Marcelo Araya-Salas [aut, cre]
+Author: Marcelo Araya-Salas [aut, cre], Beatriz Willink [aut], Andrea Arriaga [aut]
 Maintainer: Marcelo Araya-Salas <marceloa27@gmail.com>
 Description: Provides functions to create and manage research compendiums for data analysis.
 License: GPL (>= 2)

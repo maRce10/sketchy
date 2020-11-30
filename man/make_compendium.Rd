@@ -5,12 +5,12 @@
 \title{Generate folder structures for research compendiums}
 \usage{
 make_compendium(name = "research_compendium", path = ".", force = FALSE, format,
-comments = NULL, packrat = FALSE)
+comments = NULL, packrat = FALSE, clone = NULL)
 }
 \arguments{
 \item{name}{character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".}
 
-\item{path}{Character string containing the directory path where test (re-recorded) sound files are found.}
+\item{path}{path to put the package directory in. Default is current directory.}
 
 \item{force}{Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.}
 
@@ -19,6 +19,8 @@ comments = NULL, packrat = FALSE)
 \item{comments}{A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.}
 
 \item{packrat}{Logical to control if packrat is initiallized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.}
+
+\item{clone}{Path to a directory containing a folder structure to be cloned. Default is  \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.}
 }
 \value{
 A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" folder the function saves a manuscript template in Rmd format inside that folder.
@@ -39,11 +41,11 @@ make_compendium(name = "mycompendium", path = tempdir(), format = compendiums$ba
 }
 \references{
 {
-Araya-Salas, M., Willink, B., Arriaga, A. (2020), *sketchy: research compendiums for data analysis in R*. R package version 1.0.0.
+Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.0.
 
-Marwick, B., Boettiger, C., & Mullen, L. (2018). *Packaging Data Analytical Work Reproducibly Using R (and Friends)*. American Statistician, 72(1), 80-88.
+Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging Data Analytical Work Reproducibly Using R (and Friends). American Statistician, 72(1), 80-88.
 
-Alston, J., & Rick, J. (2020). *A Beginners Guide to Conducting Reproducible Research*.
+Alston, J., & Rick, J. (2020). A Beginners Guide to Conducting Reproducible Research.
 }
 }
 \author{
