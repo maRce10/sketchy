@@ -5,6 +5,7 @@
 #' @param path path to the package directory to be printed. Default is current directory.
 #' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
 #' @return The folder skeleton is printed in the console.
+#' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
 #' @name print_skeleton
 #' @details The function prints the folder structure of an existing proyect.

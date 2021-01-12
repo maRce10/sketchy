@@ -35,6 +35,9 @@ print_skeleton(path = file.path(tempdir(), "mycompendium"))
 Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.0.
 }
 }
+\seealso{
+\code{\link{compendiums}}, \code{\link{make_compendium}}
+}
 \author{
 Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

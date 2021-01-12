@@ -65,7 +65,9 @@ knitr::include_graphics('./inst/compendium_1.png')
 (*in these examples the compendiums are created in a temporary directory, change 'path' to create it in a different directory*)
 
 
-### Boettiger
+### Alternative structures
+
+We can also use folder structures from other sources. For instance, in this example we use the structured suggested by Wilson *et al.* (2017):
 
 ```{r, eval = FALSE}
 

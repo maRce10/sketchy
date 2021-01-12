@@ -61,7 +61,10 @@ make_compendium(name = "proyect_x", path = path, format = compendiums$basic$skel
 (*in these examples the compendiums are created in a temporary
 directory, change ‘path’ to create it in a different directory*)
 
-### Boettiger
+### Alternative structures
+
+We can also use folder structures from other sources. For instance, in
+this example we use the structured suggested by Wilson *et al.* (2017):
 
 ``` r
 
