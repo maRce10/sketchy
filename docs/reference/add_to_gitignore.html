@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate folder structures for research compendiums — make_compendium • sketchy</title>
+<title>Add entries to gitignore — add_to_gitignore • sketchy</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Generate folder structures for research compendiums — make_compendium" />
-<meta property="og:description" content="make_compendium generates the folder structure of a research compendium." />
+<meta property="og:title" content="Add entries to gitignore — add_to_gitignore" />
+<meta property="og:description" content="add_to_gitignore adds entries to gitignore files" />
 
 
 
@@ -108,67 +108,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate folder structures for research compendiums</h1>
-    <small class="dont-index">Source: <a href='https://github.com/maRce10/sketchy/blob/master/R/make_compendium.R'><code>R/make_compendium.R</code></a></small>
-    <div class="hidden name"><code>make_compendium.Rd</code></div>
+    <h1>Add entries to gitignore</h1>
+    <small class="dont-index">Source: <a href='https://github.com/maRce10/sketchy/blob/master/R/add_to_gitignore.R'><code>R/add_to_gitignore.R</code></a></small>
+    <div class="hidden name"><code>add_to_gitignore.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>make_compendium</code> generates the folder structure of a research compendium.</p>
+    <p><code>add_to_gitignore</code> adds entries to gitignore files</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_compendium</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"research_compendium"</span>, path <span class='op'>=</span> <span class='st'>"."</span>, force <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>format</span>,
-comments <span class='op'>=</span> <span class='cn'>NULL</span>, packrat <span class='op'>=</span> <span class='cn'>FALSE</span>, git <span class='op'>=</span> <span class='cn'>FALSE</span>, clone <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>add_to_gitignore</span><span class='op'>(</span>add.to.gitignore <span class='op'>=</span> <span class='cn'>FALSE</span>, cutoff <span class='op'>=</span> <span class='cn'>NULL</span>, extension <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>name</th>
-      <td><p>character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".</p></td>
+      <th>add.to.gitignore</th>
+      <td><p>Logical to control if files are added to 'gitignore' or just printed on the console.</p></td>
     </tr>
     <tr>
-      <th>path</th>
-      <td><p>Path to put the package directory in. Default is current directory.</p></td>
+      <th>cutoff</th>
+      <td><p>Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB.</p></td>
     </tr>
     <tr>
-      <th>force</th>
-      <td><p>Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.</p></td>
-    </tr>
-    <tr>
-      <th>format</th>
-      <td><p>A character vector with the names of the folders and subfolders to be included. Take a look at `compendiums$basic` for an example.</p></td>
-    </tr>
-    <tr>
-      <th>comments</th>
-      <td><p>A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.</p></td>
-    </tr>
-    <tr>
-      <th>packrat</th>
-      <td><p>Logical to control if packrat is initialized (<code><a href='https://rdrr.io/pkg/packrat/man/init.html'>packrat::init()</a></code>) when creating the compendium. Default is <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>git</th>
-      <td><p>Logical to control if a git repository is initialized (<code><a href='https://docs.ropensci.org/git2r/reference/init.html'>git2r::init()</a></code>) when creating the compendium. Default is <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>clone</th>
-      <td><p>Path to a directory containing a folder structure to be cloned. Default is  <code>NULL</code>. If provided 'format' is ignored. Folders starting with <code>^\.git|^\.Rproj.user|^\.\.Rcheck</code> will be ignored.</p></td>
+      <th>extension</th>
+      <td><p>Character string to define the file extension of the files to be searched for.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript_template.Rmd") and APA citation style file ("apa.csl") inside that folder.</p>
+    <p>Prints the name of the files matching the searching parameters. If <code>add.to.ignore = TRUE</code> the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function takes predefined folder structures to generate the directory skeleton of a research compendium.</p>
+    <p>The function can be used large size files h.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.0.Marwick, B., Boettiger, C., &amp; Mullen, L. (2018). Packaging Data Analytical Work Reproducibly Using R (and Friends). American Statistician, 72(1), 80-88.Alston, J., &amp; Rick, J. (2020). A Beginners Guide to Conducting Reproducible Research.</p>
+    <p>Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.0.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='compendiums.html'>compendiums</a></code>, <code><a href='print_skeleton.html'>print_skeleton</a></code></p></div>
+    <div class='dont-index'><p><code><a href='compendiums.html'>compendiums</a></code>, <code><a href='make_compendium.html'>make_compendium</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Marcelo Araya-Salas (<a href='mailto:marcelo.araya@ucr.ac.cr'>marcelo.araya@ucr.ac.cr</a>)</p>
@@ -177,12 +156,15 @@ comments <span class='op'>=</span> <span class='cn'>NULL</span>, packrat <span c
     <pre class="examples"><div class='input'><span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>compendiums</span><span class='op'>)</span>
 
-<span class='fu'>make_compendium</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"mycompendium"</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='va'>compendiums</span><span class='op'>$</span><span class='va'>basic</span><span class='op'>$</span><span class='va'>skeleton</span>,
-force <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='make_compendium.html'>make_compendium</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"my_compendium"</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
+ format <span class='op'>=</span> <span class='va'>compendiums</span><span class='op'>$</span><span class='va'>basic</span><span class='op'>$</span><span class='va'>skeleton</span>, force <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='co'># must start git monitoring at this point</span>
+<span class='co'># add_to_gitignore(add.to.gitignore = TRUE)</span>
 <span class='op'>}</span>
 </div><div class='output co'>#&gt; <span style='color: #00BB00;'>Creating directories ...
 #&gt; Done.
-#&gt; </span><span style='font-weight: bold;'>mycompendium</span><span>
+#&gt; </span><span style='font-weight: bold;'>my_compendium</span><span>
 #&gt; </span><span style='color: #00BBBB;font-weight: bold;'>│   </span><span>
 #&gt; </span><span style='color: #00BBBB;'>├──</span><span> data/ </span><span style='color: #555555;'> </span><span>
 #&gt; </span><span style='color: #00BBBB;'>│   ├──</span><span> processed/ </span><span style='color: #555555;'> </span><span>

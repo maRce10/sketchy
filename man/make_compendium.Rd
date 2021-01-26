@@ -37,7 +37,8 @@ The function takes predefined folder structures to generate the directory skelet
 {
 data(compendiums)
 
-make_compendium(name = "mycompendium", path = tempdir(), format = compendiums$basic$skeleton, force = TRUE)
+make_compendium(name = "mycompendium", path = tempdir(), format = compendiums$basic$skeleton,
+force = TRUE)
 }
 
 }

@@ -18,13 +18,13 @@ The folder skeleton is printed in the console.
 \code{print_skeleton} prints the folder structure of a research compendium.
 }
 \details{
-The function prints the folder structure of an existing proyect.
+The function prints the folder structure of an existing project.
 }
 \examples{
 {
 data(compendiums)
 
-make_compendium(name = "my_compendium", path = tempdir(), format = compendiums$basic$skeleton)
+make_compendium(name = "my_other_compendium", path = tempdir(), format = compendiums$basic$skeleton)
 
 print_skeleton(path = file.path(tempdir(), "mycompendium"))
 }

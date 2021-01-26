@@ -8,11 +8,11 @@
 #' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
 #' @name print_skeleton
-#' @details The function prints the folder structure of an existing proyect.
+#' @details The function prints the folder structure of an existing project.
 #' @examples {
 #' data(compendiums)
 #'
-#'make_compendium(name = "my_compendium", path = tempdir(), format = compendiums$basic$skeleton)
+#'make_compendium(name = "my_other_compendium", path = tempdir(), format = compendiums$basic$skeleton)
 #'
 #'print_skeleton(path = file.path(tempdir(), "mycompendium"))
 #' }
