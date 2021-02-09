@@ -9,8 +9,9 @@
 #'   }
 #'
 #' @import utils
-#' @import packrat
 #' @import knitr
+#' @importFrom packrat init
+# #' @importFrom git2r init
 #' @importFrom stringi stri_unescape_unicode
 #' @importFrom crayon cyan bold
 #' @author Marcelo Araya-Salas, Beatriz Willink & Andrea Arriaga

@@ -3,3 +3,4 @@
 ^examples$
 ^docs$
 ^README\.Rmd$
+^[\.]Rmd$$

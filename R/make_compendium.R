@@ -1,16 +1,18 @@
 #' Generate folder structures for research compendiums
 #'
 #' \code{make_compendium} generates the folder structure of a research compendium.
-#' @usage make_compendium(name = "research_compendium", path = ".", force = FALSE, format,
-#' comments = NULL, packrat = FALSE, git = FALSE, clone = NULL)
+#' @usage make_compendium(name = "research_compendium", path = ".", force = FALSE,
+#' format = compendiums$basic$skeleton, comments = NULL, packrat = FALSE,
+#' git = FALSE, clone = NULL, readme = TRUE)
 #' @param name character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".
 #' @param path Path to put the package directory in. Default is current directory.
 #' @param force Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.
-#' @param format A character vector with the names of the folders and subfolders to be included. Take a look at `compendiums$basic` for an example.
+#' @param format A character vector with the names of the folders and subfolders to be included. Default  is `compendiums$basic$skeleton`. Take a look at `compendiums` for examples.
 #' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
 #' @param packrat Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.
 #' @param git Logical to control if a git repository is initialized (\code{git2r::init()}) when creating the compendium. Default is \code{FALSE}.
 #' @param clone Path to a directory containing a folder structure to be cloned. Default is  \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.
+#' @param readme Logical. Controls if a readme file (in Rmd format) is added to the project. The file has predefined fields for documenting objectives and current status of the project. Default is \code{TRUE}.
 #' @return A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript_template.Rmd") and APA citation style file ("apa.csl") inside that folder.
 #' @seealso \code{\link{compendiums}}, \code{\link{print_skeleton}}
 #' @export
@@ -33,7 +35,7 @@
 #' }
 #last modification on dec-26-2019 (MAS)
 
-make_compendium <- function(name = "research_compendium", path = ".", force = FALSE, format, comments = NULL, packrat = FALSE, git = FALSE, clone = NULL)
+make_compendium <- function(name = "research_compendium", path = ".", force = FALSE, format = compendiums$basic$skeleton, comments = NULL, packrat = FALSE, git = FALSE, clone = NULL, readme = TRUE)
   {
     safe.dir.create <- function(path) {
       if (!dir.exists(path) && !dir.create(path))
@@ -77,15 +79,32 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
       writeLines(internal_files$apa.csl, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "apa.csl"))
       }
 
+
+    if (readme)
+      if (!file.exists(file.path(dir, "README.Rmd"))) {
+        readme_file <- internal_files$readme_template
+
+        # add project name to file
+        readme_file[2] <- paste('title:', name)
+        writeLines(readme_file, file.path(dir, "README.Rmd"))
+    } else
+      cat(crayon::green("README.Rmd already exists.\n"))
+
+
     cat(crayon::green("Done.\n"))
+
+    if (git) {
+      # error message if wavethresh is not installed
+      if (!requireNamespace("git2r",quietly = TRUE))
+        stop("must install 'git2r' to use 'git'") else
+          git2r::init(path = file.path(path, name))
+    }
 
     if (packrat){
      packrat::init(project = file.path(path, name))
 
       format <- c(format, "packrat")
     }
-
-    if (git) git2r::init(path = file.path(path, name))
 
   print_skeleton(path = file.path(path, name), comments = comments)
 }

@@ -1,0 +1,54 @@
+---
+title: "PROJECT TITLE"
+author: AUTOR NAME
+output: github_document
+date: <center>`r format(Sys.Date(), "%d-%m-%Y")`</center>
+editor_options:
+  chunk_output_type: console
+---
+
+<!-- Short Description  -->
+This is a short description of the project
+
+*Updated on `r Sys.time()`*
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+
+library(rmarkdown)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  out.width = "100%"
+)
+```
+
+
+## Table of contents
+* [General info](#general-info)
+  * [Analyses](#Analyses)
+    * [To do list](#to-do-list)
+      * [Contact](#contact)
+
+## General info
+
+General information about the project (study system, goals, etc)
+
+## Analysis
+
+* Analysis 1
+
+## In progress
+
+*  Something not finished yet
+
+## To-do list
+
+* Do the next analysis
+
+## Status
+Project is: _in progress_
+
+## Contact
+Created by [Autor name](website_URL)
