@@ -1,8 +1,8 @@
 ---
-title: "PROJECT TITLE"
+title: PROJECT TITLE
 author: AUTOR NAME
 output: github_document
-date: <center>`r format(Sys.Date(), "%d-%m-%Y")`</center>
+date: `r format(Sys.Date(), "%d-%m-%Y")`
 editor_options:
   chunk_output_type: console
 ---

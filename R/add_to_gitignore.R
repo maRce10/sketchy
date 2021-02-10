@@ -62,6 +62,8 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
 
     files_found_not_ignore <- grep(paste(gitignore, collapse = "|"), files_found, value = TRUE, invert = TRUE)
 
+    files_found_not_ignore <- paste(files_found_not_ignore, "# large file")
+
     gitignore2 <- unique(c(gitignore, files_found_not_ignore))
 
     gitignore2 <- gitignore2[gitignore2 != ""]
