@@ -18,9 +18,15 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r, eval = FALSE, echo = FALSE, include = FALSE}
+
+ library(git2r)
+
+```
 
 
 ```{r, fixing citation .bib files, eval = TRUE, echo = FALSE}
+
 
 # how to cite in Rmarkdown
 # https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
