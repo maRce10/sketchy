@@ -9,7 +9,7 @@ sketchy
 
 <!-- [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy) -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The package is intended to facilitate the use of research compendiums
 for data analysis in the R environment. Standard research compendiums
@@ -52,9 +52,17 @@ the skeleton in the console:
 path = tempdir()
 
 make_compendium(name = "proyect_x", path = path, format = compendiums$basic$skeleton)
+## Creating directories ...
+## proyect_x
+## │   
+## ├── data/  
+## │   ├── processed/  
+## │   └── raw/  
+## ├── manuscript/  
+## ├── output/  
+## └── scripts/  
+## Done.
 ```
-
-<img src="./inst/compendium_1.png" width="55%" />
 
  
 
@@ -63,15 +71,22 @@ directory, change ‘path’ to create it in a different directory*)
 
 ### Alternative structures
 
-We can also use folder structures from other sources. For instance, in
-this example we use the structured suggested by Wilson *et al.* (2017):
+We can use folder structures from other sources. For instance, in this
+example we use the structured suggested by Wilson *et al.* (2017):
 
 ``` r
 
 make_compendium(name = "proyect_y", path = path, format = compendiums$wilson$skeleton)
+## Creating directories ...
+## proyect_y
+## │   
+## ├── data/  
+## ├── doc/  
+## ├── requirements/  
+## ├── results/  
+## └── src/  
+## Done.
 ```
-
-<img src="./inst/compendium_2.png" width="55%" />
 
  
 
@@ -82,15 +97,176 @@ they are supposed to contain:
 
 make_compendium(name = "proyect_z", path = path, format = compendiums$large_compendium$skeleton, 
     comments = compendiums$large_compendium$comments)
+## Creating directories ...
+## proyect_z
+## │   
+## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile
+## │   ├── data/  # Raw data in open formats, not changed once created
+## │   └── scripts/  # R code used to analyse and visualise data
+## ├── man/  # Custom R functions used repeatedly throughout the project
+## ├── R/  # Auto-generated documentation for the custom R functions
+## └── tests/  # Unit tests of R functions to ensure they perform as expected
+## Done.
 ```
-
-<img src="./inst/compendium_3.png" width="65%" />
 
  
 
 When creating a compendium that includes a “manuscript” folder the
 package adds a “manuscript\_template.Rmd” file for facilitating paper
 writing within the compendium itself.
+
+We can check all compendium structure available as follows:
+
+``` r
+
+for (i in 1:length(compendiums)) {
+    print("---------------", quote = FALSE)
+    print(names(compendiums)[i], quote = FALSE)
+    print_skeleton(folders = compendiums[[i]]$skeleton)
+}
+## [1] ---------------
+## [1] basic
+## .
+## │   
+## ├── data/  
+## │   ├── processed/  
+## │   └── raw/  
+## ├── manuscript/  
+## ├── output/  
+## └── scripts/  
+## [1] ---------------
+## [1] figures
+## .
+## │   
+## ├── data/  
+## │   ├── processed/  
+## │   └── raw/  
+## ├── manuscript/  
+## ├── output/  
+## │   └── figures/  
+## │       ├── exploratory/  
+## │       └── final/  
+## └── scripts/  
+## [1] ---------------
+## [1] project_template
+## .
+## │   
+## ├── cache/  
+## ├── config/  
+## ├── data/  
+## ├── diagnostics/  
+## ├── docs/  
+## ├── graphs/  
+## ├── lib/  
+## ├── logs/  
+## ├── munge/  
+## ├── profiling/  
+## ├── reports/  
+## ├── src/  
+## └── tests/  
+## [1] ---------------
+## [1] pakillo
+## .
+## │   
+## ├── analyses/  
+## ├── data/  
+## ├── data-raw/  
+## ├── docs/  
+## ├── inst/  
+## ├── man/  
+## ├── manuscript/  
+## ├── R/  
+## └── tests/  
+## [1] ---------------
+## [1] boettiger
+## .
+## │   
+## ├── man/  
+## ├── R/  
+## ├── tests/  
+## └── vignettes/  
+## [1] ---------------
+## [1] wilson
+## .
+## │   
+## ├── data/  
+## ├── doc/  
+## ├── requirements/  
+## ├── results/  
+## └── src/  
+## [1] ---------------
+## [1] small_compendium
+## .
+## │   
+## ├── analysis/  
+## └── data/  
+## [1] ---------------
+## [1] medium_compendium
+## .
+## │   
+## ├── analysis/  
+## ├── data/  
+## ├── man/  
+## └── R/  
+## [1] ---------------
+## [1] large_compendium
+## .
+## │   
+## ├── analysis/  
+## │   ├── data/  
+## │   └── scripts/  
+## ├── man/  
+## ├── R/  
+## └── tests/  
+## [1] ---------------
+## [1] vertical
+## .
+## │   
+## ├── data/  
+## ├── data-raw/  
+## ├── docs/  
+## ├── experiments/  
+## ├── man/  
+## ├── manuscripts/  
+## ├── model/  
+## ├── posters/  
+## ├── R/  
+## ├── slides/  
+## └── vignettes/  
+## [1] ---------------
+## [1] rrtools
+## .
+## │   
+## ├── analysis/  
+## ├── data/  
+## ├── figures/  
+## ├── paper/  
+## └── templates/  
+## [1] ---------------
+## [1] rdir
+## .
+## │   
+## ├── code/  
+## │   ├── processed/  
+## │   ├── raw/  
+## │   ├── clean/  
+## │   └── raw/  
+## ├── figures/  
+## │   ├── exploratory/  
+## │   └── final/  
+## └── text/  
+##     ├── final/  
+##     └── notes/  
+## [1] ---------------
+## [1] workflowr
+## .
+## │   
+## ├── analysis/  
+## ├── code/  
+## ├── data/  
+## ├── docs/  
+## └── output/
+```
 
 -----
 

@@ -6,7 +6,7 @@
 \usage{
 make_compendium(name = "research_compendium", path = ".", force = FALSE,
 format = compendiums$basic$skeleton, comments = NULL, packrat = FALSE,
-git = FALSE, clone = NULL, readme = TRUE)
+git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 }
 \arguments{
 \item{name}{character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".}
@@ -26,6 +26,8 @@ git = FALSE, clone = NULL, readme = TRUE)
 \item{clone}{Path to a directory containing a folder structure to be cloned. Default is  \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.}
 
 \item{readme}{Logical. Controls if a readme file (in Rmd format) is added to the project. The file has predefined fields for documenting objectives and current status of the project. Default is \code{TRUE}.}
+
+\item{Rproj}{Logical. If \code{TRUE} a R project is created (i.e. a .Rproj file is saved in the main project directory).}
 }
 \value{
 A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript_template.Rmd") and APA citation style file ("apa.csl") inside that folder.

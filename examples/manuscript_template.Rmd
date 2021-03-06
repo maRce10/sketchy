@@ -1,8 +1,8 @@
 ---
 title: A study about the effect of X on Y
 author:
- - Author 1 (author_1@email)^1^ * 
- - Author 2 (author_2@email)^2^ 
+ - Author 1 (author_1_email)^1^ * 
+ - Author 2 (author_2_email)^2^ 
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -17,12 +17,6 @@ link-citations: true
 editor_options: 
   chunk_output_type: console
 ---
-
-```{r, eval = FALSE, echo = FALSE, include = FALSE}
-
- library(git2r)
-
-```
 
 
 ```{r, fixing citation .bib files, eval = TRUE, echo = FALSE}

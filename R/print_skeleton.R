@@ -1,9 +1,10 @@
 #' Print folder structures
 #'
 #' \code{print_skeleton} prints the folder structure of a research compendium.
-#' @usage print_skeleton(path = ".", comments = NULL)
+#' @usage print_skeleton(path = ".", comments = NULL, folders = NULL)
 #' @param path path to the package directory to be printed. Default is current directory.
 #' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
+#' @param folders A character vector including the name of the files.
 #' @return The folder skeleton is printed in the console.
 #' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
@@ -23,11 +24,13 @@
 #' }
 #last modification on dec-26-2019 (MAS)
 
-print_skeleton <- function(path = ".", comments = NULL)
+print_skeleton <- function(path = ".", comments = NULL, folders = NULL)
   {
 
   # get structure
-  format <- list.dirs(path = path, full.names = FALSE, recursive = TRUE)
+  if (is.null(folders))
+  format <- list.dirs(path = path, full.names = FALSE, recursive = TRUE) else
+    format <- folders
 
   # remove git R and devtools folders
   format <- grep("^\\.git|^\\.Rproj.user|^\\.\\.Rcheck", format, value = TRUE, invert = TRUE)

@@ -4,12 +4,14 @@
 \alias{print_skeleton}
 \title{Print folder structures}
 \usage{
-print_skeleton(path = ".", comments = NULL)
+print_skeleton(path = ".", comments = NULL, folders = NULL)
 }
 \arguments{
 \item{path}{path to the package directory to be printed. Default is current directory.}
 
 \item{comments}{A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.}
+
+\item{folders}{A character vector including the name of the files.}
 }
 \value{
 The folder skeleton is printed in the console.

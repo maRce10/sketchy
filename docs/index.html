@@ -79,13 +79,13 @@
 <!-- Unlike other packages for setting up research compendiums, `sketchy` has very simple functionality. Hence, users can focus on the research project itself rather than on learning how to use a new R package. -->
 <p>Unlike other R packages for creating research compendiums (e.g. <a href="https://github.com/CrumpLab/vertical">vertical</a>, <a href="https://github.com/benmarwick/rrtools">rrtools</a>), <code>sketchy</code> isn’t wedded to a particular folder structure. Currently the package provides 13 alternative structures (see object <code>compendiums</code>) and allows users to modify or input their own structures.</p>
 <p>To install the latest developmental version from <a href="http://github.com/">github</a> you will need the R package <a href="https://cran.r-project.org/package=devtools">devtools</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
+<div class="sourceCode" id="cb1"><pre class="downlit">
+
 <span class="co"># From github</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"maRce10/sketchy"</span><span class="op">)</span>
 
 <span class="co"># load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/sketchy">sketchy</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/sketchy">sketchy</a></span><span class="op">)</span></pre></div>
 <div id="default-compendium-skeletons" class="section level2">
 <h2 class="hasAnchor">
 <a href="#default-compendium-skeletons" class="anchor"></a>Default compendium skeletons</h2>
@@ -93,13 +93,12 @@
 <div id="basic-compendium" class="section level3">
 <h3 class="hasAnchor">
 <a href="#basic-compendium" class="anchor"></a>Basic compendium</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
+<div class="sourceCode" id="cb2"><pre class="downlit">
+
 <span class="va">path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_x"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="va">compendiums</span><span class="op">$</span><span class="va">basic</span><span class="op">$</span><span class="va">skeleton</span><span class="op">)</span>
 <span class="co">## Creating directories ...</span>
-<span class="co">## Done.</span>
 <span class="co">## proyect_x</span>
 <span class="co">## │   </span>
 <span class="co">## ├── data/  </span>
@@ -107,7 +106,8 @@
 <span class="co">## │   └── raw/  </span>
 <span class="co">## ├── manuscript/  </span>
 <span class="co">## ├── output/  </span>
-<span class="co">## └── scripts/</span></code></pre></div>
+<span class="co">## └── scripts/  </span>
+<span class="co">## Done.</span></pre></div>
 <p> </p>
 <p>(<em>in these examples the compendiums are created in a temporary directory, change ‘path’ to create it in a different directory</em>)</p>
 </div>
@@ -115,26 +115,25 @@
 <h3 class="hasAnchor">
 <a href="#alternative-structures" class="anchor"></a>Alternative structures</h3>
 <p>We can also use folder structures from other sources. For instance, in this example we use the structured suggested by Wilson <em>et al.</em> (2017):</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
+<div class="sourceCode" id="cb3"><pre class="downlit">
+
 <span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_y"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="va">compendiums</span><span class="op">$</span><span class="va">wilson</span><span class="op">$</span><span class="va">skeleton</span><span class="op">)</span>
 <span class="co">## Creating directories ...</span>
-<span class="co">## Done.</span>
 <span class="co">## proyect_y</span>
 <span class="co">## │   </span>
 <span class="co">## ├── data/  </span>
 <span class="co">## ├── doc/  </span>
 <span class="co">## ├── requirements/  </span>
 <span class="co">## ├── results/  </span>
-<span class="co">## └── src/</span></code></pre></div>
+<span class="co">## └── src/  </span>
+<span class="co">## Done.</span></pre></div>
 <p> </p>
 <p>We can also add comments to the folders to explain what kind of files they are supposed to contain:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
+<div class="sourceCode" id="cb4"><pre class="downlit">
+
 <span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_z"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="va">compendiums</span><span class="op">$</span><span class="va">large_compendium</span><span class="op">$</span><span class="va">skeleton</span>, 
     comments <span class="op">=</span> <span class="va">compendiums</span><span class="op">$</span><span class="va">large_compendium</span><span class="op">$</span><span class="va">comments</span><span class="op">)</span>
 <span class="co">## Creating directories ...</span>
-<span class="co">## Done.</span>
 <span class="co">## proyect_z</span>
 <span class="co">## │   </span>
 <span class="co">## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile</span>
@@ -142,9 +141,160 @@
 <span class="co">## │   └── scripts/  # R code used to analyse and visualise data</span>
 <span class="co">## ├── man/  # Custom R functions used repeatedly throughout the project</span>
 <span class="co">## ├── R/  # Auto-generated documentation for the custom R functions</span>
-<span class="co">## └── tests/  # Unit tests of R functions to ensure they perform as expected</span></code></pre></div>
+<span class="co">## └── tests/  # Unit tests of R functions to ensure they perform as expected</span>
+<span class="co">## Done.</span></pre></div>
 <p> </p>
 <p>When creating a compendium that includes a “manuscript” folder the package adds a “manuscript_template.Rmd” file for facilitating paper writing within the compendium itself.</p>
+<p>We can check all compendium structure available as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">compendiums</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"---------------"</span>, quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">compendiums</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <span class="fu"><a href="reference/print_skeleton.html">print_skeleton</a></span><span class="op">(</span>folders <span class="op">=</span> <span class="va">compendiums</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">skeleton</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] basic</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── output/  </span>
+<span class="co">## └── scripts/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] figures</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── output/  </span>
+<span class="co">## │   └── figures/  </span>
+<span class="co">## │       ├── exploratory/  </span>
+<span class="co">## │       └── final/  </span>
+<span class="co">## └── scripts/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] project_template</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── cache/  </span>
+<span class="co">## ├── config/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── diagnostics/  </span>
+<span class="co">## ├── docs/  </span>
+<span class="co">## ├── graphs/  </span>
+<span class="co">## ├── lib/  </span>
+<span class="co">## ├── logs/  </span>
+<span class="co">## ├── munge/  </span>
+<span class="co">## ├── profiling/  </span>
+<span class="co">## ├── reports/  </span>
+<span class="co">## ├── src/  </span>
+<span class="co">## └── tests/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] pakillo</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analyses/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── data-raw/  </span>
+<span class="co">## ├── docs/  </span>
+<span class="co">## ├── inst/  </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── R/  </span>
+<span class="co">## └── tests/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] boettiger</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## ├── R/  </span>
+<span class="co">## ├── tests/  </span>
+<span class="co">## └── vignettes/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] wilson</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── doc/  </span>
+<span class="co">## ├── requirements/  </span>
+<span class="co">## ├── results/  </span>
+<span class="co">## └── src/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] small_compendium</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## └── data/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] medium_compendium</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## └── R/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] large_compendium</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## │   ├── data/  </span>
+<span class="co">## │   └── scripts/  </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## ├── R/  </span>
+<span class="co">## └── tests/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] vertical</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── data-raw/  </span>
+<span class="co">## ├── docs/  </span>
+<span class="co">## ├── experiments/  </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## ├── manuscripts/  </span>
+<span class="co">## ├── model/  </span>
+<span class="co">## ├── posters/  </span>
+<span class="co">## ├── R/  </span>
+<span class="co">## ├── slides/  </span>
+<span class="co">## └── vignettes/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] rrtools</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── figures/  </span>
+<span class="co">## ├── paper/  </span>
+<span class="co">## └── templates/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] rdir</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── code/  </span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   ├── raw/  </span>
+<span class="co">## │   ├── clean/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── figures/  </span>
+<span class="co">## │   ├── exploratory/  </span>
+<span class="co">## │   └── final/  </span>
+<span class="co">## └── text/  </span>
+<span class="co">##     ├── final/  </span>
+<span class="co">##     └── notes/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] workflowr</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## ├── code/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── docs/  </span>
+<span class="co">## └── output/</span></pre></div>
 <hr>
 <p>Please cite <a href="https://marce10.github.io/sketchy/">sketchy</a> as follows:</p>
 <p>Araya-Salas, M., Willink, B., Arriaga, A. (2020), <em>sketchy: research compendiums for data analysis in R</em>. R package version 1.0.0.</p>
@@ -196,7 +346,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="lifecycle"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="lifecycle"></a></li>
 </ul>
 </div>
 </div>
