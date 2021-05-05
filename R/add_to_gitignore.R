@@ -31,13 +31,14 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = 99, extension = 
   if (is.null(cutoff) & is.null(extension))
     stop("'cutoff' and/or 'extension' must be supplied")
 
+  # create .gitignore if not found
+  if (!file.exists(".gitignore"))
+    writeLines(text = paste("# created by sketchy on", Sys.time()), con = ".gitignore")
+
   # get files list
   if (is.null(extension))
   fls <- list.files(recursive = TRUE, full.names = TRUE) else
     fls <- list.files(recursive = TRUE, full.names = TRUE, pattern = paste0("\\.", gsub(".", "", extension, fixed = TRUE), "$"))
-
-  if (is.null(cutoff))
-    cutoff <- -1
 
   #  get size info
   fi <- file.info(fls)
@@ -49,57 +50,68 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = 99, extension = 
   file_size <- sapply(fi$size, function(x) format.object_size(x, "Mb"))
 
   # put it in a data.frame
-  file_size_df <- data.frame(file.path = rownames(fi), file_size_Mb = as.numeric(gsub(" Mb","", file_size)))
+  file_size_df <- data.frame(raw = rownames(fi), no.comments = rownames(fi), file_size_Mb = file_size)
+
+  # fix name
+  file_size_df$raw <- gsub("^./", "",file_size_df$raw)
 
   # get big files
-  files_found <- file_size_df$file.path[file_size_df$file_size_Mb > cutoff]
+  file_size_df <- file_size_df[file_size_df$file_size_Mb > cutoff, ]
 
-  files_found <- gsub("^./", "", files_found)
+  # add columns with labels for printing
+  file_size_df$file.size.comment <- paste(file_size_df$raw, "#", file_size_df$file_size_Mb)
+  file_size_df$file.size.print <- paste0(file_size_df$raw, " (", file_size_df$file_size_Mb, ")")
 
-  # check gitignore
-  if (file.exists(".gitignore")){
+  if (nrow(file_size_df) == 0)
+    cat(paste0(crayon::magenta("No files were found"))) else
+      # print files exceeding cutoff
+      cat(paste0(crayon::magenta(paste0("The following ", nrow(file_size_df), " file(s) exceed(s) the cutoff size:"),"\n"), paste(file_size_df$file.size.print, collapse = "\n"), "\n"))
 
-    gitignore <- gsub(" # large file", "", readLines(".gitignore"))
+  if(add.to.gitignore & nrow(file_size_df) > 0) {
 
-    files_found_not_ignore <- files_found[!files_found %in% gitignore]
+      # read gitignore
+      gitignore <- readLines(".gitignore")
 
-    to_gitignore <- unique(c(gitignore, files_found_not_ignore))
+      # create data frame with column removing comments
+      gitignore_df <- data.frame(raw = gitignore, no.comments = sapply(strsplit(gitignore, "#"), `[`, 1))
 
-    to_gitignore <- to_gitignore[to_gitignore != ""]
+      # remove spaces before an after in file names
+      gitignore_df$no.comments <- gsub("^ | $", "", gitignore_df$no.comments)
 
-    to_gitignore <- paste(to_gitignore, "# large file")
+      # extract sketchy section
+      if(any(gitignore_df$raw == "## large files (sketchy section) ##")){
 
-    } else{
-      to_gitignore <- paste(files_found, "# large file") # if no gitignore file
-      gitignore <- vector()
+      sketchy_section <- gitignore_df[(which(gitignore_df$raw == "## large files (sketchy section) ##") + 1):(which(gitignore_df$raw == "## (sketchy section ends) ##") - 1), ]
+
+      rest_gitignore <- gitignore_df[setdiff(1:length(gitignore), which(gitignore == "## large files (sketchy section) ##"):which(gitignore == "## (sketchy section ends) ##")), ]
+
+      # set files to add to sketchy section
+      new_sketchy_section <- file_size_df[!file_size_df$raw %in% sketchy_section$no.comments, ]
+
+      } else { # if no sketchy section was found
+
+      # set files to add to sketchy section
+      sketchy_section <- data.frame(raw = vector(), no.comments = vector(), file_size_Mb = vector(), file.size.comment  = vector(),  file.size.print = vector())
+      new_sketchy_section <- file_size_df
+      rest_gitignore <- gitignore_df
       }
 
-  if (add.to.gitignore){
+      if(nrow(new_sketchy_section) == 0)
+      cat(crayon::magenta("\nThe files were already in '.gitignore' (no new files added)")) else {
 
-    # if (!file.exists(".gitignore"))
-    #   stop("'.gitignore' file not found, has git been initialized on this repository?")
+      new_gitignore <- c(rest_gitignore$raw, c("", "## large files (sketchy section) ##", "", sketchy_section$file.size.comment, new_sketchy_section$file.size.comment, "", "## (sketchy section ends) ##"))
 
-  writeLines(text = to_gitignore, con = ".gitignore")
-  }
+      writeLines(text = new_gitignore, con = ".gitignore")
 
-  if (length(files_found) > 0){
-  if (is.null(extension))
-  exit_ms <- paste0(crayon::magenta("The following file(s) exceed(s) the cutoff size:"),"\n", paste(files_found, collapse = "\n"), "\n") else
-    exit_ms <- paste0(crayon::magenta("The following file(s) match(es) the extension and exceed(s) the cutoff size:"),"\n", paste(files_found, collapse = "\n"), "\n")
-
-  } else exit_ms <- paste0(crayon::magenta("No files were found"))
-
-  cat(exit_ms)
-
-  if (add.to.gitignore)
-    if (all(files_found %in% gitignore))
-       cat(crayon::magenta("\nThe files were already in '.gitignore' (no new files added)")) else
-         cat(paste0(crayon::magenta("\nFile(s) added to '.gitignore':"),"\n", paste(setdiff(files_found, gitignore), collapse = "\n"), "\n"))
+      cat(paste0(crayon::magenta("\n file(s) added to '.gitignore'")))
+      }
 
 
-  }
+ }
 
-################################################################################
+}
+
+######################################################################
 
 ## copied from utils:::format.object_size
 format.object_size <- function (x, units = "b", standard = "auto", digits = 1L, ...)
