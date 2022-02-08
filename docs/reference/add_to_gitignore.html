@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -38,9 +38,11 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Add entries to gitignore — add_to_gitignore" />
-<meta property="og:description" content="add_to_gitignore adds entries to gitignore files" />
+<meta property="og:description" content="add_to_gitignore adds entries to gitignore based on file extension or file size" />
 
 
 
@@ -87,6 +89,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../articles/index.html">Articles</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -114,10 +119,10 @@
     </div>
 
     <div class="ref-description">
-    <p><code>add_to_gitignore</code> adds entries to gitignore files</p>
+    <p><code>add_to_gitignore</code> adds entries to gitignore based on file extension or file size</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_to_gitignore</span><span class='op'>(</span>add.to.gitignore <span class='op'>=</span> <span class='cn'>FALSE</span>, cutoff <span class='op'>=</span> <span class='fl'>99</span>, extension <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>add_to_gitignore</span><span class='op'>(</span>add.to.gitignore <span class='op'>=</span> <span class='cn'>FALSE</span>, cutoff <span class='op'>=</span> <span class='cn'>NULL</span>, extension <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,7 +133,7 @@
     </tr>
     <tr>
       <th>cutoff</th>
-      <td><p>Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB. Default is 99.</p></td>
+      <td><p>Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB.</p></td>
     </tr>
     <tr>
       <th>extension</th>
@@ -138,7 +143,7 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Prints the name of the files matching the searching parameters. If <code>add.to.ignore = TRUE</code> the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories.</p>
+    <p>Prints the name of the files matching the searching parameters. If <code>add.to.ignore = TRUE</code> the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories. This function mostly aims to simplify spotting/excluding large files. Note that file names can be manually added to the '.gitignore' file using a text editor.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The function can be used large size files h.</p>
@@ -160,20 +165,22 @@
  format <span class='op'>=</span> <span class='va'>compendiums</span><span class='op'>$</span><span class='va'>basic</span><span class='op'>$</span><span class='va'>skeleton</span>, force <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'># must start git monitoring at this point</span>
+
+<span class='co'># now can add files to gitignore</span>
 <span class='co'># add_to_gitignore(add.to.gitignore = TRUE)</span>
 <span class='op'>}</span>
 </div><div class='output co'>#&gt; <span style='color: #00BB00;'>Creating directories ...
-#&gt; </span><span style='font-weight: bold;'>my_compendium</span><span>
-#&gt; </span><span style='color: #00BBBB;font-weight: bold;'>│   </span><span>
-#&gt; </span><span style='color: #00BBBB;'>├──</span><span> data/ </span><span style='color: #555555;'> </span><span>
-#&gt; </span><span style='color: #00BBBB;'>│   ├──</span><span> processed/ </span><span style='color: #555555;'> </span><span>
-#&gt; </span><span style='color: #00BBBB;'>│   └──</span><span> raw/ </span><span style='color: #555555;'> </span><span>
-#&gt; </span><span style='color: #00BBBB;'>├──</span><span> manuscript/ </span><span style='color: #555555;'> </span><span>
-#&gt; </span><span style='color: #00BBBB;'>├──</span><span> output/ </span><span style='color: #555555;'> </span><span>
-#&gt; </span><span style='color: #00BBBB;'>└──</span><span> scripts/ </span><span style='color: #555555;'> </span><span>
-#&gt; </span><span style='color: #00BB00;'>Done.
-#&gt; </span><span></div><div class='input'>
-</div></span></pre>
+#&gt; </span><span style='font-weight: bold;'>my_compendium</span>
+#&gt; <span style='color: #00BBBB; font-weight: bold;'>│   </span>
+#&gt; <span style='color: #00BBBB;'>├──</span> data/ <span style='color: #555555;'> </span>
+#&gt; <span style='color: #00BBBB;'>│   ├──</span> processed/ <span style='color: #555555;'> </span>
+#&gt; <span style='color: #00BBBB;'>│   └──</span> raw/ <span style='color: #555555;'> </span>
+#&gt; <span style='color: #00BBBB;'>├──</span> manuscript/ <span style='color: #555555;'> </span>
+#&gt; <span style='color: #00BBBB;'>├──</span> output/ <span style='color: #555555;'> </span>
+#&gt; <span style='color: #00BBBB;'>└──</span> scripts/ <span style='color: #555555;'> </span>
+#&gt; <span style='color: #00BB00;'>Done.
+#&gt; </span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

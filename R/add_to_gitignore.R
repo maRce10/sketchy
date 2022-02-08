@@ -1,11 +1,11 @@
 #' Add entries to gitignore
 #'
-#' \code{add_to_gitignore} adds entries to gitignore files
+#' \code{add_to_gitignore} adds entries to gitignore based on file extension or file size
 #' @usage add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL)
 #' @param add.to.gitignore Logical to control if files are added to 'gitignore' or just printed on the console.
 #' @param cutoff Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB.
 #' @param extension Character string to define the file extension of the files to be searched for.
-#' @return Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories. This function mostly aims to simplify spotting large files. Note that file names can be manually added to
+#' @return Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories. This function mostly aims to simplify spotting/excluding large files. Note that file names can be manually added to the '.gitignore' file using a text editor.
 #' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
 #' @name add_to_gitignore
