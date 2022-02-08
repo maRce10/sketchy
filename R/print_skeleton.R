@@ -13,7 +13,7 @@
 #' @examples {
 #' data(compendiums)
 #'
-#'make_compendium(name = "my_other_compendium", path = tempdir(), format = compendiums$basic$skeleton)
+#'make_compendium(name = "my_other_compendium", path = tempdir(), format = "basic")
 #'
 #'print_skeleton(path = file.path(tempdir(), "mycompendium"))
 #' }

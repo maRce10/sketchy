@@ -27,7 +27,7 @@ The function can be used to avoid conflicts when working with large files or jus
 data(compendiums)
 
 make_compendium(name = "my_compendium", path = tempdir(),
- format = compendiums$basic$skeleton, force = TRUE)
+ format = "basic", force = TRUE)
 
 # must start git monitoring at this point
 
@@ -38,7 +38,7 @@ make_compendium(name = "my_compendium", path = tempdir(),
 }
 \references{
 {
-Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.0.
+Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.2.
 }
 }
 \seealso{

@@ -14,7 +14,7 @@
 #' data(compendiums)
 #'
 #' make_compendium(name = "my_compendium", path = tempdir(),
-#'  format = compendiums$basic$skeleton, force = TRUE)
+#'  format = "basic", force = TRUE)
 #'
 #' # must start git monitoring at this point
 #'

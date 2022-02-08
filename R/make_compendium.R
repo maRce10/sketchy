@@ -22,7 +22,7 @@
 #' @examples {
 #' data(compendiums)
 #'
-#'make_compendium(name = "mycompendium", path = tempdir(), format = compendiums$basic$skeleton,
+#'make_compendium(name = "mycompendium", path = tempdir(), format = "basic",
 #' force = TRUE)
 #' }
 #'

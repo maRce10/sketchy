@@ -26,7 +26,7 @@ The function prints the folder structure of an existing project.
 {
 data(compendiums)
 
-make_compendium(name = "my_other_compendium", path = tempdir(), format = compendiums$basic$skeleton)
+make_compendium(name = "my_other_compendium", path = tempdir(), format = "basic")
 
 print_skeleton(path = file.path(tempdir(), "mycompendium"))
 }
@@ -34,7 +34,7 @@ print_skeleton(path = file.path(tempdir(), "mycompendium"))
 }
 \references{
 {
-Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.0.
+Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.2.
 }
 }
 \seealso{

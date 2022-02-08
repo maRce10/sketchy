@@ -179,7 +179,7 @@ git <span class='op'>=</span> <span class='cn'>FALSE</span>, clone <span class='
     <p>The function takes predefined folder structures to generate the directory skeleton of a research compendium.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.0.Marwick, B., Boettiger, C., &amp; Mullen, L. (2018). Packaging Data Analytical Work Reproducibly Using R (and Friends). American Statistician, 72(1), 80-88.Alston, J., &amp; Rick, J. (2020). A Beginners Guide to Conducting Reproducible Research.</p>
+    <p>Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.2.Marwick, B., Boettiger, C., &amp; Mullen, L. (2018). Packaging Data Analytical Work Reproducibly Using R (and Friends). American Statistician, 72(1), 80-88.Alston, J., &amp; Rick, J. (2020). A Beginners Guide to Conducting Reproducible Research.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='compendiums.html'>compendiums</a></code>, <code><a href='print_skeleton.html'>print_skeleton</a></code></p></div>
@@ -191,18 +191,18 @@ git <span class='op'>=</span> <span class='cn'>FALSE</span>, clone <span class='
     <pre class="examples"><div class='input'><span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>compendiums</span><span class='op'>)</span>
 
-<span class='fu'>make_compendium</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"mycompendium"</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='va'>compendiums</span><span class='op'>$</span><span class='va'>basic</span><span class='op'>$</span><span class='va'>skeleton</span>,
+<span class='fu'>make_compendium</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"mycompendium"</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"basic"</span>,
 force <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div><div class='output co'>#&gt; <span style='color: #00BB00;'>Creating directories ...
 #&gt; </span><span style='font-weight: bold;'>mycompendium</span>
 #&gt; <span style='color: #00BBBB; font-weight: bold;'>│   </span>
 #&gt; <span style='color: #00BBBB;'>├──</span> data/ <span style='color: #555555;'> </span>
-#&gt; <span style='color: #00BBBB;'>│   ├──</span> processed/ <span style='color: #555555;'> </span>
-#&gt; <span style='color: #00BBBB;'>│   └──</span> raw/ <span style='color: #555555;'> </span>
-#&gt; <span style='color: #00BBBB;'>├──</span> manuscript/ <span style='color: #555555;'> </span>
-#&gt; <span style='color: #00BBBB;'>├──</span> output/ <span style='color: #555555;'> </span>
-#&gt; <span style='color: #00BBBB;'>└──</span> scripts/ <span style='color: #555555;'> </span>
+#&gt; <span style='color: #00BBBB;'>│   ├──</span> processed/ <span style='color: #555555;'> # modified/rearranged data</span>
+#&gt; <span style='color: #00BBBB;'>│   └──</span> raw/ <span style='color: #555555;'> # original data</span>
+#&gt; <span style='color: #00BBBB;'>├──</span> manuscript/ <span style='color: #555555;'> # manuscript/poster figures</span>
+#&gt; <span style='color: #00BBBB;'>├──</span> output/ <span style='color: #555555;'> # all non-data products of data analysis</span>
+#&gt; <span style='color: #00BBBB;'>└──</span> scripts/ <span style='color: #555555;'> # code</span>
 #&gt; <span style='color: #00BB00;'>Done.
 #&gt; </span></div><div class='input'>
 </div></pre>
