@@ -7,11 +7,11 @@
 print_skeleton(path = ".", comments = NULL, folders = NULL)
 }
 \arguments{
-\item{path}{path to the package directory to be printed. Default is current directory.}
+\item{path}{path to the directory to be printed. Default is current directory.}
 
 \item{comments}{A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.}
 
-\item{folders}{A character vector including the name of the files.}
+\item{folders}{A character vector including the name of the sub-directories of the project.}
 }
 \value{
 The folder skeleton is printed in the console.

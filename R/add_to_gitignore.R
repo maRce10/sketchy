@@ -5,7 +5,7 @@
 #' @param add.to.gitignore Logical to control if files are added to 'gitignore' or just printed on the console.
 #' @param cutoff Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB.
 #' @param extension Character string to define the file extension of the files to be searched for.
-#' @return Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories.
+#' @return Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories. This function mostly aims to simplify spotting large files. Note that file names can be manually added to
 #' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
 #' @name add_to_gitignore
@@ -17,6 +17,8 @@
 #'  format = compendiums$basic$skeleton, force = TRUE)
 #'
 #' # must start git monitoring at this point
+#'
+#' # now can add files to gitignore
 #' # add_to_gitignore(add.to.gitignore = TRUE)
 #' }
 #'
@@ -56,37 +58,32 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
 
   files_found <- gsub("^./", "", files_found)
 
-  # check gitignore
-  if (file.exists(".gitignore")){
+  if (!file.exists(".gitignore")){
+    writeLines(text = "", con = ".gitignore")
+    cat(crayon::magenta("'.gitignore' file not found so it was created"))
+    gitignore <- vector()
+} else
     gitignore <- readLines(".gitignore")
 
-    files_found_not_ignore <- grep(paste(gitignore, collapse = "|"), files_found, value = TRUE, invert = TRUE)
-
-    files_found_not_ignore <- paste(files_found_not_ignore, "# large file")
+    files_found_not_ignore <- if (length(gitignore) > 0) grep(paste(gitignore, collapse = "|"), files_found, value = TRUE, invert = TRUE) else files_found
 
     gitignore2 <- unique(c(gitignore, files_found_not_ignore))
 
     gitignore2 <- gitignore2[gitignore2 != ""]
-    }
 
-  if (add.to.gitignore){
-
-    if (!file.exists(".gitignore"))
-      stop("'.gitignore' file not found, has git been initialized on this repository?")
-
-  writeLines(text = gitignore2, con = ".gitignore")
-  }
+    if (add.to.gitignore)
+      writeLines(text = gitignore2, con = ".gitignore")
 
   if (length(files_found) > 0){
   if (is.null(extension))
-  exit_ms <- paste0(crayon::magenta("The following file(s) exceed(s) the cutoff size:"),"\n", paste(files_found, collapse = "\n"), "\n") else
-    exit_ms <- paste0(crayon::magenta("The following file(s) match(es) the extension:"),"\n", paste(files_found, collapse = "\n"), "\n")
+  exit_ms <- paste0(crayon::magenta("\nThe following file(s) exceed(s) the cutoff size:"),"\n", paste(files_found, collapse = "\n"), "\n") else
+    exit_ms <- paste0(crayon::magenta("\nThe following file(s) match(es) the extension:"),"\n", paste(files_found, collapse = "\n"), "\n")
 
-  } else exit_ms <- paste0(crayon::magenta("No files were found"))
+  } else exit_ms <- paste0(crayon::magenta("\nNo files were found"))
 
   cat(exit_ms)
 
-  if (length(files_found_not_ignore) > 0 & add.to.gitignore) cat(paste0(crayon::magenta("\nFile(s) added to '.gitignore':"),"\n", paste(files_found_not_ignore, collapse = "\n"), "\n"))
+  if (length(files_found_not_ignore) > 0 & add.to.gitignore & length(files_found) > 0) cat(paste0(crayon::magenta("\nFile(s) added to '.gitignore':"),"\n", paste(files_found_not_ignore, collapse = "\n"), "\n"))
 
   if (length(files_found_not_ignore) == 0 & add.to.gitignore) cat(crayon::magenta("\nNo new files were added '.gitignore'"))
 

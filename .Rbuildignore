@@ -1,6 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^examples$
+^testing$
 ^docs$
 ^README\.Rmd$
 ^[\.]Rmd$$
+docs
+pkgdown

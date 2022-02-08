@@ -5,7 +5,7 @@
 \title{Generate folder structures for research compendiums}
 \usage{
 make_compendium(name = "research_compendium", path = ".", force = FALSE,
-format = compendiums$basic$skeleton, comments = NULL, packrat = FALSE,
+format = "basic", comments = NULL, packrat = FALSE,
 git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 }
 \arguments{
@@ -15,7 +15,7 @@ git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 
 \item{force}{Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.}
 
-\item{format}{A character vector with the names of the folders and subfolders to be included. Default  is `compendiums$basic$skeleton`. Take a look at `compendiums` for examples.}
+\item{format}{A character vector with 2 or more elements with the names of the folders and subfolders to be included. Alternatively, it can be a character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'.}
 
 \item{comments}{A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.}
 

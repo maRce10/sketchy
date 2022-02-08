@@ -2,9 +2,9 @@
 #'
 #' \code{print_skeleton} prints the folder structure of a research compendium.
 #' @usage print_skeleton(path = ".", comments = NULL, folders = NULL)
-#' @param path path to the package directory to be printed. Default is current directory.
+#' @param path path to the directory to be printed. Default is current directory.
 #' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
-#' @param folders A character vector including the name of the files.
+#' @param folders A character vector including the name of the sub-directories of the project.
 #' @return The folder skeleton is printed in the console.
 #' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
@@ -36,6 +36,7 @@ print_skeleton <- function(path = ".", comments = NULL, folders = NULL)
   format <- grep("^\\.git|^\\.Rproj.user|^\\.\\.Rcheck", format, value = TRUE, invert = TRUE)
 
   # remove empty elements
+  # comments <- comments[!format %in%  c("", " ")]
   format <- format[!format %in%  c("", " ")]
 
   # get name of project to be printed
@@ -43,14 +44,17 @@ print_skeleton <- function(path = ".", comments = NULL, folders = NULL)
 
     # fix comments vector
     if (!is.null(comments)){
-      if(length(comments) < length(format))
-        comments <- c(comments, rep("", length(format)- length(comments)))
+      if(length(comments) != length(format))
+        stop(paste0(length(format), " folders found but only ", length(comments), " elements in comments"))
 
-      if(length(comments) < length(format))
-        comments <- comments[1:length(format)]
+      if (!all(names(comments) %in% format))
+        stop("not all names in 'comments' have a folder counterpart") else
+          comments <- comments[match(format, names(comments))]
+
     } else comments <- rep("", length(format))
 
-    df <- data.frame(original_path = format, last.dir = paste0(basename(format), "/"), dir.name = dirname(format), subfolers = lengths(regmatches(format, gregexpr("/", format))), comments = comments)
+
+    df <- data.frame(original_path = format, last.dir = paste0(basename(format), "/"), dir.name = dirname(format), subfolders = lengths(regmatches(format, gregexpr("/", format))), comments = comments)
 
     # order by original path
     df <- df[order(df$original_path),  ]

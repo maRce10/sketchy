@@ -14,7 +14,7 @@ add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL)
 \item{extension}{Character string to define the file extension of the files to be searched for.}
 }
 \value{
-Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories.
+Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github). Hence this can be used to avoid conflicts when working with large files or just avoid adding non-binary files to remote repositories. This function mostly aims to simplify spotting large files. Note that file names can be manually added to
 }
 \description{
 \code{add_to_gitignore} adds entries to gitignore files
@@ -30,6 +30,8 @@ make_compendium(name = "my_compendium", path = tempdir(),
  format = compendiums$basic$skeleton, force = TRUE)
 
 # must start git monitoring at this point
+
+# now can add files to gitignore
 # add_to_gitignore(add.to.gitignore = TRUE)
 }
 

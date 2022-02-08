@@ -2,12 +2,12 @@
 #'
 #' \code{make_compendium} generates the folder structure of a research compendium.
 #' @usage make_compendium(name = "research_compendium", path = ".", force = FALSE,
-#' format = compendiums$basic$skeleton, comments = NULL, packrat = FALSE,
+#' format = "basic", comments = NULL, packrat = FALSE,
 #' git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 #' @param name character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".
 #' @param path Path to put the package directory in. Default is current directory.
 #' @param force Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.
-#' @param format A character vector with the names of the folders and subfolders to be included. Default  is `compendiums$basic$skeleton`. Take a look at `compendiums` for examples.
+#' @param format A character vector with 2 or more elements with the names of the folders and subfolders to be included. Alternatively, it can be a character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'.
 #' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
 #' @param packrat Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.
 #' @param git Logical to control if a git repository is initialized (\code{git2r::init()}) when creating the compendium. Default is \code{FALSE}.
@@ -36,13 +36,24 @@
 #' }
 #last modification on dec-26-2019 (MAS)
 
-make_compendium <- function(name = "research_compendium", path = ".", force = FALSE, format = compendiums$basic$skeleton, comments = NULL, packrat = FALSE, git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
+make_compendium <- function(name = "research_compendium", path = ".", force = FALSE, format = "basic", comments = NULL, packrat = FALSE, git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
   {
     safe.dir.create <- function(path) {
       if (!dir.exists(path) && !dir.create(path))
         stop(gettextf("cannot create directory '%s'", path),
              domain = NA)
     }
+
+
+    # allow format name or skeleton from list
+    if (!is.character(format))
+      stop("'format' must either be a character vector") else
+        if (length(format) == 1)
+          if (!format %in% names(compendiums))
+            stop("'format' not found (must be one of those in 'names(compendiums)')") else {
+              comments <- compendiums[[format]]$comments
+              format <- compendiums[[format]]$skeleton
+              }
 
     # clone folder structure
     if (!is.null(clone)){
@@ -67,10 +78,10 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
     if (file.exists(dir) && !force)
       stop(gettextf("directory '%s' already exists", dir),
            domain = NA)
-    safe.dir.create(dir)
+      safe.dir.create(dir)
 
     for(i in format)
-    safe.dir.create(file.path(dir, i))
+      safe.dir.create(file.path(dir, i))
 
     if (any(basename(format) == "manuscript")){
       if (!file.exists(file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "manuscript.Rmd")))
@@ -82,7 +93,7 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
 
 
     if (git) {
-      # error message if wavethresh is not installed
+      # error message if git2r is not installed
       if (!requireNamespace("git2r",quietly = TRUE))
         stop("must install 'git2r' to use 'git'") else
           git2r::init(path = file.path(path, name))
