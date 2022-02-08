@@ -4,12 +4,12 @@
 \alias{add_to_gitignore}
 \title{Add entries to gitignore}
 \usage{
-add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL)
+add_to_gitignore(add.to.gitignore = FALSE, cutoff = 99, extension = NULL)
 }
 \arguments{
 \item{add.to.gitignore}{Logical to control if files are added to 'gitignore' or just printed on the console.}
 
-\item{cutoff}{Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB.}
+\item{cutoff}{Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB. Default is 99.}
 
 \item{extension}{Character string to define the file extension of the files to be searched for.}
 }

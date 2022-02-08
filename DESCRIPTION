@@ -2,7 +2,7 @@ Package: sketchy
 Type: Package
 Title: Create custom research compendiums  
 Version: 1.0.2
-Date: 2021-03-06
+Date: 2021-05-06
 Author: Marcelo Araya-Salas [aut, cre], Beatriz Willink [aut], Andrea Arriaga [aut]
 Maintainer: Marcelo Araya-Salas <marcelo.araya@ucr.ac.cr>
 Description: Provides functions to create and manage research compendiums for data analysis.

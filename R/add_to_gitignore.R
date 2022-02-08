@@ -35,35 +35,35 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
 
   # get files list
   if (is.null(extension))
-  fls <- list.files(recursive = TRUE, full.names = TRUE) else
-    fls <- list.files(recursive = TRUE, full.names = TRUE, pattern = paste0("\\.", gsub(".", "", extension, fixed = TRUE), "$"))
+    fls <- list.files(recursive = TRUE, full.names = TRUE) else
+      fls <- list.files(recursive = TRUE, full.names = TRUE, pattern = paste0("\\.", gsub(".", "", extension, fixed = TRUE), "$"))
 
-  if (is.null(cutoff))
-    cutoff <- -1
+    if (is.null(cutoff))
+      cutoff <- -1
 
-  #  get size info
-  fi <- file.info(fls)
+    #  get size info
+    fi <- file.info(fls)
 
-  # order by size
-  fi <- fi[order(-fi$size), ]
+    # order by size
+    fi <- fi[order(-fi$size), ]
 
-  # get size in MB
-  file_size <- sapply(fi$size, function(x) format.object_size(x, "Mb"))
+    # get size in MB
+    file_size <- sapply(fi$size, function(x) format.object_size(x, "Mb"))
 
-  # put it in a data.frame
-  file_size_df <- data.frame(file.path = rownames(fi), file_size_Mb = as.numeric(gsub(" Mb","", file_size)))
+    # put it in a data.frame
+    file_size_df <- data.frame(file.path = rownames(fi), file_size_Mb = as.numeric(gsub(" Mb","", file_size)))
 
-  # get big files
-  files_found <- file_size_df$file.path[file_size_df$file_size_Mb > cutoff]
+    # get big files
+    files_found <- file_size_df$file.path[file_size_df$file_size_Mb > cutoff]
 
-  files_found <- gsub("^./", "", files_found)
+    files_found <- gsub("^./", "", files_found)
 
-  if (!file.exists(".gitignore")){
-    writeLines(text = "", con = ".gitignore")
-    cat(crayon::magenta("'.gitignore' file not found so it was created"))
-    gitignore <- vector()
-} else
-    gitignore <- readLines(".gitignore")
+    if (!file.exists(".gitignore")){
+      writeLines(text = "", con = ".gitignore")
+      cat(crayon::magenta("'.gitignore' file not found so it was created"))
+      gitignore <- vector()
+    } else
+      gitignore <- readLines(".gitignore")
 
     files_found_not_ignore <- if (length(gitignore) > 0) grep(paste(gitignore, collapse = "|"), files_found, value = TRUE, invert = TRUE) else files_found
 
@@ -74,21 +74,21 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
     if (add.to.gitignore)
       writeLines(text = gitignore2, con = ".gitignore")
 
-  if (length(files_found) > 0){
-  if (is.null(extension))
-  exit_ms <- paste0(crayon::magenta("\nThe following file(s) exceed(s) the cutoff size:"),"\n", paste(files_found, collapse = "\n"), "\n") else
-    exit_ms <- paste0(crayon::magenta("\nThe following file(s) match(es) the extension:"),"\n", paste(files_found, collapse = "\n"), "\n")
+    if (length(files_found) > 0){
+      if (is.null(extension))
+        exit_ms <- paste0(crayon::magenta("\nThe following file(s) exceed(s) the cutoff size:"),"\n", paste(files_found, collapse = "\n"), "\n") else
+          exit_ms <- paste0(crayon::magenta("\nThe following file(s) match(es) the extension:"),"\n", paste(files_found, collapse = "\n"), "\n")
 
-  } else exit_ms <- paste0(crayon::magenta("\nNo files were found"))
+    } else exit_ms <- paste0(crayon::magenta("\nNo files were found"))
 
-  cat(exit_ms)
+    cat(exit_ms)
 
-  if (length(files_found_not_ignore) > 0 & add.to.gitignore & length(files_found) > 0) cat(paste0(crayon::magenta("\nFile(s) added to '.gitignore':"),"\n", paste(files_found_not_ignore, collapse = "\n"), "\n"))
+    if (length(files_found_not_ignore) > 0 & add.to.gitignore & length(files_found) > 0) cat(paste0(crayon::magenta("\nFile(s) added to '.gitignore':"),"\n", paste(files_found_not_ignore, collapse = "\n"), "\n"))
 
-  if (length(files_found_not_ignore) == 0 & add.to.gitignore) cat(crayon::magenta("\nNo new files were added '.gitignore'"))
+    if (length(files_found_not_ignore) == 0 & add.to.gitignore) cat(crayon::magenta("\nNo new files were added '.gitignore'"))
 
 
-  }
+}
 
 ################################################################################
 
@@ -111,8 +111,8 @@ format.object_size <- function (x, units = "b", standard = "auto", digits = 1L, 
     if (units != "auto") {
       if (endsWith(units, "iB"))
         standard <- "IEC" else if (endsWith(units, "b"))
-        standard <- "legacy" else if (units == "kB")
-        stop("For SI units, specify 'standard = \"SI\"'")
+          standard <- "legacy" else if (units == "kB")
+            stop("For SI units, specify 'standard = \"SI\"'")
     }
   }
   base <- known_bases[[standard]]
@@ -120,7 +120,7 @@ format.object_size <- function (x, units = "b", standard = "auto", digits = 1L, 
   if (units == "auto") {
     power <- if (x <= 0)
       0L else min(as.integer(log(x, base = base)), length(units_map) -
-               1L)
+                    1L)
   } else {
     power <- match(toupper(units), toupper(units_map)) -
       1L
