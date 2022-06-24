@@ -1,10 +1,11 @@
 #' Add entries to gitignore
 #'
 #' \code{add_to_gitignore} adds entries to gitignore based on file extension or file size
-#' @usage add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL)
+#' @usage add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path = ".")
 #' @param add.to.gitignore Logical to control if files are added to 'gitignore' or just printed on the console.
 #' @param cutoff Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB.
 #' @param extension Character string to define the file extension of the files to be searched for.
+#' @param path Path to the project directory. Default is current directory.
 #' @return Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github).
 #' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
@@ -16,10 +17,12 @@
 #' make_compendium(name = "my_compendium", path = tempdir(),
 #'  format = "basic", force = TRUE)
 #'
-#' # must start git monitoring at this point
+#' # save a file
+#' write.csv(iris, file.path(tempdir(), "my_compendium", "iris.csv"))
 #'
-#' # now can add files to gitignore
-#' # add_to_gitignore(add.to.gitignore = TRUE)
+#' # add the file to gitignore
+#' add_to_gitignore(add.to.gitignore = TRUE,
+#' path = file.path(tempdir(), "my_compendium"), extension = "csv")
 #' }
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
@@ -28,21 +31,21 @@
 #' }
 #last modification on dec-26-2019 (MAS)
 
-add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL){
+add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path = "."){
 
   if (is.null(cutoff) & is.null(extension))
     stop("'cutoff' and/or 'extension' must be supplied")
 
   # get files list
   if (is.null(extension))
-    fls <- list.files(recursive = TRUE, full.names = TRUE) else
-      fls <- list.files(recursive = TRUE, full.names = TRUE, pattern = paste0("\\.", gsub(".", "", extension, fixed = TRUE), "$"))
+    fls <- list.files(recursive = TRUE, full.names = FALSE, path = path) else
+      fls <- list.files(recursive = TRUE, full.names = FALSE, pattern = paste0("\\.", gsub(".", "", extension, fixed = TRUE), "$"), path = path)
 
     if (is.null(cutoff))
       cutoff <- -1
 
     #  get size info
-    fi <- file.info(fls)
+    fi <- file.info(file.path(path, fls))
 
     # order by size
     fi <- fi[order(-fi$size), ]
@@ -56,14 +59,19 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
     # get big files
     files_found <- file_size_df$file.path[file_size_df$file_size_Mb > cutoff]
 
-    files_found <- gsub("^./", "", files_found)
+    # remove project directory
+    files_found <- gsub(path, "", files_found)
 
-    if (!file.exists(".gitignore")){
-      writeLines(text = "", con = ".gitignore")
+    # remove ./
+    files_found <- gsub("^./", "", files_found)
+    files_found <- gsub("^/", "", files_found)
+
+    if (!file.exists(file.path(path, ".gitignore"))){
+      writeLines(text = "", con = file.path(path, ".gitignore"))
       cat(crayon::magenta("'.gitignore' file not found so it was created"))
       gitignore <- vector()
     } else
-      gitignore <- readLines(".gitignore")
+      gitignore <- readLines(file.path(path, ".gitignore"))
 
     files_found_not_ignore <- if (length(gitignore) > 0) grep(paste(gitignore, collapse = "|"), files_found, value = TRUE, invert = TRUE) else files_found
 
@@ -72,7 +80,7 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
     gitignore2 <- gitignore2[gitignore2 != ""]
 
     if (add.to.gitignore)
-      writeLines(text = gitignore2, con = ".gitignore")
+      writeLines(text = gitignore2, con = file.path(path, ".gitignore"))
 
     if (length(files_found) > 0){
       if (is.null(extension))

@@ -30,7 +30,7 @@ The package is intended to facilitate the use of research compendiums for data a
 
 Unlike other R packages for creating research compendiums (e.g. [vertical](https://github.com/CrumpLab/vertical), [rrtools](https://github.com/benmarwick/rrtools)), `sketchy` isn't  wedded to a particular folder structure. Currently the package provides 13 alternative structures (see object `compendiums`) and allows users to modify or input their own structures.   
 
-To install the latest developmental version from [github](http://github.com/) you will need the R package [devtools](https://cran.r-project.org/package=devtools):
+To install the latest developmental version from [github](https://github.com/) you will need the R package [devtools](https://cran.r-project.org/package=devtools):
 
 ```{r, eval = FALSE}
 
@@ -40,6 +40,11 @@ devtools::install_github("maRce10/sketchy")
 #load package
 library(sketchy)
 
+```
+
+```{r, echo = FALSE}
+
+load("./data/compendiums.rda")
 ```
 
 
@@ -53,7 +58,7 @@ Compendiums can be set up with the function `make_compendium()`. The function cr
 
 path = tempdir()
 
-make_compendium(name = "proyect_x", path = path, format = compendiums$basic$skeleton)
+make_compendium(name = "proyect_x", path = path, format = "basic")
 
 ```
 
@@ -69,7 +74,7 @@ We can use folder structures from other sources. For instance, in this example w
 
 ```{r, eval = TRUE}
 
-make_compendium(name = "proyect_y", path = path, format = compendiums$wilson$skeleton)
+make_compendium(name = "proyect_y", path = path, format = "sketchy")
 
 ```
 &nbsp; 
@@ -78,7 +83,7 @@ We can also add comments to the folders to explain what kind of files they are s
 
 ```{r, eval = TRUE}
 
-make_compendium(name = "proyect_z", path = path, format = compendiums$large_compendium$skeleton, 
+make_compendium(name = "proyect_z", path = path, format = "large_compendium", 
                     comments = compendiums$large_compendium$comments)
 
 ```

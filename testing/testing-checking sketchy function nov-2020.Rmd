@@ -1,0 +1,738 @@
+---
+title: "testing-checking sketchy function oct-2019"
+author: "Marcelo Araya-Salas"
+date: "November 21, 2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+#uninstall sketchy 
+```{r reinstall sketchy from github, eval=F}
+
+remove.packages("sketchy")
+ 
+# #restart R
+.rs.restartR()
+
+```
+
+# install packages
+```{r packages, eval=T}
+
+knitr::opts_chunk$set(dpi = 100, fig.width = 12, warning = FALSE, eval = FALSE) 
+
+rm(list = ls())
+# 
+# unload all non-based packages
+out <- sapply(paste('package:', names(sessionInfo()$otherPkgs), sep = ""), function(x) try(detach(x, unload = FALSE, character.only = TRUE), silent = T))
+
+x <- c( "devtools", "pkgdown", "spelling")
+
+out <- lapply(x, function(y) {
+  
+  # get pakage name
+  pkg <- strsplit(y, "/")[[1]]
+  pkg <- pkg[length(pkg)]
+  
+  # check if installed, if not then install 
+  if (!pkg %in% installed.packages()[,"Package"])  {
+
+      if (grepl("/", y))  devtools::install_github(y, force = TRUE) else
+    install.packages(y) 
+    }
+
+  # load package
+  try(require(pkg, character.only = T), silent = T)
+})
+
+install()
+
+
+```
+
+# functions
+```{r functions}
+
+#open function in rstudio
+open.fun <- function(fun) system(paste("rstudio", file.path("./R", paste0(fun, ".R"))))
+
+# run default arguments in a function
+run.def.args <- function(fun = NULL){
+
+  #list functions in package
+rfiles <- list.files(pattern = ".R", path = "./R", full.names = T)
+
+# select target function file
+funfile <- rfiles[gsub(".R", "", basename(rfiles)) == fun]
+
+  x <- readLines(funfile, warn = F)
+  st <- grep('@usage', x, fixed = T)
+  en <- grep('@param', x, fixed = T)[1]
+  x <- paste(x[st:(en-1)], collapse = " ")  
+  x <- gsub("usage|\\@|\\#\\'", "", x)
+
+  b <- gregexpr(pattern ='\\(|\\)',x)[1][[1]]
+  x <- substr(x, start = b[1] + 1, stop = b[length(b)] - 1)
+  spltx <- strsplit(x, "\\,")[[1]]
+
+sl <- vector()
+  y = 1
+
+      while(y <= length(spltx))
+        {
+        w <- spltx[y]
+        z <- 1
+        if(grepl('\\(', spltx[y])) 
+          {z  <- 0
+          while(!grepl('\\)', w))
+          {
+              z <- z+ 1
+              w <- paste(w, ",", spltx[y + z], collapse = "")
+          }
+        z <- z + 1
+          }
+        
+       y = y + z
+       sl[length(sl) + 1] <- w
+            }
+
+  sl <- sl[sl != "X"]
+  return(sl)
+  }
+
+# run it like this: 
+# for(i in run.def.args("dfts")) try(eval(parse(text = i)), silent = T)
+
+# remove sound files and or image files
+rm.sf <- function() unlink(list.files(path = tempdir(), pattern = "\\.wav$", ignore.case = T, full.names = TRUE))
+
+rm.sf.img <- function(mp3 = TRUE) {if(mp3)
+  unlink(list.files(path = tempdir(), pattern = "\\.wav$|\\.mp3$|\\.tiff$|\\.jpeg$|\\.jpg$|\\.png$", ignore.case = T, full.names = TRUE)) else
+      unlink(list.files(path = tempdir(), pattern = "\\.wav$|\\.tiff$|\\.jpeg$|\\.jpg$|\\.png$", ignore.case = T, full.names = TRUE))}
+
+rm.img <- function() unlink(list.files(path = tempdir(), pattern = "\\.tiff$|\\.jpeg$|\\.jpg$|\\.png$|\\.pdf$", ignore.case = T, full.names = TRUE))
+
+#open latest image
+last.img <- function() system(paste("eog", list.files(path = tempdir(), pattern = "\\.tiff$|\\.jpeg$|\\.jpg$", ignore.case = T, full.names = TRUE)[which.max(file.mtime(list.files(path = tempdir(), pattern = "\\.tiff$|\\.jpeg$|\\.jpg$", ignore.case = T, full.names = TRUE)))]
+))
+
+#open pdf
+last.pdf <- function() system(paste("xdg-open", list.files(path = tempdir(), pattern = "\\.pdf$", ignore.case = T, full.names = TRUE)[which.max(file.mtime(list.files(path = tempdir(), pattern = "\\.pdf", ignore.case = T, full.names = TRUE)))]
+))
+
+#find text in functions
+find.text <- function(pattern, fun.only = FALSE, path = "./R", ignore.case = T)
+  {
+rfiles <- list.files(pattern = "\\.R$|\\.Rmd$", path = path, full.names = T, all.files = T)
+  
+#check where a word is found in each function an return the name of function where it was found and the time
+res <- NULL
+w <- 1
+for(f in rfiles){
+  x <- readLines(f)
+  y <- grep(pattern, x, fixed = T, value = T, ignore.case = ignore.case)
+  if(length(y)>0 & !fun.only) {
+    print(gsub(pattern = "\\.R", "", (basename(f)))) 
+    for(i in y) print(i)
+  }
+  if(length(y)>0 & fun.only) res[w] <- gsub(pattern = "\\.R", "", (basename(f))) 
+# options(nwarnings = 0)
+  w = w + 1
+}
+if(fun.only)
+{res <- res[!is.na(res)]
+return(res)}
+}
+
+
+#replace text
+repl.text <- function(pattern, repl, path = "./R", ignore.case = T){
+  rfiles <- list.files(pattern = "\\.R$|\\.Rmd", path = path, full.names = T, all.files = T)
+
+    for(f in rfiles){
+  
+    #find and replace
+      x <- readLines(f)
+      y <- gsub(pattern, repl, x, fixed = T, ignore.case = ignore.case)
+      cat(y, file=f, sep="\n")
+  
+  #reread
+      x <- readLines(f)
+      w <- grep(repl, x, fixed = T, value = T, ignore.case = T)
+      if(length(w)>0) {
+          print(f) 
+        for(i in w) print(i)
+          }
+    }
+}
+
+#find functions with specific arguments
+find.arg <- function(arg1, arg2 = NULL){
+  
+  rfiles <- list.files(pattern = "\\.R$", path = "./R", full.names = T, all.files = T)
+  
+  funs <- gsub(pattern = "\\.R", "", (basename(rfiles)))
+  funs <-grep("zzz|data|package", funs, invert = T, value = T)
+  
+l1 <- unlist(lapply(funs, function(x)
+{  a <-  try(run.def.args(x), silent = T)
+  if(any(grep(arg1, a))) return(x)
+}      ))
+
+if(!is.null(arg2))
+{l2 <- unlist(lapply(funs, function(x)
+{  a <-  try(run.def.args(x), silent = T)
+  if(any(grep(arg2, a))) return(x)
+}      ))
+
+res <- intersect(l1, l2)
+
+} else res <- l1
+
+return(res)
+
+}
+
+# run default arguments
+run.def.args2 <-function(FUN)
+{
+  fm <- formals(FUN)
+
+  
+fm <- fm[sapply(fm, length) > 0 | sapply(fm, is.null)]
+
+fm <- lapply(1:length(fm), function(x) paste(names(fm)[x], "=", fm[x]))
+
+for(i in fm) try(eval(parse(text = i)), silent = T)
+
+}
+
+
+#find functions with specific arguments and text
+find.arg.text <- function(arg1, arg2 = NULL, pattern) {
+  
+  f1 <- find.text(pattern = pattern, fun.only = T)
+f2 <- find.arg(arg1 = arg1, arg2 = arg2)
+
+return(intersect(f1, f2))
+}
+  
+#big data set
+big.seltab <- function(X, nrow = 100){
+Y <- X[rep(1:nrow(X), ceiling(nrow/nrow(X)))[1:nrow],]
+  Y$selec <- 1:nrow(Y)
+if(is_selection_table(Y) | is_extended_selection_table(Y))
+  
+  attr(Y, "check.results") <- attr(X, "check.results")[rep(1:nrow(attr(X, "check.results")), ceiling(nrow/nrow(attr(X, "check.results"))))[1:nrow],]
+  
+  attr(Y, "check.results")$selec <- 1:nrow(Y)
+  return(Y)
+}
+
+# run all fuctions
+run.all <- function() invisible(lapply(list.files(pattern = "\\.R", path = "./R", full.names = T, all.files = T), function(x) try(source(x), silent = T)))
+
+run.all()
+
+```    
+
+# check
+```{r check}
+
+#delete NAMESPACE file
+unlink("./NAMESPACE")
+
+
+#run document twice
+devtools::document(".")
+devtools::document(".")
+
+#check with devtools
+devtools::check(".", document = TRUE, run_dont_test = FALSE, manual = FALSE)
+
+# devtools::build_manual()
+```
+
+# test and build package
+```{r test and build package}
+
+# check spelling
+spch <- devtools::spell_check(".")
+
+spch$word[grep("add_to", spch$found)]
+
+source('./R_package_testing/warbleR/Beta functions/random_sound.R')
+random_sound(dur = 2, segment.dur.range = c(0.01, 0.9), frange = c(1, 2))
+
+# check as in cran
+system("R CMD check . --as-cran --resave-data")
+
+devtools::check()
+
+# build tar.gz package file
+setwd("./")
+system("R CMD build . --resave-data")
+
+# devtools::build()
+
+unlink(list.files(pattern = "sketchy\\.pdf", path = "./"))
+
+# only build manual 
+setwd(".")
+system("R CMD Rd2pdf ./R\ package\ testing/sketchy/sketchy")
+
+setwd(".")
+
+#built site
+pkgdown::build_site(lazy = FALSE)
+
+# to set a new computer
+## 1. install git
+# 2. generate ssh key https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+# 3. add key to github account https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account  
+
+
+#sent to github
+# system("git add .")
+# system('git commit -m  "OTS course"')
+# system("git push origin master")
+
+```
+
+
+```{r}
+
+usethis::use_build_ignore(files = "[.]Rmd$")
+```
+
+# find and replace text
+```{r}
+
+# list.files
+
+path <- "."
+
+pattern <-  "funcition"
+
+find.text(pattern = pattern, fun.only = F, ignore.case = T, path = path)
+
+repl <- "function"
+
+repl.text(pattern = pattern, repl = repl, path = path)
+
+# find.arg.text(arg1 = "parallel", arg2 = "pb", pattern = "pbmcapply")
+
+```
+
+## troubleshoot sketchy functions ####
+
+```{r make_compendium}
+
+FUN <- "make_compendium"
+
+#run function
+# run.all()
+source(file.path("./R", paste0(FUN, ".R")))
+
+#open in rstudio
+##open.fun(fun = FUN)
+
+# remove objects but no functions
+rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
+
+# to troubleshoot internally
+# for(i in run.def.args(FUN)) try(eval(parse(text = i)), silent = T)
+# rm(i)
+
+#tests  
+sketchy::make_compendium(name = "projecto_x", format = "basic", force = TRUE, path = tempdir())
+
+make_compendium(name = "pruebaX", format = compendiums$basic$skeleton, force = TRUE, path = tempdir(), comments = compendiums$basic$comments)
+
+  
+make_compendium(name = "pruebaX", format = compendiums$figures$skeleton, force = TRUE)
+
+make_compendium(name = "pruebaX", format = compendiums$pakillo$skeleton, force = TRUE)
+
+
+make_compendium("prueba7", format = type2)
+
+
+ld <- readRDS("../example_complex_structure.RDS")
+
+make_compendium("pruebaZ", format =  ld, force = TRUE)
+
+make_compendium(name = "research_proyect_y", path = tempdir(), format = compendiums$boettiger$skeleton)
+
+make_compendium(name = "research_proyect_y", path = tempdir(), format = compendiums$boettiger$skeleton, clone = "~/Dropbox/R_package_testing/warbleR/warbleR/", force = T)
+
+```
+
+```{r print_skeleton}
+
+FUN <- "print_skeleton"
+
+#run function
+# run.all()
+source(file.path("./R", paste0(FUN, ".R")))
+
+#open in rstudio
+##open.fun(fun = FUN)
+
+# remove objects but no functions
+rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
+
+# to troubleshoot internally
+# for(i in run.def.args(FUN)) try(eval(parse(text = i)), silent = T)
+# rm(i)
+
+#tests  
+
+make_compendium(name = "prue23b33a", format = "figures", force = TRUE, path = tempdir(), comments = compendiums$basic$comments)
+
+  
+print_skeleton(path = file.path(tempdir(), "pruebaX"), comments = compendiums$basic$comments)
+
+
+```
+
+```{r add_to_gitignore}
+
+FUN <- "add_to_gitignore"
+
+#run function
+# run.all()
+source(file.path("./R", paste0(FUN, ".R")))
+
+#open in rstudio
+##open.fun(fun = FUN)
+
+# remove objects but no functions
+rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
+
+# to troubleshoot internally
+# for(i in run.def.args(FUN)) try(eval(parse(text = i)), silent = T)
+# rm(i)
+
+#tests  
+repo_name <- "repoQ"
+
+data("compendiums")
+
+make_compendium(name = repo_name, format = compendiums$basic$skeleton, force = TRUE, path = tempdir(), comments = compendiums$basic$comments, git = TRUE)
+
+list.files(path = file.path(tempdir(), repo_name))
+
+saveRDS(compendiums, file.path(tempdir(), repo_name, "compendiums.RDS"))
+
+add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
+
+saveRDS(compendiums, file.path(tempdir(), repo_name, "output", "compendiums2.RDS"))
+
+add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
+
+saveRDS(compendiums, file.path(tempdir(), repo_name, "data/raw", "compendiums3.RDS"))
+
+add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
+
+  
+print_skeleton(path = "~/Dropbox/R_package_testing/warbleR/warbleR/")
+
+```
+
+```{r create data objects}
+
+# create data examples 
+
+basic_skeleton <- c("data",
+           "data/raw",
+           "data/processed",
+           "output",
+           "scripts",
+           "manuscript")
+
+basic_comments <-
+  c(
+    "",
+    "original data",
+    "modified/rearranged data",
+    "all non-data products of data analysis",
+    "code",
+    "manuscript/poster figures"
+  )
+
+names(basic_comments) <- basic_skeleton
+
+basic_info <- "sketchy's own design"
+
+basic <- list(skeleton = basic_skeleton, comments = basic_comments, info = basic_info)
+
+
+#######
+
+figures_skeleton <- c(
+  "data",
+  "data/raw",
+  "data/processed",
+  "output",
+  "output/figures",
+  "output/figures/exploratory",
+  "output/figures/final",
+  "scripts",
+  "manuscript"
+)
+
+figures_comments <-
+  c(
+    "",
+    "original data",
+    "modified/rearranged data",
+    "all non-data products of data analysis",
+    "",
+    "data exploration figures",
+    "manuscript/poster figures",
+    "",
+    ""
+  )
+
+names(figures_comments) <- figures_skeleton
+
+figures_info <- "sketchy's own design"
+
+figures <- list(skeleton = figures_skeleton, comments = figures_comments, info = figures_info)
+
+
+# 1. Kenton White "ProjectTemplate"	(http://projecttemplate.net/index.html)
+
+
+project_template_skeleton <-
+  c(
+    "cache",
+    "config",
+    "data",
+    "diagnostics",
+    "docs",
+    "graphs",
+    "lib",
+    "logs",
+    "munge",
+    "profiling",
+    "reports",
+    "src",
+    "tests"
+  )
+
+project_template_comments <-
+  c(
+    "Processed data",
+    "Specific settings of project",
+    "Data raw",
+    "Diagnose scripts",
+    "Analysis documentation",
+    "Graphs",
+    "Functions not general enough to belong in a package and project specific configuration that you’d like to store in the config object",
+    "Log files",
+    "Processing code",
+    "Scripts to benchmark and time your code",
+    "Output reports e.g. HTML or LaTeX formats",
+    "Final statistical analysis scripts",
+    "Test cases for the functions"
+  )
+
+names(project_template_comments) <- project_template_skeleton
+
+project_template_info <-
+  "Kenton White 'ProjectTemplate'	(http://projecttemplate.net/index.html)"
+
+project_template <- list(skeleton = project_template_skeleton, comments = project_template_comments, info = project_template_info)
+
+######
+pakillo_skeleton <-
+  c(
+    "R",
+    "analyses",
+    "data-raw",
+    "data",
+    "docs",
+    "inst",
+    "man",
+    "manuscript",
+    "tests"
+  )
+
+pakillo_comments <- c("Custom functions", "R scripts or RMarkdown documents for data analysis", "Original (raw) data and data preparation", "Final (clean, tidy) datasets", "Docs", "Master script to organise and execute all parts of the analysis", "Manual", "Final manuscript/report", "Tests for your functions")
+
+names(pakillo_comments) <- pakillo_skeleton
+
+pakillo_info <- "Francisco Rodriguez-Sanchez	(https://github.com/Pakillo/template.git)"
+
+pakillo <- list(skeleton = pakillo_skeleton, comments = pakillo_comments, info = pakillo_info)
+
+#####
+
+boettiger_skeleton <- c("R", "man", "tests", "vignettes")
+
+boettiger_comments <- c("Scripts", "Manuals", "Tests for the functions", "Manuscript files")
+
+names(boettiger_comments) <- boettiger_skeleton
+
+boettiger_info <- "Carl Boettiger	(https://github.com/cboettig/template.git)"
+
+boettiger <- list(skeleton = boettiger_skeleton, comments = boettiger_comments, info = boettiger_info)
+
+
+####
+
+wilson_skeleton <- c("requirements", "data", "doc", "results", "src")
+
+wilson_comments <- c("File to make dependencies and requirements explicit", "Tabular data and machine-readable metadata", "Directory with 2 Markdown files, a running lab notebook and a running draft with the project findings", "Summarized results", "Directory with functions to summarize the tabular data, and a controller script")
+
+names(wilson_comments) <- wilson_skeleton
+
+wilson_info <- "Wilson G, Bryan J, Cranston K, Kitzes J, Nederbragt L, et al. (2017) Good enough practices in scientific computing. PLOS Computational Biology 13(6): e1005510. https://doi.org/10.1371/journal.pcbi.1005510"
+
+wilson <- list(skeleton = wilson_skeleton, comments = wilson_comments, info = wilson_info)
+
+
+######
+small_compendium_skeleton <- c("data", "analysis")
+
+small_compendium_comments <- c("Raw data in open formats, not changed once created", "R code used to analyse and visualise data")
+
+names(small_compendium_comments) <- small_compendium_skeleton
+
+small_compendium_info <- "Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging data analytical work reproducibly using R (and friends). The American Statistician, 72(1), 80-88."
+
+small_compendium <- list(skeleton = small_compendium_skeleton, comments = small_compendium_comments, info = small_compendium_info)
+
+
+########
+
+medium_compendium_skeleton <- c("data", "analysis", "R", "man")
+
+medium_compendium_comments <- c("Raw data in open formats, not changed once created", "R code used to analyse and visualise data", "Custom R functions used repeatedly throughout the project", "Auto-generated documentation for the custom R functions")
+
+names(medium_compendium_comments) <- medium_compendium_skeleton
+
+medium_compendium_info <- "Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging data analytical work reproducibly using R (and friends). The American Statistician, 72(1), 80-88."
+
+medium_compendium <- list(skeleton = medium_compendium_skeleton, comments = medium_compendium_comments, info = medium_compendium_info)
+
+#####
+large_compendium_skeleton <- c("analysis", "analysis/data", "analysis/scripts", "R", "man", "tests")
+
+large_compendium_comments <- c("Data, scripts, RMarkdown reports and Makefile", "Raw data in open formats, not changed once created", "R code used to analyse and visualise data", "Custom R functions used repeatedly throughout the project", "Auto-generated documentation for the custom R functions", "Unit tests of R functions to ensure they perform as expected")
+
+names(large_compendium_comments) <- large_compendium_skeleton
+
+large_compendium_info <- "Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging data analytical work reproducibly using R (and friends). The American Statistician, 72(1), 80-88."
+
+large_compendium <- list(skeleton = large_compendium_skeleton, comments = large_compendium_comments, info = large_compendium_info)
+
+
+########
+vertical_skeleton <- c("data", "data-raw", "docs", "experiments", "man", "manuscripts", "model", "posters", "R", "slides", "vignettes")
+
+vertical_comments <- c("Meta-data documentation and native R format data", "Any machine readable format", "Website for github pages", "Write behavioral experiments for the web (can run locally or online)", "R package description and parameters", "Write APA manuscripts in RMarkdown. Compile to .pdf/word", "Write, run and show model code. Compile to .pdf/HTML", "Write posters in RMarkdown. Compile to .pdf/HTML", "Write functions as plain text .R file", "Write slide decks in RMarkdown. Compile to HTML", "Additional RMarkdown (supplemental materials)")
+
+names(vertical_comments) <- vertical_skeleton
+
+vertical_info <- "Vuorre, Matti, and Matthew J. C. Crump. 2020. “Sharing and Organizing Research Products as R Packages.” PsyArXiv. January 15. doi:10.31234/osf.io/jks2u. (https://github.com/CrumpLab/vertical)"
+
+vertical <- list(skeleton = vertical_skeleton, comments = vertical_comments, info = vertical_info)
+
+
+###
+rrtools_skeleton <- c("analysis", "paper", "figures", "data", "templates")
+
+rrtools_comments <- c("Project's folder", "Main RMarkdown document to edit and the reference list information", "Figures produced by the Rmd", "Data obtained from elsewhere and data generated during the analysis", ".csl file that sets the style of citations & reference list and .docx file used to style the output of the paper.Rmd")
+
+names(rrtools_comments) <- rrtools_skeleton
+
+rrtools_info <- "Marwick, B. 2018. rrtools: Creates a reproducible research compendium. (https://github.com/benmarwick/rrtools)"
+
+rrtools <- list(skeleton = rrtools_skeleton, comments = rrtools_comments, info = rrtools_info)
+
+
+#####
+
+rdir_skeleton <- c("code", "code/processed/", "code/raw", "data/raw", "data/clean", "figures","figures/exploratory", "figures/final/", "text", "text/final", "text/notes")
+
+rdir_comments <- c("", "Code with the steps to clean, generate plots and output text", "Adittional code", "Original data", "Processed (tidy) data", "", "Exploratory figures", "Final figures with correct format", "", "Final text", "Log of the thought process")
+
+names(rdir_comments) <- rdir_skeleton
+
+rdir_info <- "https://r-dir.com/blog/2013/11/folder-structure-for-data-analysis.html"
+
+rdir <- list(skeleton = rdir_skeleton, comments = rdir_comments, info = rdir_info)
+
+
+#####
+
+workflowr_skeleton <- c("analysis", "code", "data", "docs", "output")
+
+workflowr_comments <- c("All the source R Markdown files for implementing the data analyses for your project and files to format the project's website", "Code that might not be appropriate to include in R Markdown format (e.g. for pre-processing the data, or for long-running code)", "Raw data files", "All the HTML files for the website and figures created by the RMarkdown files", "Processed data files and other outputs generated from the code and data")
+
+names(workflowr_comments) <- workflowr_skeleton
+
+workflowr_info <- "Blischak, J. D., Carbonetto, P., & Stephens, M. (2019). Creating and sharing reproducible research code the workflowr way. F1000Research, 8"
+
+workflowr <- list(skeleton = workflowr_skeleton, comments = workflowr_comments, info = workflowr_info)
+
+###
+
+sketchy_skeleton <- c("data",
+           "data/raw",
+           "data/processed",
+           "output",
+           "scripts",
+           "manuscript")
+
+sketchy_comments <-
+  c(
+    "",
+    "original data",
+    "modified/rearranged data",
+    "all non-data products of data analysis",
+    "code",
+    "manuscript/poster figures"
+  )
+
+names(sketchy_comments) <- sketchy_skeleton
+
+sketchy_info <- "sketchy's own design"
+
+sketchy <- list(skeleton = sketchy_skeleton, comments = sketchy_comments, info = sketchy_info)
+
+
+
+### put them together
+compendiums <- list(basic = basic, figures = figures, project_template = project_template, pakillo = pakillo, boettiger = boettiger, wilson = wilson, small_compendium = small_compendium, medium_compendium = medium_compendium, large_compendium = large_compendium, vertical = vertical, rrtools = rrtools, rdir = rdir, workflowr = workflowr, sketchy = sketchy)
+
+
+# all have comments and skeletons of the same name
+all(sapply(compendiums, function(x) (length(x$skeleton) == length(x$comments))))
+
+names(compendiums)
+
+save(compendiums, file = "./data/compendiums.rda")
+
+# data used internally by compendium skeleton 
+
+apa.csl <- readLines("./examples/apa.csl")
+
+manuscript_template <- readLines("./examples/manuscript_template.Rmd")
+
+readme_template <- readLines("./examples/README_template.Rmd")
+
+analysis_template <- readLines("./examples/analysis_template.Rmd")
+
+extra_css <- readLines("./examples/extra.css")
+
+internal_files <- list(manuscript_template = manuscript_template, apa.csl = apa.csl, readme_template = readme_template, analysis_template = analysis_template, extra_css = extra_css)
+
+usethis::use_data(internal_files, internal = TRUE, overwrite = TRUE)
+
+data("compendiums")
+```

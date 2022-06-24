@@ -4,7 +4,7 @@
 \alias{add_to_gitignore}
 \title{Add entries to gitignore}
 \usage{
-add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL)
+add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path = ".")
 }
 \arguments{
 \item{add.to.gitignore}{Logical to control if files are added to 'gitignore' or just printed on the console.}
@@ -12,6 +12,8 @@ add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL)
 \item{cutoff}{Numeric. Defines the file size (in MB) cutoff used to find files (i.e. only files above the threshold would returned). 99 (MB) is recommended when hosting projects at github as the current file size limit is 100 MB.}
 
 \item{extension}{Character string to define the file extension of the files to be searched for.}
+
+\item{path}{Path to the project directory. Default is current directory.}
 }
 \value{
 Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github).
@@ -29,10 +31,12 @@ data(compendiums)
 make_compendium(name = "my_compendium", path = tempdir(),
  format = "basic", force = TRUE)
 
-# must start git monitoring at this point
+# save a file
+write.csv(iris, file.path(tempdir(), "my_compendium", "iris.csv"))
 
-# now can add files to gitignore
-# add_to_gitignore(add.to.gitignore = TRUE)
+# add the file to gitignore
+add_to_gitignore(add.to.gitignore = TRUE,
+path = file.path(tempdir(), "my_compendium"), extension = "csv")
 }
 
 }

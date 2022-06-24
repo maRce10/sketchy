@@ -5,12 +5,12 @@
 \alias{compendiums}
 \title{List with compendium skeletons}
 \format{
-A list with 13 compendium formats: \describe{
+A list with 14 compendium formats: \describe{
  \item{basic}{basic sketchy format}
  \item{figures}{similar to basic, but including output/figures folders}
  \item{project_template}{following Kenton White's \href{http://projecttemplate.net/index.html}{ProjectTemplate}}
- \item{pakillo}{following Francisco Rodriguez-Sanchez' \href{https://github.com/Pakillo/template.git}{template}}
- \item{boettiger}{following Carl Boettiger's \href{https://github.com/cboettig/template.git}{blog}}
+ \item{pakillo}{following Francisco Rodriguez-Sanchez' \href{https://github.com/Pakillo/template}{template}}
+ \item{boettiger}{following Carl Boettiger's \href{https://github.com/cboettig/template}{blog}}
  \item{wilson}{following Wilson et al. (2017) format}
  \item{small_compendium}{following Marwick et al (2018) small compendium format}
  \item{medium_compendium}{following Marwick et al (2018) medium compendium format}
@@ -18,14 +18,15 @@ A list with 13 compendium formats: \describe{
  \item{vertical}{following Vuorre \emph{et al.} (2018) \href{https://github.com/CrumpLab/vertical}{R package vertical}}
  \item{rrtools}{following Marwick (2018) (\href{https://github.com/benmarwick/rrtools}{R package rrtools})}
  \item{rdir}{following folder structure described on this \href{https://r-dir.com/blog/2013/11/folder-structure-for-data-analysis.html}{r-dir blog post}}
- \item{workflowr}{following Blischak \emph{et al.} (2019) \href{https://jdblischak.github.io/workflowr/}{R package workflowr}}
+ \item{workflowr}{following Blischak \emph{et al.} (2019) \href{https://workflowr.github.io/workflowr/}{R package workflowr}}
+ \item{sketchy}{same skeleton than 'basic' but including custom Rmarkdowns}
 }
 }
 \usage{
 data(compendiums)
 }
 \description{
-\code{compendiums} is a list containing the format of 13 different project folder skeletons. For each format 3 elements are provided: `$skeleton` (folder structure), `$comments` and `$info` (reference to the original source).
+\code{compendiums} is a list containing the format of 14 different project folder skeletons. For each format 3 elements are provided: `$skeleton` (folder structure), `$comments` and `$info` (reference to the original source).
 }
 \references{
 {

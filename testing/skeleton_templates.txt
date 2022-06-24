@@ -1,0 +1,102 @@
+
+##
+##  Project Name:  Sketchy R package
+##
+##  Approach:      Some folder structures from literature (sources in parentheses)
+##
+##  Date:          2020-11-28
+
+# 1. Kenton White "ProjectTemplate"	(http://projecttemplate.net/index.html)
+
+projecttemplate <- c("project/", "cache/",  "config/", "data/", "diagnostics/", "docs/", "graphs/", "lib/", "logs/", "munge/", "profiling/", "reports/", "src/", "tests/")
+
+projecttemplate_comments <- c("Name of the project", "Processed data",  "Specific settings of project", "Data raw", "Diagnose scripts", "Analysis documentation", "Graphs", "Functions not general enough to belong in a package and project specific configuration that you’d like to store in the config object", "Log files", "Processing code", "Scripts to benchmark and time your code", "Output reports e.g. HTML or LaTeX formats", "Final statistical analysis scripts", "Test cases for the functions")
+
+projecttemplate <-  as.data.frame(cbind(projecttemplate, projecttemplate_comments)) 
+
+# 2. Francisco Rodriguez-Sanchez	(https://github.com/Pakillo/template.git)
+
+pakillotemplate <- c("R/", "analyses/", "data-raw/", "data/", "docs/", "inst/", "man/", "manuscript/", "tests/")
+
+pakillotemplate_comments <- c("Custom functions", "R scripts or RMarkdown documents for data analysis", "Original (raw) data and data preparation", "Final (clean, tidy) datasets", "Docs", "Master script to organise and execute all parts of the analysis", "Manual", "Final manuscript/report", "Tests for your functions")
+
+pakillotemplate <-  as.data.frame(cbind(pakillotemplate, pakillotemplate_comments)) 
+
+# 3. Carl Boettiger	(https://github.com/cboettig/template.git)
+
+cboettigtemplate <- c("R/", "man/", "tests/", "vignettes/")
+
+cboettigtemplate_comments <- c("Scripts", "Manual", "Tests for the functions", "Manuscript files")
+
+cboettigtemplate <-  as.data.frame(cbind(cboettigtemplate, cboettigtemplate_comments)) 
+
+# 4. Wilson et al., 2017	(https://doi.org/10.1371/journal.pcbi.1005510)
+
+wilsonetal <- c("requirements/", "data/", "doc/", "results/", "src/")
+
+wilsonetal_comments <- c("File to make dependencies and requirements explicit", "Tabular data and machine-readable metadata", "Directory with 2 Markdown files, a running lab notebook and a running draft with the project findings", "Summarized results", "Directory with functions to summarize the tabular data, and a controller script")
+
+wilsonetal <-  as.data.frame(cbind(wilsonetal, wilsonetal_comments)) 
+
+# 5. Marwick et al., 2018	(DOI: 10.1080/00031305.2017.1375986)
+
+# 5.1. small_compendium
+small_compendium <- c("data/", "analysis/")
+
+small_compendium_comments <- c("Raw data in open formats, not changed once created", "R code used to analyse and visualise data")
+
+small_compendium <-  as.data.frame(cbind(small_compendium, small_compendium_comments))
+
+# 5.2. medium_compendium
+medium_compendium <- c("data/", "analysis/", "R/", "man/")
+
+medium_compendium_comments <- c("Raw data in open formats, not changed once created", "R code used to analyse and visualise data", "Custom R functions used repeatedly throughout the project", "Auto-generated documentation for the custom R functions")
+
+medium_compendium <-  as.data.frame(cbind(medium_compendium, medium_compendium_comments))
+
+# 5.4. large_compendium
+large_compendium <- c("analysis/", "analysis/data/", "analysis/scripts/", "R/", "man/", "tests/")
+
+large_compendium_comments <- c("Data, scripts, RMarkdown reports and Makefile", "Raw data in open formats, not changed once created", "R code used to analyse and visualise data", "Custom R functions used repeatedly throughout the project", "Auto-generated documentation for the custom R functions", "Unit tests of R functions to ensure they perform as expected")
+
+large_compendium <- as.data.frame(cbind(large_compendium, large_compendium_comments))
+  
+# 6. vertical (DOI: 10.3758/s13428-020-01436-x)
+
+vertical <- c("data/", "data-raw/", "docs/", "experiments/", "man/", "manuscripts/", "model/", "posters/", "R/", "slides/", "vignettes/")
+
+vertical_comments <- c("Meta-data documentation and native R format data", "Any machine readable format", "Website for github pages", "Write behavioral experiments for the web (can run locally or online)", "R package description and parameters", "Write APA manuscripts in RMarkdown. Compile to .pdf/word", "Write, run and show model code. Compile to .pdf/HTML", "Write posters in RMarkdown. Compile to .pdf/HTML", "Write functions as plain text .R file", "Write slide decks in RMarkdown. Compile to HTML", "Additional RMarkdown (supplemental materials)")
+
+
+vertical <- as.data.frame(cbind(vertical, vertical_comments))
+
+# 7. rrtools (https://github.com/benmarwick/rrtools.git)
+
+rrtools <- c("analysis/", "paper/", "figures/", "data/", "templates/")
+
+rrtools_comments <- c("Project's folder", "Main RMarkdown document to edit and the reference list information", "Figures produced by the Rmd", "Data obtained from elsewhere and data generated during the analysis", ".csl file that sets the style of citations & reference list and .docx file used to style the output of the paper.Rmd")
+
+
+rrtools <- as.data.frame(cbind(rrtools, rrtools_comments))
+
+# 8. rdir (https://r-dir.com/blog/2013/11/folder-structure-for-data-analysis.html)
+
+rdir <- c("code/processed/", "code/raw/", "data/raw/", "data/clean/", "figures/exploratory/", "figures/final/", "text/final/", "text/notes/")
+
+rdir_comments <- c("Code with the steps to clean, generate plots and output text", "Adittional code", "Raw data", "Clean data", "Exploratory figures", "Final figures with correct format", "Final text","Log of the thought process")
+
+
+rdir <- as.data.frame(cbind(rdir, rdir_comments))
+
+# 9. workflowr (https://jdblischak.github.io/workflowr/)
+
+workflowr <- c("project/", "analysis/", "code/", "data/", "docs/", "output/")
+
+workflowr_comments <- c("Project name", "All the source R Markdown files for implementing the data analyses for your project and files to format the project's website", "Code that might not be appropriate to include in R Markdown format (e.g. for pre-processing the data, or for long-running code)", "Raw data files", "All the HTML files for the website and figures created by the RMarkdown files", "Processed data files and other outputs generated from the code and data")
+
+
+workflowr <- as.data.frame(cbind(workflowr, workflowr_comments))
+
+
+
+

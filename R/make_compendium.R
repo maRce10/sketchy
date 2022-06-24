@@ -5,9 +5,9 @@
 #' format = "basic", comments = NULL, packrat = FALSE,
 #' git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 #' @param name character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".
-#' @param path Path to put the package directory in. Default is current directory.
+#' @param path Path to put the project directory in. Default is current directory.
 #' @param force Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.
-#' @param format A character vector with 2 or more elements with the names of the folders and subfolders to be included. Alternatively, it can be a character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'.
+#' @param format A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included.
 #' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
 #' @param packrat Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.
 #' @param git Logical to control if a git repository is initialized (\code{git2r::init()}) when creating the compendium. Default is \code{FALSE}.
@@ -91,7 +91,17 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
       writeLines(internal_files$apa.csl, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "apa.csl"))
     }
 
+      if (any(name == "sketchy")){
+        # save analysis template
+        if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd")))
+          writeLines(internal_files$analysis_template, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd"))
 
+        # save extra.css
+        if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "extra.css")))
+          writeLines(internal_files$extra_css, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "extra.css"))
+      }
+
+    # initiate git
     if (git) {
       # error message if git2r is not installed
       if (!requireNamespace("git2r",quietly = TRUE))

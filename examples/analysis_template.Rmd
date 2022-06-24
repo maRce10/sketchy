@@ -1,0 +1,168 @@
+---
+title: <center><font size="7"><b>A very cool analysis</b></font></center>
+subtitle: <center><font size="4"><b>A very fancy project</b> <br> Your Organization</font></center>
+author: <center><font size="3"><a href="http://researcher.website.com/">Researcher name</a></font></center>
+date: <center>"`r Sys.Date()`"</center>
+output:
+  html_document:
+    css: extra.css
+    df_print: tibble
+    highlight: pygments  
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+fontsize: 12pt 
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- this code add line numbers to code blocks -->
+<style>
+body
+  { counter-reset: source-line 0; }
+pre.numberSource code
+  { counter-reset: none; }
+</style>
+
+
+```{r load packages, echo = FALSE, message = FALSE, warning=FALSE}
+
+# remotes::install_github("rlesur/klippy")
+
+# github packages must include user name ("user/package")
+pkgs <- c("rlesur/klippy", "kableExtra", "knitr")
+
+# install/ load packages
+out <- lapply(pkgs, function(y) {
+  
+  # get pakage name
+  pkg <- strsplit(y, "/")[[1]]
+  pkg <- pkg[length(pkg)]
+  
+  # check if installed, if not then install 
+  if (!pkg %in% installed.packages()[,"Package"])  {
+
+      if (grepl("/", y))  remotes::install_github(y, force = TRUE) else
+    install.packages(y) 
+    }
+
+  # load package
+  a <- try(require(pkg, character.only = T), silent = T)
+
+  if (!a) remove.packages(pkg)
+  })
+
+
+```
+
+
+```{r custom data fram printing, echo = FALSE, message=FALSE}
+
+
+# this is a customized printing for data frames 
+# screws up tibble function
+tibble <- function(x, ...) { 
+  x <- kbl(x, digits=4, align= 'c', row.names = FALSE) 
+   x <- kable_styling(x, position ="center", full_width = FALSE,  bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+   asis_output(x)
+}
+
+registerS3method("knit_print", "data.frame", tibble)
+
+```
+
+```{r setup chunks, include = FALSE}
+
+knitr::opts_chunk$set(
+  class.source = "numberLines lineAnchors", # for code line numbers
+  tidy.opts = list(width.cutoff = 65, keep.blank.line=FALSE), # to wrap code
+  tidy = TRUE,
+  message = FALSE
+ )
+
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+
+# to add copy button
+klippy::klippy(position = c('top', 'right'))
+
+```
+&nbsp; 
+
+<!-- '&nbsp;' adds blank space -->
+
+# Lorem ipsum
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
+
+```{r, eval = FALSE, out.width = "100%", echo = FALSE, fig.align= "center"}
+
+knitr::include_graphics("./images/image.png")
+
+```
+&nbsp; 
+
+
+<div class="alert alert-info">
+
+# Purpose
+
+&nbsp;
+
+- The first goal of this report
+
+- The second goal of this report
+
+</div>
+
+&nbsp; 
+
+<div class="alert alert-warning">
+
+# Report overview
+
+- You can have the sections listed here
+
+</div>
+
+&nbsp;
+
+Some R code:
+
+```{r}
+
+rnorm(5)
+
+```
+
+
+&nbsp;
+
+<div class="alert alert-success">
+
+&nbsp; 
+
+# Takeaways
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+</div>
+
+&nbsp;
+
+<!-- '---' adds a gray vertical line -->
+
+---
+
+&nbsp; 
+ 
+<font size="4">Session information</font>
+
+```{r session info, echo=F}
+
+sessionInfo()
+
+```

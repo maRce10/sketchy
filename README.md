@@ -2,11 +2,8 @@ sketchy
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy) -->
-
 <!-- [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sketchy)](http://www.r-pkg.org/pkg/sketchy) -->
-
 <!-- [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy) -->
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
@@ -27,11 +24,10 @@ wedded to a particular folder structure. Currently the package provides
 modify or input their own structures.
 
 To install the latest developmental version from
-[github](http://github.com/) you will need the R package
+[github](https://github.com/) you will need the R package
 [devtools](https://cran.r-project.org/package=devtools):
 
 ``` r
-
 # From github
 devtools::install_github("maRce10/sketchy")
 
@@ -48,19 +44,18 @@ the skeleton in the console:
 ### Basic compendium
 
 ``` r
-
 path = tempdir()
 
-make_compendium(name = "proyect_x", path = path, format = compendiums$basic$skeleton)
+make_compendium(name = "proyect_x", path = path, format = "basic")
 ## Creating directories ...
 ## proyect_x
 ## │   
 ## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## └── scripts/  
+## │   ├── processed/  # modified/rearranged data
+## │   └── raw/  # original data
+## ├── manuscript/  # manuscript/poster figures
+## ├── output/  # all non-data products of data analysis
+## └── scripts/  # code
 ## Done.
 ```
 
@@ -75,16 +70,16 @@ We can use folder structures from other sources. For instance, in this
 example we use the structured suggested by Wilson *et al.* (2017):
 
 ``` r
-
-make_compendium(name = "proyect_y", path = path, format = compendiums$wilson$skeleton)
+make_compendium(name = "proyect_y", path = path, format = "sketchy")
 ## Creating directories ...
 ## proyect_y
 ## │   
 ## ├── data/  
-## ├── doc/  
-## ├── requirements/  
-## ├── results/  
-## └── src/  
+## │   ├── processed/  # modified/rearranged data
+## │   └── raw/  # original data
+## ├── manuscript/  # manuscript/poster figures
+## ├── output/  # all non-data products of data analysis
+## └── scripts/  # code
 ## Done.
 ```
 
@@ -94,17 +89,15 @@ We can also add comments to the folders to explain what kind of files
 they are supposed to contain:
 
 ``` r
-
-make_compendium(name = "proyect_z", path = path, format = compendiums$large_compendium$skeleton, 
-    comments = compendiums$large_compendium$comments)
+make_compendium(name = "proyect_z", path = path, format = "large_compendium", comments = compendiums$large_compendium$comments)
 ## Creating directories ...
 ## proyect_z
 ## │   
 ## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile
 ## │   ├── data/  # Raw data in open formats, not changed once created
 ## │   └── scripts/  # R code used to analyse and visualise data
-## ├── man/  # Custom R functions used repeatedly throughout the project
-## ├── R/  # Auto-generated documentation for the custom R functions
+## ├── man/  # Auto-generated documentation for the custom R functions
+## ├── R/  # Custom R functions used repeatedly throughout the project
 ## └── tests/  # Unit tests of R functions to ensure they perform as expected
 ## Done.
 ```
@@ -112,13 +105,12 @@ make_compendium(name = "proyect_z", path = path, format = compendiums$large_comp
  
 
 When creating a compendium that includes a “manuscript” folder the
-package adds a “manuscript\_template.Rmd” file for facilitating paper
+package adds a “manuscript_template.Rmd” file for facilitating paper
 writing within the compendium itself.
 
 We can check all compendium structure available as follows:
 
 ``` r
-
 for (i in 1:length(compendiums)) {
     print("---------------", quote = FALSE)
     print(names(compendiums)[i], quote = FALSE)
@@ -265,10 +257,20 @@ for (i in 1:length(compendiums)) {
 ## ├── code/  
 ## ├── data/  
 ## ├── docs/  
-## └── output/
+## └── output/  
+## [1] ---------------
+## [1] sketchy
+## .
+## │   
+## ├── data/  
+## │   ├── processed/  
+## │   └── raw/  
+## ├── manuscript/  
+## ├── output/  
+## └── scripts/
 ```
 
------
+------------------------------------------------------------------------
 
 Please cite [sketchy](https://marce10.github.io/sketchy/) as follows:
 
@@ -277,9 +279,13 @@ compendiums for data analysis in R*. R package version 1.0.0.
 
 # References
 
-1.  Marwick, B., Boettiger, C., & Mullen, L. (2018). *Packaging Data
+1.  Alston, J., & Rick, J. (2020). *A Beginner’s Guide to Conducting
+    Reproducible Research*.
+
+2.  Marwick, B., Boettiger, C., & Mullen, L. (2018). *Packaging Data
     Analytical Work Reproducibly Using R (and Friends)*. American
     Statistician, 72(1), 80–88.
 
-2.  Alston, J., & Rick, J. (2020). *A Beginner’s Guide to Conducting
-    Reproducible Research*.
+3.  Wilson G, Bryan J, Cranston K, Kitzes J, Nederbragt L. & Teal, T.
+    K.. 2017. *Good enough practices in scientific computing*. PLOS
+    Computational Biology 13(6): e1005510.
