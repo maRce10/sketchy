@@ -44,6 +44,8 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
              domain = NA)
     }
 
+    # save format
+    org_format <- format[1]
 
     # allow format name or skeleton from list
     if (!is.character(format))
@@ -97,7 +99,7 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
       writeLines(internal_files$apa.csl, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "apa.csl"))
     }
 
-      if (format[1] == "sketchy" & length(format) == 1){
+      if (org_format[1] == "sketchy"){
         # save analysis template
         if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd")))
           writeLines(internal_files$analysis_template, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd"))

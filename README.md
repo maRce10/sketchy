@@ -1,14 +1,15 @@
-sketchy
+sketchy: quantifying habitat-induced acoustic signal degradation
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
+[![CRAN Status
+Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
 [![CRAN RStudio mirror
-downloads](http://cranlogs.r-pkg.org/badges/sketchy)](http://www.r-pkg.org/pkg/sketchy)
+downloads](https://cranlogs.r-pkg.org/badges/sketchy)](https://www.r-pkg.org/pkg/sketchy)
 [![Total
-downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy)
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The package is intended to facilitate the use of research compendiums
 for data analysis in the R environment. Standard research compendiums
