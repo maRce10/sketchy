@@ -71,6 +71,20 @@ if (anyDuplicated(keys)){
 ```
 
 
+```{r word count, eval = TRUE, echo = FALSE, results='asis'}
+
+# package rmdwc allows to count words
+if (!"rmdwc" %in% installed.packages()[,"Package"]) install.packages("rmdwc")
+
+library(rmdwc)
+
+word_count <- rmdcount(normalizePath(file.path(base.dir, '/manuscript/manuscript.Rmd')))
+word_count_chunk <- rmdcount(normalizePath(file.path(base.dir, '/manuscript/manuscript.Rmd')), exclude='')
+
+cat(paste0("Word count: ", word_count[3], " (including chunks: ", word_count_chunk[3], ")"))
+
+```
+
 ^1^ Affiliation # 1
 
 ^2^ Affiliation # 2

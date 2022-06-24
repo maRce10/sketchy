@@ -17,7 +17,7 @@
 #'  \item{sketchy}{same skeleton than 'basic' but including custom Rmarkdowns}
 #' }
 #'
-#' @description \code{compendiums} is a list containing the format of 14 different project folder skeletons. For each format 3 elements are provided: `$skeleton` (folder structure), `$comments` and `$info` (reference to the original source).
+#' @description \code{compendiums} is a list containing the format of 14  different project folder skeletons. For each format 3 elements are provided: `$skeleton` (folder structure), `$comments` and `$info` (reference to the original source).
 #'
 #'
 #' @usage data(compendiums)

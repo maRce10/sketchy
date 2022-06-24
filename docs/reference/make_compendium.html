@@ -51,7 +51,7 @@
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_compendium</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"research_compendium"</span>, path <span class="op">=</span> <span class="st">"."</span>, force <span class="op">=</span> <span class="cn">FALSE</span>,
-format <span class="op">=</span> <span class="st">"basic"</span>, comments <span class="op">=</span> <span class="cn">NULL</span>, packrat <span class="op">=</span> <span class="cn">FALSE</span>,
+format <span class="op">=</span> <span class="st">"basic"</span>, comments <span class="op">=</span> <span class="cn">TRUE</span>, packrat <span class="op">=</span> <span class="cn">FALSE</span>,
 git <span class="op">=</span> <span class="cn">FALSE</span>, clone <span class="op">=</span> <span class="cn">NULL</span>, readme <span class="op">=</span> <span class="cn">TRUE</span>, Rproj <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
     </div>
 
@@ -74,7 +74,7 @@ git <span class="op">=</span> <span class="cn">FALSE</span>, clone <span class="
 
 
 <dt>comments</dt>
-<dd><p>A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.</p></dd>
+<dd><p>A logical argument to control if comments of default formats are shown in the graphical representation of the folder skeleton printed on the console. Alternatively, a character string with the comments can be supplied (most useful when using a custom format). Default is <code>TRUE</code>.</p></dd>
 
 
 <dt>packrat</dt>
@@ -86,7 +86,7 @@ git <span class="op">=</span> <span class="cn">FALSE</span>, clone <span class="
 
 
 <dt>clone</dt>
-<dd><p>Path to a directory containing a folder structure to be cloned. Default is  <code>NULL</code>. If provided 'format' is ignored. Folders starting with <code>^\.git|^\.Rproj.user|^\.\.Rcheck</code> will be ignored.</p></dd>
+<dd><p>Path to a directory containing a folder structure to be cloned. Default is <code>NULL</code>. If provided 'format' is ignored. Folders starting with <code>^\.git|^\.Rproj.user|^\.\.Rcheck</code> will be ignored.</p></dd>
 
 
 <dt>readme</dt>

@@ -27,7 +27,7 @@ rm(list = ls())
 # unload all non-based packages
 out <- sapply(paste('package:', names(sessionInfo()$otherPkgs), sep = ""), function(x) try(detach(x, unload = FALSE, character.only = TRUE), silent = T))
 
-x <- c( "devtools", "pkgdown", "spelling")
+x <- c( "devtools", "pkgdown", "spelling", "maRce10/sketchy")
 
 out <- lapply(x, function(y) {
   
@@ -243,7 +243,6 @@ run.all()
 #delete NAMESPACE file
 unlink("./NAMESPACE")
 
-
 #run document twice
 devtools::document(".")
 devtools::document(".")
@@ -345,23 +344,32 @@ rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
 # for(i in run.def.args(FUN)) try(eval(parse(text = i)), silent = T)
 # rm(i)
 
+data("compendiums")
+
 #tests  
-sketchy::make_compendium(name = "projecto_x", format = "basic", force = TRUE, path = tempdir())
+make_compendium(name = "projescto_x", format = "basic", force = TRUE, path = tempdir())
 
-make_compendium(name = "pruebaX", format = compendiums$basic$skeleton, force = TRUE, path = tempdir(), comments = compendiums$basic$comments)
-
-  
-make_compendium(name = "pruebaX", format = compendiums$figures$skeleton, force = TRUE)
-
-make_compendium(name = "pruebaX", format = compendiums$pakillo$skeleton, force = TRUE)
+# no comments
+make_compendium(name = "projecto_x2", format = "basic", force = TRUE, path = tempdir(), comments = FALSE)
 
 
-make_compendium("prueba7", format = type2)
+make_compendium(name = "pruebaX3", format = compendiums$basic$skeleton, force = TRUE, path = tempdir())
+
+make_compendium(name = "pruebaX31", format = compendiums$basic$skeleton, force = TRUE, path = tempdir(), comments = compendiums$basic$comments)
+
+make_compendium(name = "pruebaX32", format = compendiums$figures$skeleton, force = TRUE, path = tempdir())
+
+make_compendium(name = "pruebaX33", format = "boettiger", force = TRUE,  path = tempdir())
+
+make_compendium(name = "pruebaX34", format = "pakillo", force = TRUE, comments = NULL, path = tempdir())
+
+
+make_compendium("prueba7", format = type2, path = tempdir())
 
 
 ld <- readRDS("../example_complex_structure.RDS")
 
-make_compendium("pruebaZ", format =  ld, force = TRUE)
+make_compendium("pruebaZ", format =  ld, force = TRUE, path = tempdir())
 
 make_compendium(name = "research_proyect_y", path = tempdir(), format = compendiums$boettiger$skeleton)
 
@@ -388,11 +396,12 @@ rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
 # rm(i)
 
 #tests  
+data("compendiums")
 
-make_compendium(name = "prue23b33a", format = "figures", force = TRUE, path = tempdir(), comments = compendiums$basic$comments)
+make_compendium(name = "prue23b33a", format = "figures", force = TRUE, path = tempdir(), comments = compendiums$figures$comments)
 
   
-print_skeleton(path = file.path(tempdir(), "pruebaX"), comments = compendiums$basic$comments)
+print_skeleton(path = file.path(tempdir(), "prue23b33a"), comments = compendiums$figures$comments)
 
 
 ```
@@ -701,7 +710,7 @@ sketchy_comments <-
 
 names(sketchy_comments) <- sketchy_skeleton
 
-sketchy_info <- "sketchy's own design"
+sketchy_info <- "sketchy's own design + custom Rmarkdowns"
 
 sketchy <- list(skeleton = sketchy_skeleton, comments = sketchy_comments, info = sketchy_info)
 

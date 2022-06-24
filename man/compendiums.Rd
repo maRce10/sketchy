@@ -26,7 +26,7 @@ A list with 14 compendium formats: \describe{
 data(compendiums)
 }
 \description{
-\code{compendiums} is a list containing the format of 14 different project folder skeletons. For each format 3 elements are provided: `$skeleton` (folder structure), `$comments` and `$info` (reference to the original source).
+\code{compendiums} is a list containing the format of 14  different project folder skeletons. For each format 3 elements are provided: `$skeleton` (folder structure), `$comments` and `$info` (reference to the original source).
 }
 \references{
 {

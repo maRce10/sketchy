@@ -5,7 +5,7 @@
 \title{Generate folder structures for research compendiums}
 \usage{
 make_compendium(name = "research_compendium", path = ".", force = FALSE,
-format = "basic", comments = NULL, packrat = FALSE,
+format = "basic", comments = TRUE, packrat = FALSE,
 git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 }
 \arguments{
@@ -17,13 +17,13 @@ git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 
 \item{format}{A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included.}
 
-\item{comments}{A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.}
+\item{comments}{A logical argument to control if comments of default formats are shown in the graphical representation of the folder skeleton printed on the console. Alternatively, a character string with the comments can be supplied (most useful when using a custom format). Default is \code{TRUE}.}
 
 \item{packrat}{Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.}
 
 \item{git}{Logical to control if a git repository is initialized (\code{git2r::init()}) when creating the compendium. Default is \code{FALSE}.}
 
-\item{clone}{Path to a directory containing a folder structure to be cloned. Default is  \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.}
+\item{clone}{Path to a directory containing a folder structure to be cloned. Default is \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.}
 
 \item{readme}{Logical. Controls if a readme file (in Rmd format) is added to the project. The file has predefined fields for documenting objectives and current status of the project. Default is \code{TRUE}.}
 

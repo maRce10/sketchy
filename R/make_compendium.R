@@ -2,16 +2,16 @@
 #'
 #' \code{make_compendium} generates the folder structure of a research compendium.
 #' @usage make_compendium(name = "research_compendium", path = ".", force = FALSE,
-#' format = "basic", comments = NULL, packrat = FALSE,
+#' format = "basic", comments = TRUE, packrat = FALSE,
 #' git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 #' @param name character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".
 #' @param path Path to put the project directory in. Default is current directory.
 #' @param force Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.
 #' @param format A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included.
-#' @param comments A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.
+#' @param comments A logical argument to control if comments of default formats are shown in the graphical representation of the folder skeleton printed on the console. Alternatively, a character string with the comments can be supplied (most useful when using a custom format). Default is \code{TRUE}.
 #' @param packrat Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.
 #' @param git Logical to control if a git repository is initialized (\code{git2r::init()}) when creating the compendium. Default is \code{FALSE}.
-#' @param clone Path to a directory containing a folder structure to be cloned. Default is  \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.
+#' @param clone Path to a directory containing a folder structure to be cloned. Default is \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.
 #' @param readme Logical. Controls if a readme file (in Rmd format) is added to the project. The file has predefined fields for documenting objectives and current status of the project. Default is \code{TRUE}.
 #' @param Rproj Logical. If \code{TRUE} a R project is created (i.e. a .Rproj file is saved in the main project directory).
 #' @return A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript_template.Rmd") and APA citation style file ("apa.csl") inside that folder.
@@ -36,7 +36,7 @@
 #' }
 #last modification on dec-26-2019 (MAS)
 
-make_compendium <- function(name = "research_compendium", path = ".", force = FALSE, format = "basic", comments = NULL, packrat = FALSE, git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
+make_compendium <- function(name = "research_compendium", path = ".", force = FALSE, format = "basic", comments = TRUE, packrat = FALSE, git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
   {
     safe.dir.create <- function(path) {
       if (!dir.exists(path) && !dir.create(path))
@@ -51,7 +51,13 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
         if (length(format) == 1)
           if (!format %in% names(compendiums))
             stop("'format' not found (must be one of those in 'names(compendiums)')") else {
-              comments <- compendiums[[format]]$comments
+              if (is.logical(comments)){
+                comments_vector <- if (comments)
+                compendiums[[format]]$comments else NULL
+              } else
+              if (is.character(comments))
+                comments_vector <- comments
+
               format <- compendiums[[format]]$skeleton
               }
 
@@ -91,7 +97,7 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
       writeLines(internal_files$apa.csl, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "apa.csl"))
     }
 
-      if (any(name == "sketchy")){
+      if (format[1] == "sketchy" & length(format) == 1){
         # save analysis template
         if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd")))
           writeLines(internal_files$analysis_template, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd"))
@@ -135,7 +141,11 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
       } else
         cat(crayon::green("README.Rmd already exists.\n"))
 
-  print_skeleton(path = file.path(path, name), comments = comments)
+      # convert comments
+    if (!exists("comments_vector"))
+      comments_vector <- if (is.character(comments)) comments else NULL
+
+      print_skeleton(path = file.path(path, name), comments = comments_vector)
 
   cat(crayon::green("Done.\n"))
 

@@ -2,10 +2,12 @@ sketchy
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<!-- [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy) -->
-<!-- [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sketchy)](http://www.r-pkg.org/pkg/sketchy) -->
-<!-- [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy) -->
 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/sketchy)](http://www.r-pkg.org/pkg/sketchy)
+[![Total
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The package is intended to facilitate the use of research compendiums
@@ -20,16 +22,16 @@ Unlike other R packages for creating research compendiums
 (e.g. [vertical](https://github.com/CrumpLab/vertical),
 [rrtools](https://github.com/benmarwick/rrtools)), `sketchy` isn’t
 wedded to a particular folder structure. Currently the package provides
-13 alternative structures (see object `compendiums`) and allows users to
+14 alternative structures (see object `compendiums`) and allows users to
 modify or input their own structures.
 
 To install the latest developmental version from
 [github](https://github.com/) you will need the R package
-[devtools](https://cran.r-project.org/package=devtools):
+[remotes](https://cran.r-project.org/package=remotes):
 
 ``` r
 # From github
-devtools::install_github("maRce10/sketchy")
+remotes::install_github("maRce10/sketchy")
 
 # load package
 library(sketchy)
@@ -70,16 +72,16 @@ We can use folder structures from other sources. For instance, in this
 example we use the structured suggested by Wilson *et al.* (2017):
 
 ``` r
-make_compendium(name = "proyect_y", path = path, format = "sketchy")
+make_compendium(name = "proyect_y", path = path, format = "sketchy", comments = FALSE)
 ## Creating directories ...
 ## proyect_y
 ## │   
 ## ├── data/  
-## │   ├── processed/  # modified/rearranged data
-## │   └── raw/  # original data
-## ├── manuscript/  # manuscript/poster figures
-## ├── output/  # all non-data products of data analysis
-## └── scripts/  # code
+## │   ├── processed/  
+## │   └── raw/  
+## ├── manuscript/  
+## ├── output/  
+## └── scripts/  
 ## Done.
 ```
 
@@ -89,7 +91,7 @@ We can also add comments to the folders to explain what kind of files
 they are supposed to contain:
 
 ``` r
-make_compendium(name = "proyect_z", path = path, format = "large_compendium", comments = compendiums$large_compendium$comments)
+make_compendium(name = "proyect_z", path = path, format = "large_compendium", comments = TRUE)
 ## Creating directories ...
 ## proyect_z
 ## │   

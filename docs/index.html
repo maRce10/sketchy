@@ -68,17 +68,14 @@
 <div class="page-header"><h1 id="sketchy">sketchy<a class="anchor" aria-label="anchor" href="#sketchy"></a>
 </h1></div>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<!-- [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy) -->
-<!-- [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sketchy)](http://www.r-pkg.org/pkg/sketchy) -->
-<!-- [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy?color=blue)](https://r-pkg.org/pkg/sketchy) -->
 
 <p>The package is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing other researchers to inspect, reproduce, and build upon that research.</p>
 <!-- Unlike other packages for setting up research compendiums, `sketchy` has very simple functionality. Hence, users can focus on the research project itself rather than on learning how to use a new R package. -->
-<p>Unlike other R packages for creating research compendiums (e.g. <a href="https://github.com/CrumpLab/vertical" class="external-link">vertical</a>, <a href="https://github.com/benmarwick/rrtools" class="external-link">rrtools</a>), <code>sketchy</code> isn’t wedded to a particular folder structure. Currently the package provides 13 alternative structures (see object <code>compendiums</code>) and allows users to modify or input their own structures.</p>
-<p>To install the latest developmental version from <a href="https://github.com/" class="external-link">github</a> you will need the R package <a href="https://cran.r-project.org/package=devtools" class="external-link">devtools</a>:</p>
+<p>Unlike other R packages for creating research compendiums (e.g. <a href="https://github.com/CrumpLab/vertical" class="external-link">vertical</a>, <a href="https://github.com/benmarwick/rrtools" class="external-link">rrtools</a>), <code>sketchy</code> isn’t wedded to a particular folder structure. Currently the package provides 14 alternative structures (see object <code>compendiums</code>) and allows users to modify or input their own structures.</p>
+<p>To install the latest developmental version from <a href="https://github.com/" class="external-link">github</a> you will need the R package <a href="https://cran.r-project.org/package=remotes" class="external-link">remotes</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># From github</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/sketchy"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/sketchy"</span><span class="op">)</span>
 
 <span class="co"># load package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/sketchy" class="external-link">sketchy</a></span><span class="op">)</span></code></pre></div>
@@ -111,21 +108,21 @@
 </h3>
 <p>We can use folder structures from other sources. For instance, in this example we use the structured suggested by Wilson <em>et al.</em> (2017):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_y"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"sketchy"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_y"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"sketchy"</span>, comments <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">## Creating directories ...</span>
 <span class="co">## proyect_y</span>
 <span class="co">## │   </span>
 <span class="co">## ├── data/  </span>
-<span class="co">## │   ├── processed/  # modified/rearranged data</span>
-<span class="co">## │   └── raw/  # original data</span>
-<span class="co">## ├── manuscript/  # manuscript/poster figures</span>
-<span class="co">## ├── output/  # all non-data products of data analysis</span>
-<span class="co">## └── scripts/  # code</span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── output/  </span>
+<span class="co">## └── scripts/  </span>
 <span class="co">## Done.</span></code></pre></div>
 <p> </p>
 <p>We can also add comments to the folders to explain what kind of files they are supposed to contain:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_z"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"large_compendium"</span>, comments <span class="op">=</span> <span class="va">compendiums</span><span class="op">$</span><span class="va">large_compendium</span><span class="op">$</span><span class="va">comments</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_z"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"large_compendium"</span>, comments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">## Creating directories ...</span>
 <span class="co">## proyect_z</span>
 <span class="co">## │   </span>
