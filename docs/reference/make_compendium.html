@@ -59,28 +59,49 @@ git <span class="op">=</span> <span class="cn">FALSE</span>, clone <span class="
     <h2>Arguments</h2>
     <dl><dt>name</dt>
 <dd><p>character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".</p></dd>
+
+
 <dt>path</dt>
 <dd><p>Path to put the project directory in. Default is current directory.</p></dd>
+
+
 <dt>force</dt>
 <dd><p>Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.</p></dd>
+
+
 <dt>format</dt>
 <dd><p>A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see <code><a href="compendiums.html">compendiums</a></code> for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included.</p></dd>
+
+
 <dt>comments</dt>
 <dd><p>A logical argument to control if comments of default formats are shown in the graphical representation of the folder skeleton printed on the console. Alternatively, a character string with the comments can be supplied (most useful when using a custom format). Default is <code>TRUE</code>.</p></dd>
+
+
 <dt>packrat</dt>
 <dd><p>Logical to control if packrat is initialized (<code><a href="https://rdrr.io/pkg/packrat/man/init.html" class="external-link">packrat::init()</a></code>) when creating the compendium. Default is <code>FALSE</code>.</p></dd>
+
+
 <dt>git</dt>
 <dd><p>Logical to control if a git repository is initialized (<code><a href="https://docs.ropensci.org/git2r/reference/init.html" class="external-link">git2r::init()</a></code>) when creating the compendium. Default is <code>FALSE</code>.</p></dd>
+
+
 <dt>clone</dt>
 <dd><p>Path to a directory containing a folder structure to be cloned. Default is <code>NULL</code>. If provided 'format' is ignored. Folders starting with <code>^\.git|^\.Rproj.user|^\.\.Rcheck</code> will be ignored.</p></dd>
+
+
 <dt>readme</dt>
 <dd><p>Logical. Controls if a readme file (in Rmd format) is added to the project. The file has predefined fields for documenting objectives and current status of the project. Default is <code>TRUE</code>.</p></dd>
+
+
 <dt>Rproj</dt>
 <dd><p>Logical. If <code>TRUE</code> a R project is created (i.e. a .Rproj file is saved in the main project directory).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript_template.Rmd") and APA citation style file ("apa.csl") inside that folder.</p>
+    
+
+<p>A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript_template.Rmd") and APA citation style file ("apa.csl") inside that folder.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -133,7 +154,7 @@ git <span class="op">=</span> <span class="cn">FALSE</span>, clone <span class="
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>

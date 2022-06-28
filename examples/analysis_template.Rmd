@@ -75,6 +75,10 @@ registerS3method("knit_print", "data.frame", tibble)
 
 ```{r setup chunks, include = FALSE}
 
+# this one makes the Rmarkdown found files using the project main folder as it base directory
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+
+
 knitr::opts_chunk$set(
   class.source = "numberLines lineAnchors", # for code line numbers
   tidy.opts = list(width.cutoff = 65, keep.blank.line=FALSE), # to wrap code
