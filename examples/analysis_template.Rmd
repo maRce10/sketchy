@@ -86,7 +86,7 @@ knitr::opts_chunk$set(
 
 ```{r klippy, echo=FALSE, include=TRUE}
 
-# to add copy button
+# to add copy button to code blocks
 klippy::klippy(position = c('top', 'right'))
 
 ```
@@ -105,12 +105,11 @@ knitr::include_graphics("./images/image.png")
 ```
 &nbsp; 
 
+<!-- skyblue box -->
 
 <div class="alert alert-info">
 
 # Purpose
-
-&nbsp;
 
 - The first goal of this report
 
@@ -119,6 +118,9 @@ knitr::include_graphics("./images/image.png")
 </div>
 
 &nbsp; 
+
+<!-- light brown box -->
+
 
 <div class="alert alert-warning">
 
@@ -138,8 +140,17 @@ rnorm(5)
 
 ```
 
-
 &nbsp;
+
+Note that data frames are printing as fancy tables:
+```{r}
+
+head(iris)
+
+```
+
+
+<!-- light brown box -->
 
 <div class="alert alert-success">
 
@@ -158,6 +169,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut 
 ---
 
 &nbsp; 
+ 
+ <!-- add packages used, system details and versions  -->
  
 <font size="4">Session information</font>
 

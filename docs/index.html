@@ -63,37 +63,253 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
 <div class="section level1">
-<div class="page-header"><h1 id="warbler-streamline-bioacoustic-analysis">warbleR: Streamline Bioacoustic Analysis<a class="anchor" aria-label="anchor" href="#warbler-streamline-bioacoustic-analysis"></a>
+<div class="page-header"><h1 id="sketchy-quantifying-habitat-induced-acoustic-signal-degradation">sketchy: quantifying habitat-induced acoustic signal degradation<a class="anchor" aria-label="anchor" href="#sketchy-quantifying-habitat-induced-acoustic-signal-degradation"></a>
 </h1></div>
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<p><a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a> is intended to facilitate the analysis of the structure of animal acoustic signals in R. Users can collect open-access avian recordings or enter their own data into a workflow that facilitates spectrographic visualization and measurement of acoustic parameters. <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a> makes use of the fundamental sound analysis tools of the seewave package, and offers new tools for acoustic structure analysis. These tools are available for batch analysis of acoustic signals.</p>
-<p>The main features of the package are:</p>
-<ul>
-<li>Diverse tools for measuring acoustic structure</li>
-<li>The use of loops to apply tasks through acoustic signals referenced in a selection table</li>
-<li>The production of images in the working directory with spectrograms to allow users organize data and verify acoustic analyses</li>
-</ul>
-<p>The package offers functions to: - Explore and download Xeno ‐ Canto recordings - Explore, organize and manipulate multiple sound files - Detect signals automatically (in frequency and time) (but check the R package <a href="https://marce10.github.io/ohun/index.html" class="external-link">ohun</a> for a more thorough and friendly implementation) - Create spectrograms of complete recordings or individual signals - Run different measures of acoustic signal structure - Evaluate the performance of measurement methods - Catalog signals - Characterize different structural levels in acoustic signals - Statistical analysis of duet coordination - Consolidate databases and annotation tables</p>
-<p>Most of the functions allow the parallelization of tasks, which distributes the tasks among several processors to improve computational efficiency. Tools to evaluate the performance of the analysis at each step are also available. In addition, warbleR satisfies the need for rigorous open source bioacoustic analysis, which facilitates opportunities for use in research and innovation of additional custom analyzes.</p>
-<p>Install/load the package from CRAN as follows:</p>
+<p>The package is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing other researchers to inspect, reproduce, and build upon that research.</p>
+<!-- Unlike other packages for setting up research compendiums, `sketchy` has very simple functionality. Hence, users can focus on the research project itself rather than on learning how to use a new R package. -->
+<p>Unlike other R packages for creating research compendiums (e.g. <a href="https://github.com/CrumpLab/vertical" class="external-link">vertical</a>, <a href="https://github.com/benmarwick/rrtools" class="external-link">rrtools</a>), <code>sketchy</code> isn’t wedded to a particular folder structure. Currently the package provides 14 alternative structures (see object <code>compendiums</code>) and allows users to modify or input their own structures.</p>
+<p>To install the latest developmental version from <a href="https://github.com/" class="external-link">github</a> you will need the R package <a href="https://cran.r-project.org/package=remotes" class="external-link">remotes</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"warbleR"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># From github</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/sketchy"</span><span class="op">)</span>
 
-<span class="co">#load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://marce10.github.io/warbleR/" class="external-link">warbleR</a></span><span class="op">)</span></code></pre></div>
-<p>To install the latest developmental version from <a href="https://github.com/" class="external-link">github</a> you will need the R package <a href="https://cran.r-project.org/package=devtools" class="external-link">devtools</a>:</p>
+<span class="co"># load package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maRce10/sketchy" class="external-link">sketchy</a></span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="default-compendium-skeletons">Default compendium skeletons<a class="anchor" aria-label="anchor" href="#default-compendium-skeletons"></a>
+</h2>
+<p>Compendiums can be set up with the function <code><a href="reference/make_compendium.html">make_compendium()</a></code>. The function creates the folder/subfolder structure and prints a diagram of the skeleton in the console:</p>
+<div class="section level3">
+<h3 id="basic-compendium">Basic compendium<a class="anchor" aria-label="anchor" href="#basic-compendium"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"maRce10/warbleR"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="co">#load package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://marce10.github.io/warbleR/" class="external-link">warbleR</a></span><span class="op">)</span></code></pre></div>
-<p>For details and example usage, visit the <a href="https://marce10.github.io/warbleR/index.html" class="external-link">warbleR package website</a>.</p>
-<p>A full description of the package can be found in this <a href="https://besjournals.onlinelibrary.wiley.com/doi/epdf/10.1111/2041-210X.12624" class="external-link">journal article</a>.</p>
-<p>Please cite <a href="https://cran.r-project.org/package=warbleR" class="external-link">warbleR</a> as follows:</p>
-<p>Araya-Salas, M. and Smith-Vidaurre, G. (2017), <em>warbleR: an r package to streamline analysis of animal acoustic signals</em>. Methods Ecol Evol. 8, 184-191. <a href="https://besjournals.onlinelibrary.wiley.com/doi/epdf/10.1111/2041-210X.12624" class="external-link">PDF</a></p>
-<p>NOTE: please also cite the <a href="https://cran.r-project.org/package=tuneR" class="external-link">tuneR</a> and <a href="https://cran.r-project.org/package=seewave" class="external-link">seewave</a> packages if you use any spectrogram-creating or acoustic-measuring functions</p>
+<span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_x"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"basic"</span><span class="op">)</span>
+<span class="co">## Creating directories ...</span>
+<span class="co">## proyect_x</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## │   ├── processed/  # modified/rearranged data</span>
+<span class="co">## │   └── raw/  # original data</span>
+<span class="co">## ├── manuscript/  # manuscript/poster figures</span>
+<span class="co">## ├── output/  # all non-data products of data analysis</span>
+<span class="co">## └── scripts/  # code</span>
+<span class="co">## Done.</span></code></pre></div>
+<p> </p>
+<p>(<em>in these examples the compendiums are created in a temporary directory, change ‘path’ to create it in a different directory</em>)</p>
 </div>
+<div class="section level3">
+<h3 id="alternative-structures">Alternative structures<a class="anchor" aria-label="anchor" href="#alternative-structures"></a>
+</h3>
+<p>We can use folder structures from other sources. For instance, in this example we use the structured suggested by Wilson <em>et al.</em> (2017):</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_y"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"sketchy"</span>, comments <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">## Creating directories ...</span>
+<span class="co">## proyect_y</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── output/  </span>
+<span class="co">## └── scripts/  </span>
+<span class="co">## Done.</span></code></pre></div>
+<p> </p>
+<p>We can also add comments to the folders to explain what kind of files they are supposed to contain:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_z"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"large_compendium"</span>, comments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">## Creating directories ...</span>
+<span class="co">## proyect_z</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile</span>
+<span class="co">## │   ├── data/  # Raw data in open formats, not changed once created</span>
+<span class="co">## │   └── scripts/  # R code used to analyse and visualise data</span>
+<span class="co">## ├── man/  # Auto-generated documentation for the custom R functions</span>
+<span class="co">## ├── R/  # Custom R functions used repeatedly throughout the project</span>
+<span class="co">## └── tests/  # Unit tests of R functions to ensure they perform as expected</span>
+<span class="co">## Done.</span></code></pre></div>
+<p> </p>
+<p>When creating a compendium that includes a “manuscript” folder the package adds a “manuscript_template.Rmd” file for facilitating paper writing within the compendium itself.</p>
+<p>We can check all compendium structure available as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">compendiums</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"---------------"</span>, quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">compendiums</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <span class="fu"><a href="reference/print_skeleton.html">print_skeleton</a></span><span class="op">(</span>folders <span class="op">=</span> <span class="va">compendiums</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">skeleton</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] basic</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── output/  </span>
+<span class="co">## └── scripts/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] figures</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── output/  </span>
+<span class="co">## │   └── figures/  </span>
+<span class="co">## │       ├── exploratory/  </span>
+<span class="co">## │       └── final/  </span>
+<span class="co">## └── scripts/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] project_template</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── cache/  </span>
+<span class="co">## ├── config/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── diagnostics/  </span>
+<span class="co">## ├── docs/  </span>
+<span class="co">## ├── graphs/  </span>
+<span class="co">## ├── lib/  </span>
+<span class="co">## ├── logs/  </span>
+<span class="co">## ├── munge/  </span>
+<span class="co">## ├── profiling/  </span>
+<span class="co">## ├── reports/  </span>
+<span class="co">## ├── src/  </span>
+<span class="co">## └── tests/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] pakillo</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analyses/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── data-raw/  </span>
+<span class="co">## ├── docs/  </span>
+<span class="co">## ├── inst/  </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── R/  </span>
+<span class="co">## └── tests/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] boettiger</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## ├── R/  </span>
+<span class="co">## ├── tests/  </span>
+<span class="co">## └── vignettes/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] wilson</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── doc/  </span>
+<span class="co">## ├── requirements/  </span>
+<span class="co">## ├── results/  </span>
+<span class="co">## └── src/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] small_compendium</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## └── data/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] medium_compendium</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## └── R/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] large_compendium</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## │   ├── data/  </span>
+<span class="co">## │   └── scripts/  </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## ├── R/  </span>
+<span class="co">## └── tests/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] vertical</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── data-raw/  </span>
+<span class="co">## ├── docs/  </span>
+<span class="co">## ├── experiments/  </span>
+<span class="co">## ├── man/  </span>
+<span class="co">## ├── manuscripts/  </span>
+<span class="co">## ├── model/  </span>
+<span class="co">## ├── posters/  </span>
+<span class="co">## ├── R/  </span>
+<span class="co">## ├── slides/  </span>
+<span class="co">## └── vignettes/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] rrtools</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── figures/  </span>
+<span class="co">## ├── paper/  </span>
+<span class="co">## └── templates/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] rdir</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── code/  </span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   ├── raw/  </span>
+<span class="co">## │   ├── clean/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── figures/  </span>
+<span class="co">## │   ├── exploratory/  </span>
+<span class="co">## │   └── final/  </span>
+<span class="co">## └── text/  </span>
+<span class="co">##     ├── final/  </span>
+<span class="co">##     └── notes/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] workflowr</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── analysis/  </span>
+<span class="co">## ├── code/  </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## ├── docs/  </span>
+<span class="co">## └── output/  </span>
+<span class="co">## [1] ---------------</span>
+<span class="co">## [1] sketchy</span>
+<span class="co">## .</span>
+<span class="co">## │   </span>
+<span class="co">## ├── data/  </span>
+<span class="co">## │   ├── processed/  </span>
+<span class="co">## │   └── raw/  </span>
+<span class="co">## ├── manuscript/  </span>
+<span class="co">## ├── output/  </span>
+<span class="co">## └── scripts/</span></code></pre></div>
+<hr>
+<p>Please cite <a href="https://marce10.github.io/sketchy/" class="external-link">sketchy</a> as follows:</p>
+<p>Araya-Salas, M., Willink, B., Arriaga, A. (2020), <em>sketchy: research compendiums for data analysis in R</em>. R package version 1.0.0.</p>
+</div>
+</div>
+</div>
+<div class="section level1">
+<h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h1>
+<ol style="list-style-type: decimal">
+<li><p>Alston, J., &amp; Rick, J. (2020). <em>A Beginner’s Guide to Conducting Reproducible Research</em>.</p></li>
+<li><p>Marwick, B., Boettiger, C., &amp; Mullen, L. (2018). <em>Packaging Data Analytical Work Reproducibly Using R (and Friends)</em>. American Statistician, 72(1), 80–88.</p></li>
+<li><p>Wilson G, Bryan J, Cranston K, Kitzes J, Nederbragt L. &amp; Teal, T. K.. 2017. <em>Good enough practices in scientific computing</em>. PLOS Computational Biology 13(6): e1005510.</p></li>
+</ol>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -130,7 +346,15 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=sketchy" class="external-link"><img src="https://www.r-pkg.org/badges/version/sketchy" alt="CRAN Status Badge"></a></li>
+<li><a href="https://www.r-pkg.org/pkg/sketchy" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/sketchy" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://cranlogs.r-pkg.org/badges/grand-total/sketchy" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/sketchy" alt="Total Downloads"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg" alt="lifecycle"></a></li>
+</ul>
+</div>
 
   </div>
 </div>
@@ -143,7 +367,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
