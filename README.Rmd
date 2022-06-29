@@ -1,5 +1,5 @@
 ---
-title: "sketchy: quantifying habitat-induced acoustic signal degradation"
+title: "sketchy: create custom research compendiums"
 output: github_document
 editor_options: 
   chunk_output_type: console

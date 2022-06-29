@@ -1,4 +1,4 @@
-sketchy: quantifying habitat-induced acoustic signal degradation
+sketchy: create custom research compendiums
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -13,7 +13,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 version](https://img.shields.io/badge/R%3E%3D-3.2.4-6666ff.svg)](https://cran.r-project.org/)
 [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop)
 [![Last-changedate](https://img.shields.io/badge/last%20change-2022--06--29-yellowgreen.svg)](/commits/master)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)
 
@@ -56,17 +56,18 @@ the skeleton in the console:
 path = tempdir()
 
 make_compendium(name = "proyect_x", path = path, format = "basic")
-## Creating directories ...
-## proyect_x
-## │   
-## ├── data/  
-## │   ├── processed/  # modified/rearranged data
-## │   └── raw/  # original data
-## ├── manuscript/  # manuscript/poster figures
-## ├── output/  # all non-data products of data analysis
-## └── scripts/  # code
-## Done.
 ```
+
+    ## Creating directories ...
+    ## proyect_x
+    ## │   
+    ## ├── data/  
+    ## │   ├── processed/  # modified/rearranged data
+    ## │   └── raw/  # original data
+    ## ├── manuscript/  # manuscript/poster figures
+    ## ├── output/  # all non-data products of data analysis
+    ## └── scripts/  # code
+    ## Done.
 
  
 
@@ -80,17 +81,18 @@ example we use the structured suggested by Wilson *et al.* (2017):
 
 ``` r
 make_compendium(name = "proyect_y", path = path, format = "sketchy", comments = FALSE)
-## Creating directories ...
-## proyect_y
-## │   
-## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## └── scripts/  
-## Done.
 ```
+
+    ## Creating directories ...
+    ## proyect_y
+    ## │   
+    ## ├── data/  
+    ## │   ├── processed/  
+    ## │   └── raw/  
+    ## ├── manuscript/  
+    ## ├── output/  
+    ## └── scripts/  
+    ## Done.
 
  
 
@@ -99,22 +101,23 @@ they are supposed to contain:
 
 ``` r
 make_compendium(name = "proyect_z", path = path, format = "large_compendium", comments = TRUE)
-## Creating directories ...
-## proyect_z
-## │   
-## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile
-## │   ├── data/  # Raw data in open formats, not changed once created
-## │   └── scripts/  # R code used to analyse and visualise data
-## ├── man/  # Auto-generated documentation for the custom R functions
-## ├── R/  # Custom R functions used repeatedly throughout the project
-## └── tests/  # Unit tests of R functions to ensure they perform as expected
-## Done.
 ```
+
+    ## Creating directories ...
+    ## proyect_z
+    ## │   
+    ## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile
+    ## │   ├── data/  # Raw data in open formats, not changed once created
+    ## │   └── scripts/  # R code used to analyse and visualise data
+    ## ├── man/  # Auto-generated documentation for the custom R functions
+    ## ├── R/  # Custom R functions used repeatedly throughout the project
+    ## └── tests/  # Unit tests of R functions to ensure they perform as expected
+    ## Done.
 
  
 
 When creating a compendium that includes a “manuscript” folder the
-package adds a “manuscript_template.Rmd” file for facilitating paper
+package adds a “manuscript\_template.Rmd” file for facilitating paper
 writing within the compendium itself.
 
 We can check all compendium structure available as follows:
@@ -125,159 +128,160 @@ for (i in 1:length(compendiums)) {
     print(names(compendiums)[i], quote = FALSE)
     print_skeleton(folders = compendiums[[i]]$skeleton)
 }
-## [1] ---------------
-## [1] basic
-## .
-## │   
-## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## └── scripts/  
-## [1] ---------------
-## [1] figures
-## .
-## │   
-## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## │   └── figures/  
-## │       ├── exploratory/  
-## │       └── final/  
-## └── scripts/  
-## [1] ---------------
-## [1] project_template
-## .
-## │   
-## ├── cache/  
-## ├── config/  
-## ├── data/  
-## ├── diagnostics/  
-## ├── docs/  
-## ├── graphs/  
-## ├── lib/  
-## ├── logs/  
-## ├── munge/  
-## ├── profiling/  
-## ├── reports/  
-## ├── src/  
-## └── tests/  
-## [1] ---------------
-## [1] pakillo
-## .
-## │   
-## ├── analyses/  
-## ├── data/  
-## ├── data-raw/  
-## ├── docs/  
-## ├── inst/  
-## ├── man/  
-## ├── manuscript/  
-## ├── R/  
-## └── tests/  
-## [1] ---------------
-## [1] boettiger
-## .
-## │   
-## ├── man/  
-## ├── R/  
-## ├── tests/  
-## └── vignettes/  
-## [1] ---------------
-## [1] wilson
-## .
-## │   
-## ├── data/  
-## ├── doc/  
-## ├── requirements/  
-## ├── results/  
-## └── src/  
-## [1] ---------------
-## [1] small_compendium
-## .
-## │   
-## ├── analysis/  
-## └── data/  
-## [1] ---------------
-## [1] medium_compendium
-## .
-## │   
-## ├── analysis/  
-## ├── data/  
-## ├── man/  
-## └── R/  
-## [1] ---------------
-## [1] large_compendium
-## .
-## │   
-## ├── analysis/  
-## │   ├── data/  
-## │   └── scripts/  
-## ├── man/  
-## ├── R/  
-## └── tests/  
-## [1] ---------------
-## [1] vertical
-## .
-## │   
-## ├── data/  
-## ├── data-raw/  
-## ├── docs/  
-## ├── experiments/  
-## ├── man/  
-## ├── manuscripts/  
-## ├── model/  
-## ├── posters/  
-## ├── R/  
-## ├── slides/  
-## └── vignettes/  
-## [1] ---------------
-## [1] rrtools
-## .
-## │   
-## ├── analysis/  
-## ├── data/  
-## ├── figures/  
-## ├── paper/  
-## └── templates/  
-## [1] ---------------
-## [1] rdir
-## .
-## │   
-## ├── code/  
-## │   ├── processed/  
-## │   ├── raw/  
-## │   ├── clean/  
-## │   └── raw/  
-## ├── figures/  
-## │   ├── exploratory/  
-## │   └── final/  
-## └── text/  
-##     ├── final/  
-##     └── notes/  
-## [1] ---------------
-## [1] workflowr
-## .
-## │   
-## ├── analysis/  
-## ├── code/  
-## ├── data/  
-## ├── docs/  
-## └── output/  
-## [1] ---------------
-## [1] sketchy
-## .
-## │   
-## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## └── scripts/
 ```
+
+    ## [1] ---------------
+    ## [1] basic
+    ## .
+    ## │   
+    ## ├── data/  
+    ## │   ├── processed/  
+    ## │   └── raw/  
+    ## ├── manuscript/  
+    ## ├── output/  
+    ## └── scripts/  
+    ## [1] ---------------
+    ## [1] figures
+    ## .
+    ## │   
+    ## ├── data/  
+    ## │   ├── processed/  
+    ## │   └── raw/  
+    ## ├── manuscript/  
+    ## ├── output/  
+    ## │   └── figures/  
+    ## │       ├── exploratory/  
+    ## │       └── final/  
+    ## └── scripts/  
+    ## [1] ---------------
+    ## [1] project_template
+    ## .
+    ## │   
+    ## ├── cache/  
+    ## ├── config/  
+    ## ├── data/  
+    ## ├── diagnostics/  
+    ## ├── docs/  
+    ## ├── graphs/  
+    ## ├── lib/  
+    ## ├── logs/  
+    ## ├── munge/  
+    ## ├── profiling/  
+    ## ├── reports/  
+    ## ├── src/  
+    ## └── tests/  
+    ## [1] ---------------
+    ## [1] pakillo
+    ## .
+    ## │   
+    ## ├── analyses/  
+    ## ├── data/  
+    ## ├── data-raw/  
+    ## ├── docs/  
+    ## ├── inst/  
+    ## ├── man/  
+    ## ├── manuscript/  
+    ## ├── R/  
+    ## └── tests/  
+    ## [1] ---------------
+    ## [1] boettiger
+    ## .
+    ## │   
+    ## ├── man/  
+    ## ├── R/  
+    ## ├── tests/  
+    ## └── vignettes/  
+    ## [1] ---------------
+    ## [1] wilson
+    ## .
+    ## │   
+    ## ├── data/  
+    ## ├── doc/  
+    ## ├── requirements/  
+    ## ├── results/  
+    ## └── src/  
+    ## [1] ---------------
+    ## [1] small_compendium
+    ## .
+    ## │   
+    ## ├── analysis/  
+    ## └── data/  
+    ## [1] ---------------
+    ## [1] medium_compendium
+    ## .
+    ## │   
+    ## ├── analysis/  
+    ## ├── data/  
+    ## ├── man/  
+    ## └── R/  
+    ## [1] ---------------
+    ## [1] large_compendium
+    ## .
+    ## │   
+    ## ├── analysis/  
+    ## │   ├── data/  
+    ## │   └── scripts/  
+    ## ├── man/  
+    ## ├── R/  
+    ## └── tests/  
+    ## [1] ---------------
+    ## [1] vertical
+    ## .
+    ## │   
+    ## ├── data/  
+    ## ├── data-raw/  
+    ## ├── docs/  
+    ## ├── experiments/  
+    ## ├── man/  
+    ## ├── manuscripts/  
+    ## ├── model/  
+    ## ├── posters/  
+    ## ├── R/  
+    ## ├── slides/  
+    ## └── vignettes/  
+    ## [1] ---------------
+    ## [1] rrtools
+    ## .
+    ## │   
+    ## ├── analysis/  
+    ## ├── data/  
+    ## ├── figures/  
+    ## ├── paper/  
+    ## └── templates/  
+    ## [1] ---------------
+    ## [1] rdir
+    ## .
+    ## │   
+    ## ├── code/  
+    ## │   ├── processed/  
+    ## │   ├── raw/  
+    ## │   ├── clean/  
+    ## │   └── raw/  
+    ## ├── figures/  
+    ## │   ├── exploratory/  
+    ## │   └── final/  
+    ## └── text/  
+    ##     ├── final/  
+    ##     └── notes/  
+    ## [1] ---------------
+    ## [1] workflowr
+    ## .
+    ## │   
+    ## ├── analysis/  
+    ## ├── code/  
+    ## ├── data/  
+    ## ├── docs/  
+    ## └── output/  
+    ## [1] ---------------
+    ## [1] sketchy
+    ## .
+    ## │   
+    ## ├── data/  
+    ## │   ├── processed/  
+    ## │   └── raw/  
+    ## ├── manuscript/  
+    ## ├── output/  
+    ## └── scripts/
 
 ------------------------------------------------------------------------
 

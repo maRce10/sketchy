@@ -124,7 +124,7 @@ knitr::include_graphics("./output/image.png")
 
 &nbsp; 
 
-<!-- light green box -->
+<!-- light brown box -->
 
 
 <div class="alert alert-warning">
@@ -157,7 +157,7 @@ head(iris)
 ```
 
 
-<!-- light brown box -->
+<!-- light green box -->
 
 <div class="alert alert-success">
 

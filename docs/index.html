@@ -68,9 +68,9 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="sketchy-quantifying-habitat-induced-acoustic-signal-degradation" class="section level1">
+<div id="sketchy-create-custom-research-compendiums" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#sketchy-quantifying-habitat-induced-acoustic-signal-degradation" class="anchor"></a>sketchy: quantifying habitat-induced acoustic signal degradation</h1></div>
+<a href="#sketchy-create-custom-research-compendiums" class="anchor"></a>sketchy: create custom research compendiums</h1></div>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p>The package is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing other researchers to inspect, reproduce, and build upon that research.</p>
@@ -93,17 +93,17 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_x"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"basic"</span><span class="op">)</span>
-<span class="co">## Creating directories ...</span>
-<span class="co">## proyect_x</span>
-<span class="co">## │   </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## │   ├── processed/  # modified/rearranged data</span>
-<span class="co">## │   └── raw/  # original data</span>
-<span class="co">## ├── manuscript/  # manuscript/poster figures</span>
-<span class="co">## ├── output/  # all non-data products of data analysis</span>
-<span class="co">## └── scripts/  # code</span>
-<span class="co">## Done.</span></code></pre></div>
+<span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_x"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"basic"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Creating directories ...</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## proyect_x</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── processed/  # modified/rearranged data</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── raw/  # original data</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── manuscript/  # manuscript/poster figures</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── output/  # all non-data products of data analysis</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">## └── scripts/  # code</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Done.</span></span></code></pre></div>
 <p> </p>
 <p>(<em>in these examples the compendiums are created in a temporary directory, change ‘path’ to create it in a different directory</em>)</p>
 </div>
@@ -111,193 +111,193 @@
 <h3 class="hasAnchor">
 <a href="#alternative-structures" class="anchor"></a>Alternative structures</h3>
 <p>We can use folder structures from other sources. For instance, in this example we use the structured suggested by Wilson <em>et al.</em> (2017):</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_y"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"sketchy"</span>, comments <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">## Creating directories ...</span>
-<span class="co">## proyect_y</span>
-<span class="co">## │   </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## │   ├── processed/  </span>
-<span class="co">## │   └── raw/  </span>
-<span class="co">## ├── manuscript/  </span>
-<span class="co">## ├── output/  </span>
-<span class="co">## └── scripts/  </span>
-<span class="co">## Done.</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_y"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"sketchy"</span>, comments <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Creating directories ...</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">## proyect_y</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── processed/  </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── raw/  </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── manuscript/  </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── output/  </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">## └── scripts/  </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Done.</span></span></code></pre></div>
 <p> </p>
 <p>We can also add comments to the folders to explain what kind of files they are supposed to contain:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_z"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"large_compendium"</span>, comments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">## Creating directories ...</span>
-<span class="co">## proyect_z</span>
-<span class="co">## │   </span>
-<span class="co">## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile</span>
-<span class="co">## │   ├── data/  # Raw data in open formats, not changed once created</span>
-<span class="co">## │   └── scripts/  # R code used to analyse and visualise data</span>
-<span class="co">## ├── man/  # Auto-generated documentation for the custom R functions</span>
-<span class="co">## ├── R/  # Custom R functions used repeatedly throughout the project</span>
-<span class="co">## └── tests/  # Unit tests of R functions to ensure they perform as expected</span>
-<span class="co">## Done.</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/make_compendium.html">make_compendium</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"proyect_z"</span>, path <span class="op">=</span> <span class="va">path</span>, format <span class="op">=</span> <span class="st">"large_compendium"</span>, comments <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Creating directories ...</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## proyect_z</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── data/  # Raw data in open formats, not changed once created</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── scripts/  # R code used to analyse and visualise data</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── man/  # Auto-generated documentation for the custom R functions</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── R/  # Custom R functions used repeatedly throughout the project</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## └── tests/  # Unit tests of R functions to ensure they perform as expected</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Done.</span></span></code></pre></div>
 <p> </p>
 <p>When creating a compendium that includes a “manuscript” folder the package adds a “manuscript_template.Rmd” file for facilitating paper writing within the compendium itself.</p>
 <p>We can check all compendium structure available as follows:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">compendiums</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"---------------"</span>, quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">compendiums</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
     <span class="fu"><a href="reference/print_skeleton.html">print_skeleton</a></span><span class="op">(</span>folders <span class="op">=</span> <span class="va">compendiums</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">skeleton</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] basic</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## │   ├── processed/  </span>
-<span class="co">## │   └── raw/  </span>
-<span class="co">## ├── manuscript/  </span>
-<span class="co">## ├── output/  </span>
-<span class="co">## └── scripts/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] figures</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## │   ├── processed/  </span>
-<span class="co">## │   └── raw/  </span>
-<span class="co">## ├── manuscript/  </span>
-<span class="co">## ├── output/  </span>
-<span class="co">## │   └── figures/  </span>
-<span class="co">## │       ├── exploratory/  </span>
-<span class="co">## │       └── final/  </span>
-<span class="co">## └── scripts/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] project_template</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── cache/  </span>
-<span class="co">## ├── config/  </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## ├── diagnostics/  </span>
-<span class="co">## ├── docs/  </span>
-<span class="co">## ├── graphs/  </span>
-<span class="co">## ├── lib/  </span>
-<span class="co">## ├── logs/  </span>
-<span class="co">## ├── munge/  </span>
-<span class="co">## ├── profiling/  </span>
-<span class="co">## ├── reports/  </span>
-<span class="co">## ├── src/  </span>
-<span class="co">## └── tests/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] pakillo</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── analyses/  </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## ├── data-raw/  </span>
-<span class="co">## ├── docs/  </span>
-<span class="co">## ├── inst/  </span>
-<span class="co">## ├── man/  </span>
-<span class="co">## ├── manuscript/  </span>
-<span class="co">## ├── R/  </span>
-<span class="co">## └── tests/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] boettiger</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── man/  </span>
-<span class="co">## ├── R/  </span>
-<span class="co">## ├── tests/  </span>
-<span class="co">## └── vignettes/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] wilson</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## ├── doc/  </span>
-<span class="co">## ├── requirements/  </span>
-<span class="co">## ├── results/  </span>
-<span class="co">## └── src/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] small_compendium</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── analysis/  </span>
-<span class="co">## └── data/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] medium_compendium</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── analysis/  </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## ├── man/  </span>
-<span class="co">## └── R/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] large_compendium</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── analysis/  </span>
-<span class="co">## │   ├── data/  </span>
-<span class="co">## │   └── scripts/  </span>
-<span class="co">## ├── man/  </span>
-<span class="co">## ├── R/  </span>
-<span class="co">## └── tests/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] vertical</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## ├── data-raw/  </span>
-<span class="co">## ├── docs/  </span>
-<span class="co">## ├── experiments/  </span>
-<span class="co">## ├── man/  </span>
-<span class="co">## ├── manuscripts/  </span>
-<span class="co">## ├── model/  </span>
-<span class="co">## ├── posters/  </span>
-<span class="co">## ├── R/  </span>
-<span class="co">## ├── slides/  </span>
-<span class="co">## └── vignettes/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] rrtools</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── analysis/  </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## ├── figures/  </span>
-<span class="co">## ├── paper/  </span>
-<span class="co">## └── templates/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] rdir</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── code/  </span>
-<span class="co">## │   ├── processed/  </span>
-<span class="co">## │   ├── raw/  </span>
-<span class="co">## │   ├── clean/  </span>
-<span class="co">## │   └── raw/  </span>
-<span class="co">## ├── figures/  </span>
-<span class="co">## │   ├── exploratory/  </span>
-<span class="co">## │   └── final/  </span>
-<span class="co">## └── text/  </span>
-<span class="co">##     ├── final/  </span>
-<span class="co">##     └── notes/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] workflowr</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── analysis/  </span>
-<span class="co">## ├── code/  </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## ├── docs/  </span>
-<span class="co">## └── output/  </span>
-<span class="co">## [1] ---------------</span>
-<span class="co">## [1] sketchy</span>
-<span class="co">## .</span>
-<span class="co">## │   </span>
-<span class="co">## ├── data/  </span>
-<span class="co">## │   ├── processed/  </span>
-<span class="co">## │   └── raw/  </span>
-<span class="co">## ├── manuscript/  </span>
-<span class="co">## ├── output/  </span>
-<span class="co">## └── scripts/</span></code></pre></div>
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] basic</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── processed/  </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── raw/  </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── manuscript/  </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── output/  </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="do">## └── scripts/  </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] figures</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── processed/  </span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── raw/  </span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── manuscript/  </span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── output/  </span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── figures/  </span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="do">## │       ├── exploratory/  </span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="do">## │       └── final/  </span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="do">## └── scripts/  </span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] project_template</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── cache/  </span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── config/  </span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── diagnostics/  </span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── docs/  </span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── graphs/  </span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── lib/  </span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── logs/  </span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── munge/  </span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── profiling/  </span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── reports/  </span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── src/  </span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="do">## └── tests/  </span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] pakillo</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── analyses/  </span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data-raw/  </span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── docs/  </span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── inst/  </span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── man/  </span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── manuscript/  </span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── R/  </span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="do">## └── tests/  </span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] boettiger</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── man/  </span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── R/  </span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── tests/  </span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="do">## └── vignettes/  </span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] wilson</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── doc/  </span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── requirements/  </span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── results/  </span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="do">## └── src/  </span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] small_compendium</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── analysis/  </span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="do">## └── data/  </span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] medium_compendium</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── analysis/  </span></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── man/  </span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="do">## └── R/  </span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] large_compendium</span></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── analysis/  </span></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── data/  </span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── scripts/  </span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── man/  </span></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── R/  </span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a><span class="do">## └── tests/  </span></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] vertical</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data-raw/  </span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── docs/  </span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── experiments/  </span></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── man/  </span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── manuscripts/  </span></span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── model/  </span></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── posters/  </span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── R/  </span></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── slides/  </span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a><span class="do">## └── vignettes/  </span></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] rrtools</span></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── analysis/  </span></span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── figures/  </span></span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── paper/  </span></span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a><span class="do">## └── templates/  </span></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] rdir</span></span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── code/  </span></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── processed/  </span></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── raw/  </span></span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── clean/  </span></span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── raw/  </span></span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── figures/  </span></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── exploratory/  </span></span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── final/  </span></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a><span class="do">## └── text/  </span></span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a><span class="do">##     ├── final/  </span></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a><span class="do">##     └── notes/  </span></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] workflowr</span></span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── analysis/  </span></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── code/  </span></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── docs/  </span></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a><span class="do">## └── output/  </span></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] ---------------</span></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] sketchy</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a><span class="do">## .</span></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a><span class="do">## │   </span></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── data/  </span></span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a><span class="do">## │   ├── processed/  </span></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a><span class="do">## │   └── raw/  </span></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── manuscript/  </span></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a><span class="do">## ├── output/  </span></span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a><span class="do">## └── scripts/</span></span></code></pre></div>
 <hr>
 <p>Please cite <a href="https://marce10.github.io/sketchy/">sketchy</a> as follows:</p>
 <p>Araya-Salas, M., Willink, B., Arriaga, A. (2020), <em>sketchy: research compendiums for data analysis in R</em>. R package version 1.0.0.</p>
