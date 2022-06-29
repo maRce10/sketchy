@@ -745,4 +745,5 @@ internal_files <- list(manuscript_template = manuscript_template, apa.csl = apa.
 usethis::use_data(internal_files, internal = TRUE, overwrite = TRUE)
 
 data("compendiums")
+
 ```

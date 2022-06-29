@@ -5,6 +5,7 @@ author: <center><font size="3"><a href="http://researcher.website.com/">Research
 date: <center>"`r Sys.Date()`"</center>
 output:
   html_document:
+    code_folding: show
     css: extra.css
     df_print: tibble
     highlight: pygments  
@@ -57,7 +58,6 @@ out <- lapply(pkgs, function(y) {
 
 ```
 
-
 ```{r custom data fram printing, echo = FALSE, message=FALSE}
 
 
@@ -83,7 +83,8 @@ knitr::opts_chunk$set(
   class.source = "numberLines lineAnchors", # for code line numbers
   tidy.opts = list(width.cutoff = 65, keep.blank.line=FALSE), # to wrap code
   tidy = TRUE,
-  message = FALSE
+  message = FALSE,
+  class.source = "watch-out"
  )
 
 ```
@@ -94,9 +95,6 @@ knitr::opts_chunk$set(
 klippy::klippy(position = c('top', 'right'))
 
 ```
-&nbsp; 
-
-<!-- '&nbsp;' adds blank space -->
 
 # Lorem ipsum
 
@@ -104,9 +102,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut 
 
 ```{r, eval = FALSE, out.width = "100%", echo = FALSE, fig.align= "center"}
 
-knitr::include_graphics("./images/image.png")
+knitr::include_graphics("./output/image.png")
 
 ```
+
+<!-- '&nbsp;' adds blank space -->
+
 &nbsp; 
 
 <!-- skyblue box -->
@@ -130,7 +131,9 @@ knitr::include_graphics("./images/image.png")
 
 # Report overview
 
-- You can have the sections listed here
+- You can have the sections listed here, for instance:
+
+  - [Takeaways](#takeaways)
 
 </div>
 

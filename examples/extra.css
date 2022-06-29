@@ -1,5 +1,4 @@
 @import url("https://enpiar.com/css/font.css");
-@import url("https://enpiar.com/css/font.css");
 @import url("https://enpiar.com/css/custom.css");
 
 body {
@@ -46,7 +45,8 @@ pre {
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
-    background: #e9f7ed;
+    background: #E5FFF2B3;
+    color: #ffffff;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     padding-left: 20px;
@@ -57,7 +57,6 @@ pre {
 
 pre code {
     color: #182125;
-    background: #FAFAFA;
 }
 
 code {
