@@ -19,15 +19,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-<!-- this code add line numbers to code blocks -->
-<style>
-body
-  { counter-reset: source-line 0; }
-pre.numberSource code
-  { counter-reset: none; }
-</style>
-
-
 ```{r load packages, echo = FALSE, message = FALSE, warning=FALSE}
 
 # remotes::install_github("rlesur/klippy")
@@ -58,6 +49,28 @@ out <- lapply(pkgs, function(y) {
 
 ```
 
+<!-- this code add line numbers to code blocks -->
+<!-- only works when code folding is not used in yaml (code_folding: show) -->
+
+<style>
+body
+  { counter-reset: source-line 0; }
+pre.numberSource code
+  { counter-reset: none; }
+</style>
+
+```{r setup, include = FALSE}
+
+
+knitr::opts_chunk$set(
+  class.source = "numberLines lineAnchors", # for code line numbers
+  tidy.opts = list(width.cutoff = 65), 
+  tidy = TRUE,
+  message = FALSE
+ )
+
+```
+
 ```{r custom data fram printing, echo = FALSE, message=FALSE}
 
 
@@ -73,21 +86,6 @@ registerS3method("knit_print", "data.frame", tibble)
 
 ```
 
-```{r setup chunks, include = FALSE}
-
-# this one makes the Rmarkdown found files using the project main folder as it base directory
-knitr::opts_knit$set(root.dir = normalizePath(".."))
-
-
-knitr::opts_chunk$set(
-  class.source = "numberLines lineAnchors", # for code line numbers
-  tidy.opts = list(width.cutoff = 65, keep.blank.line=FALSE), # to wrap code
-  tidy = TRUE,
-  message = FALSE,
-  class.source = "watch-out"
- )
-
-```
 
 ```{r klippy, echo=FALSE, include=TRUE}
 
