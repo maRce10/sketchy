@@ -1,4 +1,4 @@
-#' sketchy: quantifying habitat-induced acoustic signal degradation
+#' sketchy: create custom research compendiums
 #'
 #' `sketchy` is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing  other researchers to inspect, reproduce, and build upon that research.
 #'
