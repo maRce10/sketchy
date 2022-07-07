@@ -740,7 +740,10 @@ analysis_template <- readLines("./examples/analysis_template.Rmd")
 
 extra_css <- readLines("./examples/extra.css")
 
-internal_files <- list(manuscript_template = manuscript_template, apa.csl = apa.csl, readme_template = readme_template, analysis_template = analysis_template, extra_css = extra_css)
+example_library <- readLines("./examples/example_library.bib")
+
+
+internal_files <- list(manuscript_template = manuscript_template, apa.csl = apa.csl, readme_template = readme_template, analysis_template = analysis_template, extra_css = extra_css, example_library = example_library)
 
 usethis::use_data(internal_files, internal = TRUE, overwrite = TRUE)
 

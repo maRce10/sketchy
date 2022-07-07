@@ -30,7 +30,7 @@ git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 \item{Rproj}{Logical. If \code{TRUE} a R project is created (i.e. a .Rproj file is saved in the main project directory).}
 }
 \value{
-A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript_template.Rmd") and APA citation style file ("apa.csl") inside that folder.
+A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript.Rmd"), a BibTex file ("example_library.bib", for showing how to add citations) and APA citation style file ("apa.csl") inside that folder.
 }
 \description{
 \code{make_compendium} generates the folder structure of a research compendium.

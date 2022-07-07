@@ -14,7 +14,7 @@
 #' @param clone Path to a directory containing a folder structure to be cloned. Default is \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.
 #' @param readme Logical. Controls if a readme file (in Rmd format) is added to the project. The file has predefined fields for documenting objectives and current status of the project. Default is \code{TRUE}.
 #' @param Rproj Logical. If \code{TRUE} a R project is created (i.e. a .Rproj file is saved in the main project directory).
-#' @return A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript_template.Rmd") and APA citation style file ("apa.csl") inside that folder.
+#' @return A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript.Rmd"), a BibTex file ("example_library.bib", for showing how to add citations) and APA citation style file ("apa.csl") inside that folder.
 #' @seealso \code{\link{compendiums}}, \code{\link{print_skeleton}}
 #' @export
 #' @name make_compendium
@@ -92,14 +92,22 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
       safe.dir.create(file.path(dir, i))
 
     if (any(basename(format) == "manuscript")){
+
+      # create manuscript.Rmd
       if (!file.exists(file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "manuscript.Rmd")))
       writeLines(internal_files$manuscript_template, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "manuscript.Rmd"))
 
+      # create apa.csl
       if (!file.exists(file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "apa.csl")))
       writeLines(internal_files$apa.csl, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "apa.csl"))
+
+      # create example_library
+      if (!file.exists(file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "example_library.bib")))
+        writeLines(internal_files$example_library, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "example_library.bib"))
     }
 
       if (org_format[1] == "sketchy"){
+
         # save analysis template
         if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd")))
           writeLines(internal_files$analysis_template, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd"))

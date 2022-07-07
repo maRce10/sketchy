@@ -5,7 +5,7 @@ author: <center><font size="3"><a href="http://researcher.website.com/">Research
 date: <center>"`r Sys.Date()`"</center>
 output:
   html_document:
-    code_folding: show
+    # code_folding: show
     css: extra.css
     df_print: tibble
     highlight: pygments  
@@ -21,10 +21,12 @@ editor_options:
 
 ```{r load packages, echo = FALSE, message = FALSE, warning=FALSE}
 
-# remotes::install_github("rlesur/klippy")
-
 # github packages must include user name ("user/package")
-pkgs <- c("rlesur/klippy", "kableExtra", "knitr")
+# knitr is require for creating html/pdf/word reports
+# kableExtra is used to print pretty formatted tables 
+# formatR is used for soft-wrapping code
+# klippy is used for adding a copy button to each code block
+pkgs <- c("rlesur/klippy", "kableExtra", "knitr", "formatR", "rprojroot")
 
 # install/ load packages
 out <- lapply(pkgs, function(y) {
@@ -59,9 +61,15 @@ pre.numberSource code
   { counter-reset: none; }
 </style>
 
-```{r setup, include = FALSE}
 
+```{r setup chunks, include = FALSE}
 
+# set working directory as project directory or one directory above,
+rootdir <- try(rprojroot::find_rstudio_root_file(), silent = TRUE)
+if (is(rootdir, "try-error")) rootdir <-  ".."
+opts_knit$set(root.dir = rootdir)
+
+# options to customize chunk outputs
 knitr::opts_chunk$set(
   class.source = "numberLines lineAnchors", # for code line numbers
   tidy.opts = list(width.cutoff = 65), 
@@ -71,10 +79,9 @@ knitr::opts_chunk$set(
 
 ```
 
-```{r custom data fram printing, echo = FALSE, message=FALSE}
+```{r custom data frame printing, echo = FALSE, message=FALSE}
 
-
-# this is a customized printing for data frames 
+# this is a customized printing style data frames 
 # screws up tibble function
 tibble <- function(x, ...) { 
   x <- kbl(x, digits=4, align= 'c', row.names = FALSE) 
@@ -87,7 +94,7 @@ registerS3method("knit_print", "data.frame", tibble)
 ```
 
 
-```{r klippy, echo=FALSE, include=TRUE}
+```{r klippy copy button, echo=FALSE, include=TRUE}
 
 # to add copy button to code blocks
 klippy::klippy(position = c('top', 'right'))
@@ -98,9 +105,11 @@ klippy::klippy(position = c('top', 'right'))
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
 
-```{r, eval = FALSE, out.width = "100%", echo = FALSE, fig.align= "center"}
+```{r example external image, eval = TRUE, out.width = "30%", echo = FALSE, fig.align= "center", fig.cap="Fig 1. R logo, Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
 
-knitr::include_graphics("./output/image.png")
+# print center image
+knitr::include_graphics(file.path(R.home("doc"), "html", "logo.jpg"))
+
 
 ```
 
@@ -131,6 +140,7 @@ knitr::include_graphics("./output/image.png")
 
 - You can have the sections listed here, for instance:
 
+  - [Lorem ipsum](#lorem-ipsum)
   - [Takeaways](#takeaways)
 
 </div>
@@ -139,7 +149,7 @@ knitr::include_graphics("./output/image.png")
 
 Some R code:
 
-```{r}
+```{r example r code}
 
 rnorm(5)
 
@@ -148,7 +158,7 @@ rnorm(5)
 &nbsp;
 
 Note that data frames are printing as fancy tables:
-```{r}
+```{r example r code with data table printing}
 
 head(iris)
 

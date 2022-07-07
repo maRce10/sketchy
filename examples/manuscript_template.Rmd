@@ -6,25 +6,83 @@ author:
 date: "`r Sys.Date()`"
 output:
   html_document:
+    df_print: tibble
+    highlight: pygments  
     toc: yes
     toc_depth: 3
     toc_float:
       collapsed: no
       smooth_scroll: no
-bibliography: combined_bibs.bib
+bibliography: example_library.bib
 citation-style: apa.csl
 link-citations: true
 editor_options: 
   chunk_output_type: console
 ---
 
+```{r load packages, echo = FALSE, message = FALSE, warning=FALSE}
+
+# github packages must include user name ("user/package")
+# knitr is require for creating html/pdf/word reports
+# kableExtra is used to print pretty formatted tables 
+# formatR is used for soft-wrapping code
+# klippy is used for adding a copy button to each code block
+pkgs <- c("kableExtra", "knitr", "rprojroot", "sciRmdTheme", "rmdwc", "whereami")
+
+# install/ load packages
+out <- lapply(pkgs, function(y) {
+  
+  # get pakage name
+  pkg <- strsplit(y, "/")[[1]]
+  pkg <- pkg[length(pkg)]
+  
+  # check if installed, if not then install 
+  if (!pkg %in% installed.packages()[,"Package"])  {
+
+      if (grepl("/", y))  remotes::install_github(y, force = TRUE) else
+    install.packages(y) 
+    }
+
+  # load package
+  a <- try(require(pkg, character.only = T), silent = T)
+
+  if (!a) remove.packages(pkg)
+  })
+
+```
+
+```{r theme setting, echo=FALSE}
+
+# simplest default settings
+sciRmdTheme::set.theme()
+
+```
+
+```{r custom data frame printing, echo = FALSE, message=FALSE}
+
+# this is a customized printing style data frames 
+# screws up tibble function
+tibble <- function(x, ...) { 
+  x <- kbl(x, digits=4, align= 'c', row.names = FALSE) 
+   x <- kable_styling(x, position ="center", full_width = FALSE,  bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+   asis_output(x)
+}
+
+registerS3method("knit_print", "data.frame", tibble)
+
+```
+
+```{r set working directory, echo=FALSE}
+
+# set working directory as project directory or one directory above,
+rootdir <- try(rprojroot::find_rstudio_root_file(), silent = TRUE)
+if (is(rootdir, "try-error")) rootdir <-  ".."
+opts_knit$set(root.dir = rootdir)
+
+```
+
 
 ```{r, fixing citation .bib files, eval = TRUE, echo = FALSE}
-
-
-# how to cite in Rmarkdown
-# https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
-
 
 # Here include the path to the libraries for each author. This code will copy/update the library each time the Rmarkdown file is compiled
 # Alternatively authors ca
@@ -33,26 +91,26 @@ personal_libraries <- c(author_1 = "path/to/lib.file/from/author1/library.bib", 
 # update bibtex library
 for (i in 1:length(personal_libraries))
 if (file.exists(personal_libraries[i]))
- file.copy(from = personal_libraries[i], to = file.path(getwd(), paste0(names(personal_libraries)[i], ".bib")), overwrite = TRUE)
+ file.copy(from = personal_libraries[i], to = file.path(dirname(whereami::thisfile()), paste0(names(personal_libraries)[i], ".bib")), overwrite = TRUE)
 
 ## combine .bib files in compiled.bib ###
 # list bib files
-bibs <- list.files(pattern = ".bib$")
+bibs <- list.files(pattern = ".bib$", path = dirname(whereami::thisfile()), full.names = TRUE)
 
 # remove combined from pool
-bibs <- bibs[bibs != "combined_bibs.bib"]
+bibs <- bibs[basename(bibs) != "combined_bibs.bib"]
 
 #  read in a list
 if (length(bibs) > 0){
   combined_bibs_l <- lapply(bibs, readLines)
-  names(combined_bibs_l) <- gsub("\\.bib$", "", bibs)
+  names(combined_bibs_l) <- gsub("\\.bib$", "", basename(bibs))
 
 
 # combine bibs in a single one
 combined_bibs <- unlist(combined_bibs_l)
 
 # save pool libraries as combined_bibs.bib
-writeLines(text = combined_bibs, "combined_bibs.bib")
+writeLines(text = combined_bibs, file.path(dirname(whereami::thisfile()), "combined_bibs.bib"))
 
 # check if there are duplicated keys
 keys <- grep("@article{", combined_bibs, fixed = TRUE, value = TRUE)
@@ -64,26 +122,10 @@ tab_keys <- table(keys)
 if (anyDuplicated(keys)){
   print(paste0(sum(tab_keys > 1), " duplicate(s) references found in combined_bibs.bib"))
 }
-} else writeLines(text = "empty", "combined_bibs.bib")
-
-
+} else writeLines(text = "empty", file.path(dirname(whereami::thisfile()), "combined_bibs.bib"))
 
 ```
 
-
-```{r word count, eval = TRUE, echo = FALSE, results='asis'}
-
-# package rmdwc allows to count words
-if (!"rmdwc" %in% installed.packages()[,"Package"]) install.packages("rmdwc")
-
-library(rmdwc)
-
-word_count <- rmdcount(normalizePath(file.path(base.dir, '/manuscript/manuscript.Rmd')))
-word_count_chunk <- rmdcount(normalizePath(file.path(base.dir, '/manuscript/manuscript.Rmd')), exclude='')
-
-cat(paste0("Word count: ", word_count[3], " (including chunks: ", word_count_chunk[3], ")"))
-
-```
 
 ^1^ Affiliation # 1
 
@@ -92,20 +134,82 @@ cat(paste0("Word count: ", word_count[3], " (including chunks: ", word_count_chu
 
 \*To whom correspondence should be addressed
 
-### Keywords:
+Keywords: X, Y
 
-Check [this link](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) for details on how to add citations/bibliography in Rmarkdown
+*Check [this link](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) for details on how to add citations/bibliography in Rmarkdown*
+
+
+```{r word count, eval = TRUE, echo = FALSE, results='asis'}
+
+# word count without code chunks
+word_count <- rmdcount(whereami::thisfile())
+
+# word count with code chunks
+word_count_chunk <- rmdcount(whereami::thisfile(), exclude='')
+
+# print results
+cat(paste0("Word count: ", word_count[3], " (including code chunks: ", word_count_chunk[3], ")"))
+
+```
 
 ---
 
-## Abstract
 
-## Introduction
+# Showcase features
 
-## Methods
+- citations: sketchy is an R package [@ArayaSalas2021].  @ArayaSalas2021 created sketchy. he reference shows up in the reference [References section](#reference). Note this citation must be found in the file './manuscript/example_library.bib'
 
-## Results
+- Colors [can be used]{.green} to [highlight specific]{.yellow} section of the [text like in this text]{.red}
 
-## Discusion
+<!-- this comment doesn't show up -->
 
-## References
+Printing a table:
+```{r table printing, echo = FALSE}
+
+iris[1:6, ]
+
+```
+
+
+Adding a plot:
+
+```{r, echo = FALSE}
+
+plot(iris$Sepal.Length, iris$Sepal.Width, col =  "#21908C4D", pch = 20, cex = 2, xlab = "X", ylab = "Y")
+```
+
+
+Add an external image:
+
+```{r example external image, eval = TRUE, out.width = "30%", echo = FALSE, fig.align= "center", fig.cap="Fig 1. R logo, Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+
+# print center image
+knitr::include_graphics(file.path(R.home("doc"), "html", "logo.jpg"))
+
+
+```
+
+---
+
+# Abstract
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
+
+# Introduction
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
+
+# Methods
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
+
+# Results
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
+
+# Discusion
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue.
+
+# References
+
