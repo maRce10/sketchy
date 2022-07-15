@@ -13,12 +13,13 @@ output:
     toc_float:
       collapsed: no
       smooth_scroll: no
-bibliography: example_library.bib
+bibliography: references.bib
 citation-style: apa.csl
 link-citations: true
 editor_options: 
   chunk_output_type: console
 ---
+
 
 ```{r load packages, echo = FALSE, message = FALSE, warning=FALSE}
 
@@ -84,45 +85,34 @@ opts_knit$set(root.dir = rootdir)
 
 ```{r, fixing citation .bib files, eval = TRUE, echo = FALSE}
 
+# how to cite in Rmarkdown:
+# https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+
+# find citation style files (csl) here:
+# https://github.com/stackpr/csl-styles
+
 # Here include the path to the libraries for each author. This code will copy/update the library each time the Rmarkdown file is compiled
 # Alternatively authors ca
 personal_libraries <- c(author_1 = "path/to/lib.file/from/author1/library.bib", author_2 = "path/to/lib.file/from/author2/library.bib")
 
-# update bibtex library
-for (i in 1:length(personal_libraries))
-if (file.exists(personal_libraries[i]))
- file.copy(from = personal_libraries[i], to = file.path(dirname(whereami::thisfile()), paste0(names(personal_libraries)[i], ".bib")), overwrite = TRUE)
+# location of current Rmarkdown
+rmd_dir <- dirname(whereami::thisfile()) 
+if (is.null(rmd_dir)) rmd_dir <- file.path(rootdir, "manuscript")
 
-## combine .bib files in compiled.bib ###
-# list bib files
-bibs <- list.files(pattern = ".bib$", path = dirname(whereami::thisfile()), full.names = TRUE)
+# read personal library
+personal_libraries <- personal_libraries[file.exists(personal_libraries)]
+personal_bib <- suppressMessages(ReadBib(personal_libraries))
 
-# remove combined from pool
-bibs <- bibs[basename(bibs) != "combined_bibs.bib"]
-
-#  read in a list
-if (length(bibs) > 0){
-  combined_bibs_l <- lapply(bibs, readLines)
-  names(combined_bibs_l) <- gsub("\\.bib$", "", basename(bibs))
-
-
-# combine bibs in a single one
-combined_bibs <- unlist(combined_bibs_l)
-
-# save pool libraries as combined_bibs.bib
-writeLines(text = combined_bibs, file.path(dirname(whereami::thisfile()), "combined_bibs.bib"))
-
-# check if there are duplicated keys
-keys <- grep("@article{", combined_bibs, fixed = TRUE, value = TRUE)
-keys <- gsub("@article{", "", keys, fixed = TRUE)
-keys <- gsub(",", "", keys, fixed = TRUE)
-
-tab_keys <- table(keys)
-
-if (anyDuplicated(keys)){
-  print(paste0(sum(tab_keys > 1), " duplicate(s) references found in combined_bibs.bib"))
-}
-} else writeLines(text = "empty", file.path(dirname(whereami::thisfile()), "combined_bibs.bib"))
+# read paper's references.bib if it exists
+if (file.exists(file.path(rootdir, "references.bib"))){
+    combined_bib <- suppressMessages(ReadBib(file.path(rmd_dir, "references.bib")))
+    
+    merge_bib <- suppressMessages(merge(personal_bib, combined_bib, fields.to.check = "title", ignore.case = TRUE))
+} else
+    merge_bib <- personal_bib
+    
+# save combined references
+WriteBib(bib = merge_bib, file = file.path(rmd_dir, "references.bib"), biblatex = TRUE)
 
 ```
 

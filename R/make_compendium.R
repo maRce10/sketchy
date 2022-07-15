@@ -102,8 +102,8 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
       writeLines(internal_files$apa.csl, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "apa.csl"))
 
       # create example_library
-      if (!file.exists(file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "example_library.bib")))
-        writeLines(internal_files$example_library, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "example_library.bib"))
+      if (!file.exists(file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "references.bib")))
+        writeLines(internal_files$example_library, file.path(path, name, grep("manuscript$|^docs$|^doc$", format, ignore.case = TRUE, value = TRUE)[1], "references.bib"))
     }
 
       if (org_format[1] == "sketchy"){
