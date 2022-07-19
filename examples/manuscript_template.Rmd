@@ -28,7 +28,7 @@ editor_options:
 # kableExtra is used to print pretty formatted tables 
 # formatR is used for soft-wrapping code
 # klippy is used for adding a copy button to each code block
-pkgs <- c("kableExtra", "knitr", "rprojroot", "sciRmdTheme", "rmdwc", "whereami")
+pkgs <- c("kableExtra", "knitr", "rprojroot", "sciRmdTheme", "rmdwc", "whereami",  "RefManageR", "bibtex")
 
 # install/ load packages
 out <- lapply(pkgs, function(y) {
