@@ -14,6 +14,7 @@
 # #' @importFrom git2r init
 #' @importFrom stringi stri_unescape_unicode
 #' @importFrom crayon cyan bold
+#' @importFrom xaringanExtra use_clipboard
 #' @author Marcelo Araya-Salas, Beatriz Willink & Andrea Arriaga
 #'
 #'   Maintainer: Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})

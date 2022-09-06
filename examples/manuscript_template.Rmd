@@ -95,6 +95,8 @@ opts_knit$set(root.dir = rootdir)
 # Alternatively authors ca
 personal_libraries <- c(author_1 = "path/to/lib.file/from/author1/library.bib", author_2 = "path/to/lib.file/from/author2/library.bib")
 
+if (any(sapply(personal_libraries, file.exists))){
+  
 # location of current Rmarkdown
 rmd_dir <- dirname(whereami::thisfile()) 
 if (is.null(rmd_dir)) rmd_dir <- file.path(rootdir, "manuscript")
@@ -113,7 +115,7 @@ if (file.exists(file.path(rootdir, "references.bib"))){
     
 # save combined references
 WriteBib(bib = merge_bib, file = file.path(rmd_dir, "references.bib"), biblatex = TRUE)
-
+}
 ```
 
 

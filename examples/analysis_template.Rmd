@@ -5,7 +5,7 @@ author: <center><font size="3"><a href="http://researcher.website.com/">Research
 date: <center>"`r Sys.Date()`"</center>
 output:
   html_document:
-    # code_folding: show
+    code_folding: show
     css: extra.css
     df_print: tibble
     highlight: pygments  
@@ -19,14 +19,24 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r load packages, echo = FALSE, message = FALSE, warning=FALSE}
+<!-- this code add line numbers to code blocks -->
+<!-- only works when code folding is not used in yaml (code_folding: show) -->
+
+<style>
+body
+  { counter-reset: source-line 0; }
+pre.numberSource code
+  { counter-reset: none; }
+</style>
+
+```{r load packages and setup style, echo = FALSE, message = FALSE, warning=FALSE}
 
 # github packages must include user name ("user/package")
 # knitr is require for creating html/pdf/word reports
 # kableExtra is used to print pretty formatted tables 
 # formatR is used for soft-wrapping code
 # klippy is used for adding a copy button to each code block
-pkgs <- c("rlesur/klippy", "kableExtra", "knitr", "formatR", "rprojroot")
+pkgs <- c("kableExtra", "knitr", "formatR", "rprojroot", "xaringanExtra")
 
 # install/ load packages
 out <- lapply(pkgs, function(y) {
@@ -49,21 +59,6 @@ out <- lapply(pkgs, function(y) {
   })
 
 
-```
-
-<!-- this code add line numbers to code blocks -->
-<!-- only works when code folding is not used in yaml (code_folding: show) -->
-
-<style>
-body
-  { counter-reset: source-line 0; }
-pre.numberSource code
-  { counter-reset: none; }
-</style>
-
-
-```{r setup chunks, include = FALSE}
-
 # set working directory as project directory or one directory above,
 rootdir <- try(rprojroot::find_rstudio_root_file(), silent = TRUE)
 if (is(rootdir, "try-error")) rootdir <-  ".."
@@ -77,10 +72,6 @@ knitr::opts_chunk$set(
   message = FALSE
  )
 
-```
-
-```{r custom data frame printing, echo = FALSE, message=FALSE}
-
 # this is a customized printing style data frames 
 # screws up tibble function
 tibble <- function(x, ...) { 
@@ -91,15 +82,21 @@ tibble <- function(x, ...) {
 
 registerS3method("knit_print", "data.frame", tibble)
 
-```
-
-
-```{r klippy copy button, echo=FALSE, include=TRUE}
-
 # to add copy button to code blocks
-klippy::klippy(position = c('top', 'right'))
+# klippy::klippy(position = c('top', 'right'))
+
+
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
 
 ```
+
 
 # Lorem ipsum
 
