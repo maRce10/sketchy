@@ -45,10 +45,10 @@ print_skeleton <- function(path = ".", comments = NULL, folders = NULL)
     # fix comments vector
     if (!is.null(comments)){
       if(length(comments) != length(format))
-        stop(paste0(length(format), " folders found but only ", length(comments), " elements in comments"))
+        stop2(paste0(length(format), " folders found but only ", length(comments), " elements in comments"))
 
       if (!all(names(comments) %in% format))
-        stop("not all names in 'comments' have a folder counterpart") else
+        stop2("not all names in 'comments' have a folder counterpart") else
           comments <- comments[match(format, names(comments))]
 
     } else comments <- rep("", length(format))

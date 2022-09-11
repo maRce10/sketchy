@@ -40,7 +40,7 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
   {
     safe.dir.create <- function(path) {
       if (!dir.exists(path) && !dir.create(path))
-        stop(gettextf("cannot create directory '%s'", path),
+        stop2(gettextf("cannot create directory '%s'", path),
              domain = NA)
     }
 
@@ -49,10 +49,10 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
 
     # allow format name or skeleton from list
     if (!is.character(format))
-      stop("'format' must either be a character vector") else
+      stop2("'format' must either be a character vector") else
         if (length(format) == 1)
           if (!format %in% names(compendiums))
-            stop("'format' not found (must be one of those in 'names(compendiums)')") else {
+            stop2("'format' not found (must be one of those in 'names(compendiums)')") else {
               if (is.logical(comments)){
                 comments_vector <- if (comments)
                 compendiums[[format]]$comments else NULL
@@ -84,7 +84,7 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
       cat(crayon::green("Setting project on an existing directory ...\n"))
 
     if (file.exists(dir) && !force)
-      stop(gettextf("directory '%s' already exists", dir),
+      stop2(gettextf("directory '%s' already exists", dir),
            domain = NA)
       safe.dir.create(dir)
 
@@ -121,7 +121,7 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
     if (git) {
       # error message if git2r is not installed
       if (!requireNamespace("git2r",quietly = TRUE))
-        stop("must install 'git2r' to use 'git'") else
+        stop2("must install 'git2r' to use 'git'") else
           git2r::init(path = file.path(path, name))
     }
 

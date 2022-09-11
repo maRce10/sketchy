@@ -34,7 +34,7 @@
 add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path = "."){
 
   if (is.null(cutoff) & is.null(extension))
-    stop("'cutoff' and/or 'extension' must be supplied")
+    stop2("'cutoff' and/or 'extension' must be supplied")
 
   # get files list
   if (is.null(extension))
@@ -120,7 +120,7 @@ format.object_size <- function (x, units = "b", standard = "auto", digits = 1L, 
       if (endsWith(units, "iB"))
         standard <- "IEC" else if (endsWith(units, "b"))
           standard <- "legacy" else if (units == "kB")
-            stop("For SI units, specify 'standard = \"SI\"'")
+            stop2("For SI units, specify 'standard = \"SI\"'")
     }
   }
   base <- known_bases[[standard]]
@@ -133,7 +133,7 @@ format.object_size <- function (x, units = "b", standard = "auto", digits = 1L, 
     power <- match(toupper(units), toupper(units_map)) -
       1L
     if (is.na(power))
-      stop(gettextf("Unit \"%s\" is not part of standard \"%s\"",
+      stop2(gettextf("Unit \"%s\" is not part of standard \"%s\"",
                     sQuote(units), sQuote(standard)), domain = NA)
   }
   unit <- units_map[power + 1L]

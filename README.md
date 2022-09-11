@@ -10,7 +10,7 @@ and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Licence](https://img.shields.io/badge/https://img.shields.io/badge/licence-GPL--2-blue.svg.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![minimal R
-version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.2-orange.svg?style=flat-square)](commits/develop)[![Last-changedate](https://img.shields.io/badge/last%20change-2022--07--07-yellowgreen.svg)](/commits/master)
+version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.2-orange.svg?style=flat-square)](commits/develop)[![Last-changedate](https://img.shields.io/badge/last%20change-2022--09--11-yellowgreen.svg)](/commits/master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)
@@ -35,6 +35,7 @@ To install the latest developmental version from
 [remotes](https://cran.r-project.org/package=remotes):
 
 ``` r
+
 # From github
 remotes::install_github("maRce10/sketchy")
 
@@ -51,6 +52,7 @@ the skeleton in the console:
 ### Basic compendium
 
 ``` r
+
 path = tempdir()
 
 make_compendium(name = "proyect_x", path = path, format = "basic")
@@ -77,25 +79,7 @@ We can use folder structures from other sources. For instance, in this
 example we use the structured suggested by Wilson *et al.* (2017):
 
 ``` r
-make_compendium(name = "proyect_y", path = path, format = "sketchy", comments = FALSE)
-## Creating directories ...
-## proyect_y
-## │   
-## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## └── scripts/  
-## Done.
-```
 
- 
-
-We can also add comments to the folders to explain what kind of files
-they are supposed to contain:
-
-``` r
 make_compendium(name = "proyect_z", path = path, format = "large_compendium", comments = TRUE)
 ## Creating directories ...
 ## proyect_z
@@ -118,12 +102,13 @@ writing within the compendium itself.
 We can check all compendium structure available as follows:
 
 ``` r
+
 for (i in 1:length(compendiums)) {
-    if (i > 1)
-        cat("--------------- \n", quote = FALSE)
+    print("---------------", quote = FALSE)
     print(names(compendiums)[i], quote = FALSE)
     print_skeleton(folders = compendiums[[i]]$skeleton)
 }
+## [1] ---------------
 ## [1] basic
 ## .
 ## │   
@@ -133,8 +118,8 @@ for (i in 1:length(compendiums)) {
 ## ├── manuscript/  
 ## ├── output/  
 ## └── scripts/  
-## --------------- 
-##  FALSE[1] figures
+## [1] ---------------
+## [1] figures
 ## .
 ## │   
 ## ├── data/  
@@ -146,8 +131,8 @@ for (i in 1:length(compendiums)) {
 ## │       ├── exploratory/  
 ## │       └── final/  
 ## └── scripts/  
-## --------------- 
-##  FALSE[1] project_template
+## [1] ---------------
+## [1] project_template
 ## .
 ## │   
 ## ├── cache/  
@@ -163,8 +148,8 @@ for (i in 1:length(compendiums)) {
 ## ├── reports/  
 ## ├── src/  
 ## └── tests/  
-## --------------- 
-##  FALSE[1] pakillo
+## [1] ---------------
+## [1] pakillo
 ## .
 ## │   
 ## ├── analyses/  
@@ -176,16 +161,16 @@ for (i in 1:length(compendiums)) {
 ## ├── manuscript/  
 ## ├── R/  
 ## └── tests/  
-## --------------- 
-##  FALSE[1] boettiger
+## [1] ---------------
+## [1] boettiger
 ## .
 ## │   
 ## ├── man/  
 ## ├── R/  
 ## ├── tests/  
 ## └── vignettes/  
-## --------------- 
-##  FALSE[1] wilson
+## [1] ---------------
+## [1] wilson
 ## .
 ## │   
 ## ├── data/  
@@ -193,22 +178,22 @@ for (i in 1:length(compendiums)) {
 ## ├── requirements/  
 ## ├── results/  
 ## └── src/  
-## --------------- 
-##  FALSE[1] small_compendium
+## [1] ---------------
+## [1] small_compendium
 ## .
 ## │   
 ## ├── analysis/  
 ## └── data/  
-## --------------- 
-##  FALSE[1] medium_compendium
+## [1] ---------------
+## [1] medium_compendium
 ## .
 ## │   
 ## ├── analysis/  
 ## ├── data/  
 ## ├── man/  
 ## └── R/  
-## --------------- 
-##  FALSE[1] large_compendium
+## [1] ---------------
+## [1] large_compendium
 ## .
 ## │   
 ## ├── analysis/  
@@ -217,8 +202,8 @@ for (i in 1:length(compendiums)) {
 ## ├── man/  
 ## ├── R/  
 ## └── tests/  
-## --------------- 
-##  FALSE[1] vertical
+## [1] ---------------
+## [1] vertical
 ## .
 ## │   
 ## ├── data/  
@@ -232,8 +217,8 @@ for (i in 1:length(compendiums)) {
 ## ├── R/  
 ## ├── slides/  
 ## └── vignettes/  
-## --------------- 
-##  FALSE[1] rrtools
+## [1] ---------------
+## [1] rrtools
 ## .
 ## │   
 ## ├── analysis/  
@@ -241,8 +226,8 @@ for (i in 1:length(compendiums)) {
 ## ├── figures/  
 ## ├── paper/  
 ## └── templates/  
-## --------------- 
-##  FALSE[1] rdir
+## [1] ---------------
+## [1] rdir
 ## .
 ## │   
 ## ├── code/  
@@ -256,8 +241,8 @@ for (i in 1:length(compendiums)) {
 ## └── text/  
 ##     ├── final/  
 ##     └── notes/  
-## --------------- 
-##  FALSE[1] workflowr
+## [1] ---------------
+## [1] workflowr
 ## .
 ## │   
 ## ├── analysis/  
@@ -265,8 +250,8 @@ for (i in 1:length(compendiums)) {
 ## ├── data/  
 ## ├── docs/  
 ## └── output/  
-## --------------- 
-##  FALSE[1] sketchy
+## [1] ---------------
+## [1] sketchy
 ## .
 ## │   
 ## ├── data/  

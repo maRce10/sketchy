@@ -73,16 +73,6 @@ We can use folder structures from other sources. For instance, in this example w
 
 ```{r, eval = TRUE}
 
-make_compendium(name = "proyect_y", path = path, format = "sketchy",
-                comments = FALSE)
-
-```
-&nbsp; 
-
-We can also add comments to the folders to explain what kind of files they are supposed to contain: 
-
-```{r, eval = TRUE}
-
 make_compendium(name = "proyect_z", path = path, format = "large_compendium", 
                     comments = TRUE)
 
