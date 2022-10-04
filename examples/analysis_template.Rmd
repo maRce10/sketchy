@@ -83,9 +83,6 @@ tibble <- function(x, ...) {
 registerS3method("knit_print", "data.frame", tibble)
 
 # to add copy button to code blocks
-# klippy::klippy(position = c('top', 'right'))
-
-
 htmltools::tagList(
   xaringanExtra::use_clipboard(
     button_text = "<i class=\"fa fa-clipboard\"></i>",
