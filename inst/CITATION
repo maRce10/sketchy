@@ -1,8 +1,8 @@
-citHeader("Please cite 'warbleR' as follows:")
+citHeader("Please cite 'sketchy' as follows:")
 
 
 citEntry(entry = "MISC",
-        title = "sketchy:research compendiums for data analysis in R",
+        title = "sketchy: research compendiums for data analysis in R",
         author = personList(as.person("M. Araya-Salas"),as.person("B. Willink"),as.person("A.Y. Arriaga")),
         year = "2020",
 #        journal = "Methods in Ecology and Evolution",

@@ -148,7 +148,9 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
         # add project name to file
         readme_file[2] <- paste('title:', name)
         writeLines(readme_file, file.path(dir, "README.Rmd"))
-      } else
+
+        rmarkdown::render(file.path(dir, "README.Rmd"), quiet = TRUE)
+        } else
         cat(crayon::green("README.Rmd already exists.\n"))
 
       # convert comments

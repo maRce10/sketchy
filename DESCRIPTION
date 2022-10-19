@@ -6,7 +6,7 @@ Date: 2022-02-08
 Maintainer: Marcelo Araya-Salas <marcelo.araya@ucr.ac.cr>
 Description: Provides functions to create and manage research compendiums for data analysis. Research compendiums are a standard and intuitive folder structure for organizing the digital materials of a research project, which can significantly improve reproducibility. The package offers several compendium structure options that fit different research project as well as the ability of duplicating the folder structure of existing projects or implementing custom structures. It also simplifies the use of version control.
 License: GPL (>= 2)
-Imports: knitr, stringi, crayon, packrat, utils, git2r, xaringanExtra
+Imports: knitr, stringi, crayon, packrat, utils, git2r, xaringanExtra, rmarkdown
 Depends: R (>= 3.5.0)
 LazyData: TRUE
 URL: https://github.com/maRce10/sketchy

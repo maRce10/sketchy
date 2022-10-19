@@ -13,7 +13,7 @@ editor_options:
 remove.packages("sketchy")
  
 # #restart R
-.rs.restartR()
+.rs.restartR() 
 
 ```
 
@@ -343,10 +343,14 @@ rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
 # for(i in run.def.args(FUN)) try(eval(parse(text = i)), silent = T)
 # rm(i)
 
+load("~/Dropbox/R_package_testing/sketchy/R/sysdata.rda")
+
 data("compendiums")
 
 #tests  
-make_compendium(name = "projescto_x", format = "basic", force = TRUE, path = tempdir())
+make_compendium(name = "projX", format = "basic", force = TRUE, path = tempdir())
+
+rmarkdown::render(file.path(tempdir(), "projX", "README.Rmd"))
 
 # no comments
 make_compendium(name = "projecto_x2", format = "basic", force = TRUE, path = tempdir(), comments = FALSE)
@@ -354,7 +358,7 @@ make_compendium(name = "projecto_x2", format = "basic", force = TRUE, path = tem
 
 make_compendium(name = "pruebaX3", format = compendiums$basic$skeleton, force = TRUE, path = tempdir())
 
-make_compendium(name = "pruebaX31", format = compendiums$basic$skeleton, force = TRUE, path = tempdir(), comments = compendiums$basic$comments)
+make_compendium(name = "pruebaX31", format = compendiums$basic$skeleton, force = TRUE, path = tempdir(), comments = compendiums$basic$comments, git = TRUE)
 
 make_compendium(name = "pruebaX32", format = compendiums$figures$skeleton, force = TRUE, path = tempdir())
 
