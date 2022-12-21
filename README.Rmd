@@ -22,6 +22,7 @@ library(sketchy)
 
 ```
 
+<img src="man/figures/sketchy_sticker.png" alt="sketchy sticker" align="right" width = "25%" height="25%"/>
 
 The package is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing  other researchers to inspect, reproduce, and build upon that research. 
 
@@ -31,7 +32,7 @@ Unlike other R packages for creating research compendiums (e.g. [vertical](https
 
 To install the latest developmental version from [github](https://github.com/) you will need the R package [remotes](https://cran.r-project.org/package=remotes):
 
-```{r, eval = FALSE}
+```{r 1, eval = FALSE}
 
 # From github
 remotes::install_github("maRce10/sketchy")
@@ -41,7 +42,7 @@ library(sketchy)
 
 ```
 
-```{r, echo = FALSE}
+```{r 2, echo = FALSE}
 
 load("./data/compendiums.rda")
 ```
@@ -53,7 +54,7 @@ Compendiums can be set up with the function `make_compendium()`. The function cr
 
 ### Basic compendium
 
-```{r, eval = TRUE}
+```{r 3, eval = TRUE}
 
 path = tempdir()
 
@@ -71,7 +72,7 @@ make_compendium(name = "proyect_x", path = path, format = "basic")
 
 We can use folder structures from other sources. For instance, in this example we use the structured suggested by Wilson *et al.* (2017):
 
-```{r, eval = TRUE}
+```{r 4, eval = TRUE}
 
 make_compendium(name = "proyect_z", path = path, format = "large_compendium", 
                     comments = TRUE)
@@ -85,7 +86,7 @@ When creating a compendium that includes a "manuscript" folder the package adds 
 
 We can check all compendium structure available as follows:
 
-```{r, eval = TRUE}
+```{r 5, eval = TRUE}
 
 for(i in 1:length(compendiums)){
   print("---------------", quote = FALSE)
