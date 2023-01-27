@@ -1,8 +1,8 @@
 ---
-title: <center><font size="7"><b>A very cool analysis</b></font></center>
-subtitle: <center><font size="4"><b>A very fancy project</b> <br> Your Organization</font></center>
-author: <center><font size="3"><a href="http://researcher.website.com/">Researcher name</a></font></center>
-date: <center>"`r Sys.Date()`"</center>
+title: <font size="7"><b>A very cool analysis</b></font>
+subtitle: <font size="4"><b>A very fancy project</b> <br> Your Organization</font>
+author: <font size="3"><a href="http://researcher.website.com/">Researcher name</a></font>
+date: "`r Sys.Date()`"
 output:
   html_document:
     code_folding: show
@@ -35,29 +35,10 @@ pre.numberSource code
 # knitr is require for creating html/pdf/word reports
 # kableExtra is used to print pretty formatted tables 
 # formatR is used for soft-wrapping code
-# klippy is used for adding a copy button to each code block
-pkgs <- c("kableExtra", "knitr", "formatR", "rprojroot", "xaringanExtra")
+# xaringanExtra::use_clipboard is used for adding a copy button to each code block
 
 # install/ load packages
-out <- lapply(pkgs, function(y) {
-  
-  # get pakage name
-  pkg <- strsplit(y, "/")[[1]]
-  pkg <- pkg[length(pkg)]
-  
-  # check if installed, if not then install 
-  if (!pkg %in% installed.packages()[,"Package"])  {
-
-      if (grepl("/", y))  remotes::install_github(y, force = TRUE) else
-    install.packages(y) 
-    }
-
-  # load package
-  a <- try(require(pkg, character.only = T), silent = T)
-
-  if (!a) remove.packages(pkg)
-  })
-
+load_packages(packages = c("kableExtra", "knitr", "formatR", "rprojroot", "xaringanExtra"))
 
 # set working directory as project directory or one directory above,
 rootdir <- try(rprojroot::find_rstudio_root_file(), silent = TRUE)
@@ -94,6 +75,35 @@ htmltools::tagList(
 
 ```
 
+&nbsp; 
+
+<!-- skyblue box -->
+<div class="alert alert-info">
+
+# Purpose
+
+- The first goal of this report
+
+- The second goal of this report
+
+</div>
+
+&nbsp; 
+
+
+<!-- light brown box -->
+<div class="alert alert-warning">
+
+# Report overview
+
+- You can have the sections listed here, for instance:
+
+  - [Lorem ipsum](#lorem-ipsum)
+  - [Takeaways](#takeaways)
+
+</div>
+
+&nbsp;
 
 # Lorem ipsum
 
@@ -109,54 +119,6 @@ knitr::include_graphics(file.path(R.home("doc"), "html", "logo.jpg"))
 
 <!-- '&nbsp;' adds blank space -->
 
-&nbsp; 
-
-<!-- skyblue box -->
-
-<div class="alert alert-info">
-
-# Purpose
-
-- The first goal of this report
-
-- The second goal of this report
-
-</div>
-
-&nbsp; 
-
-<!-- light brown box -->
-
-
-<div class="alert alert-warning">
-
-# Report overview
-
-- You can have the sections listed here, for instance:
-
-  - [Lorem ipsum](#lorem-ipsum)
-  - [Takeaways](#takeaways)
-
-</div>
-
-&nbsp;
-
-Some R code:
-
-```{r example r code}
-
-rnorm(5)
-
-```
-
-&nbsp;
-
-Note that data frames are printing as fancy tables:
-```{r example r code with data table printing}
-
-head(iris)
-
-```
 
 
 <!-- light green box -->
