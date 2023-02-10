@@ -108,13 +108,21 @@ make_compendium <- function(name = "research_compendium", path = ".", force = FA
 
       if (org_format[1] == "sketchy"){
 
-        # save analysis template
+        # save analysis template in Rmarkdown format
         if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd")))
           writeLines(internal_files$analysis_template, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template.Rmd"))
 
-        # save extra.css
-        if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "extra.css")))
-          writeLines(internal_files$extra_css, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "extra.css"))
+        # save analysis template in quarto format
+        if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template_quarto.qmd")))
+          writeLines(internal_files$analysis_template_quarto, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "analysis_template_quarto.qmd"))
+
+        # save rmd.css
+        if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "rmd.css")))
+          writeLines(internal_files$rmd_css, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "rmd.css"))
+
+        # save qmd_css
+        if (!file.exists(file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "qmd.css")))
+          writeLines(internal_files$qmd_css, file.path(path, name, grep("scripts$", format, ignore.case = TRUE, value = TRUE)[1], "qmd.css"))
       }
 
     # initiate git

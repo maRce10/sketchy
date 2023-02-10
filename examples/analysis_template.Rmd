@@ -1,13 +1,13 @@
 ---
-title: <font size="7"><b>A very cool analysis</b></font>
-subtitle: <font size="4"><b>A very fancy project</b> <br> Your Organization</font>
-author: <font size="3"><a href="http://researcher.website.com/">Researcher name</a></font>
+title: A very cool analysis
+subtitle: A very fancy projec
+author: <a href="http://researcher.website.com/">Researcher name</a>
 date: "`r Sys.Date()`"
 output:
   html_document:
     code_folding: show
-    css: extra.css
-    df_print: tibble
+    css: rmd.css
+    df_print: kable
     highlight: pygments  
     toc: yes
     toc_depth: 3
@@ -29,21 +29,28 @@ pre.numberSource code
   { counter-reset: none; }
 </style>
 
-```{r load packages and setup style, echo = FALSE, message = FALSE, warning=FALSE}
 
-# github packages must include user name ("user/package")
-# knitr is require for creating html/pdf/word reports
-# kableExtra is used to print pretty formatted tables 
-# formatR is used for soft-wrapping code
-# xaringanExtra::use_clipboard is used for adding a copy button to each code block
-
-# install/ load packages
-load_packages(packages = c("kableExtra", "knitr", "formatR", "rprojroot", "xaringanExtra"))
-
+```{r, echo = FALSE}
 # set working directory as project directory or one directory above,
 rootdir <- try(rprojroot::find_rstudio_root_file(), silent = TRUE)
 if (is(rootdir, "try-error")) rootdir <-  ".."
-opts_knit$set(root.dir = rootdir)
+knitr::opts_knit$set(root.dir = rootdir)
+```
+
+```{r add link to github repo, echo = FALSE, results='asis'}
+
+# print link to github repo if any
+if (file.exists("./.git/config")){
+  config <- readLines("./.git/config")
+  url <- grep("url",  config, value = TRUE)
+  url <- gsub("\\turl = |.git$", "", url)
+  cat("\nSource code and data found at [", url, "](", url, ")", sep = "")
+  }
+
+```
+
+
+```{r setup style, echo = FALSE, message = FALSE, warning=FALSE}
 
 # options to customize chunk outputs
 knitr::opts_chunk$set(
@@ -52,16 +59,6 @@ knitr::opts_chunk$set(
   tidy = TRUE,
   message = FALSE
  )
-
-# this is a customized printing style data frames 
-# screws up tibble function
-tibble <- function(x, ...) { 
-  x <- kbl(x, digits=4, align= 'c', row.names = FALSE) 
-   x <- kable_styling(x, position ="center", full_width = FALSE,  bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
-   asis_output(x)
-}
-
-registerS3method("knit_print", "data.frame", tibble)
 
 # to add copy button to code blocks
 htmltools::tagList(
@@ -75,7 +72,6 @@ htmltools::tagList(
 
 ```
 
-&nbsp; 
 
 <!-- skyblue box -->
 <div class="alert alert-info">
@@ -90,6 +86,18 @@ htmltools::tagList(
 
 &nbsp; 
 
+
+```{r load packages}
+
+# github packages must include user name ("user/package")
+# knitr is require for creating html/pdf/word reports
+# formatR is used for soft-wrapping code
+# xaringanExtra::use_clipboard is used for adding a copy button to each code block
+
+# install/ load packages
+sketchy::load_packages(packages = c("kableExtra", "knitr", "formatR", "rprojroot", "xaringanExtra"))
+
+```
 
 <!-- light brown box -->
 <div class="alert alert-warning">
@@ -125,9 +133,7 @@ knitr::include_graphics(file.path(R.home("doc"), "html", "logo.jpg"))
 
 <div class="alert alert-success">
 
-&nbsp; 
-
-# Takeaways
+# Takeaways {.unnumbered .unlisted}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 

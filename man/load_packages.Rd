@@ -20,11 +20,12 @@ No object is returned.
 \code{load_packages} installs and loads packages from different repositories.
 }
 \details{
-The function install and load packages from different repositories.
+The function installs and loads packages from different repositories.
 }
 \examples{
-{
-load_packages(packages = c("kableExtra", bioconductor = "ggtree", github = "maRce10/Rraven"))
+\dontrun{
+load_packages(packages = c("kableExtra", bioconductor = "ggtree",
+github = "maRce10/Rraven"), quite = TRUE)
 }
 
 }

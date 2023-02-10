@@ -1,0 +1,148 @@
+---
+title: A very cool analysis
+subtitle: A very fancy project
+author: <a href="http://researcher.website.com/">Researcher name</a>
+date: "`r Sys.Date()`"
+toc: true
+toc-depth: 2
+toc-location: left
+number-sections: true
+highlight-style: pygments
+format:
+  html:
+    df-print: kable
+    code-fold: show
+    code-tools: true
+    css: qmd.css
+---
+
+
+<!-- this code add line numbers to code blocks -->
+<!-- only works when code folding is not used in yaml (code_folding: show) -->
+
+```{=html}
+<style>
+body
+  { counter-reset: source-line 0; }
+pre.numberSource code
+  { counter-reset: none; }
+</style>
+```
+
+```{r set root directory, echo = FALSE}
+
+# set working directory as project directory or one directory above,
+rootdir <- try(rprojroot::find_rstudio_root_file(), silent = TRUE)
+if (is(rootdir, "try-error")) rootdir <-  ".."
+knitr::opts_knit$set(root.dir = rootdir)
+
+```
+
+```{r add link to github repo, echo = FALSE, results='asis'}
+
+# print link to github repo if any
+if (file.exists("./.git/config")){
+  config <- readLines("./.git/config")
+  url <- grep("url",  config, value = TRUE)
+  url <- gsub("\\turl = |.git$", "", url)
+  cat("\nSource code and data found at [", url, "](", url, ")", sep = "")
+  }
+
+```
+
+
+```{r setup style, echo = FALSE, message = FALSE, warning=FALSE}
+
+# options to customize chunk outputs
+knitr::opts_chunk$set(
+  class.source = "numberLines lineAnchors", # for code line numbers
+  tidy.opts = list(width.cutoff = 65), 
+  tidy = TRUE,
+  message = FALSE
+ )
+
+```
+
+
+<!-- skyblue box -->
+<div class="alert alert-info">
+
+# Purpose
+
+- The first goal of this report
+
+- The second goal of this report
+
+</div>
+
+&nbsp; 
+
+
+<!-- light brown box -->
+<div class="alert alert-warning">
+
+# Report overview
+
+- You can have the sections listed here, for instance:
+
+  - [Lorem ipsum](#lorem-ipsum)
+  - [Takeaways](#takeaways)
+
+</div>
+
+&nbsp;
+
+# Load packages
+
+```{r load packages}
+
+# knitr is require for creating html/pdf/word reports
+# formatR is used for soft-wrapping code
+
+# install/ load packages
+sketchy::load_packages(packages = c("knitr", "formatR", "rprojroot"))
+
+```
+
+# Lorem ipsum
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
+
+```{r example external image, eval = TRUE, out.width = "30%", echo = FALSE, fig.align= "center", fig.cap="Fig 1. R logo, Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+
+# print center image
+knitr::include_graphics(file.path(R.home("doc"), "html", "logo.jpg"))
+
+```
+
+<!-- '&nbsp;' adds blank space -->
+
+
+
+<!-- light green box -->
+
+<div class="alert alert-success">
+
+# Takeaways {.unnumbered .unlisted}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+</div>
+
+&nbsp;
+
+<!-- '---' adds a gray vertical line -->
+
+---
+
+&nbsp; 
+ 
+ <!-- add packages used, system details and versions  -->
+ 
+<font size="4">Session information</font>
+
+```{r session info, echo=F}
+
+sessionInfo()
+
+```

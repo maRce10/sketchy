@@ -9,9 +9,10 @@
 #' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
 #' @name load_packages
-#' @details The function install and load packages from different repositories.
-#' @examples {
-#'load_packages(packages = c("kableExtra", bioconductor = "ggtree", github = "maRce10/Rraven"))
+#' @details The function installs and loads packages from different repositories.
+#' @examples \dontrun{
+#'load_packages(packages = c("kableExtra", bioconductor = "ggtree",
+#'github = "maRce10/Rraven"), quite = TRUE)
 #' }
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
@@ -48,20 +49,20 @@ load_packages <-
         repo <- tolower(names(packages)[x])
 
         if (repo == "" | repo == "cran")
-          remotes::install_cran(pkg,
+          remotes::install_cran(pkgs = pkg,
                                 force = TRUE,
                                 quiet = quite,
                                 upgrade = upgrade.deps)
 
         if (repo == "bioconductor")
-          remotes::install_bioc(pkg,
+          remotes::install_bioc(repo = pkg,
                                 force = TRUE,
                                 quite = quite,
                                 upgrade = upgrade.deps)
 
         if (repo == "github")
           remotes::install_github(
-            paste(user, pkg, sep = "/"),
+            repo = paste(user, pkg, sep = "/"),
             force = TRUE,
             quite = quite,
             upgrade = upgrade.deps
@@ -85,10 +86,10 @@ load_packages <-
       }
 
       # load package
-      result <- require(pkg, character.only = TRUE)
+      result <- require(pkg, character.only = TRUE, quietly = quite)
 
       if (!result)
-        remove.packages(pkg)
+        try_remove <- try(remove.packages(pkg), silent = TRUE)
 
       return(result)
 

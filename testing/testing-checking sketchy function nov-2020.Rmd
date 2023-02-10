@@ -296,6 +296,8 @@ pkgdown::build_site(lazy = FALSE)
 # system('git commit -m  "OTS course"')
 # system("git push origin master")
 
+# build site with github actions
+usethis::use_github_action("pkgdown")
 ```
 
 
@@ -742,11 +744,15 @@ readme_template <- readLines("./examples/README_template.Rmd")
 
 analysis_template <- readLines("./examples/analysis_template.Rmd")
 
-extra_css <- readLines("./examples/extra.css")
+analysis_template_quarto <- readLines("./examples/analysis_template_quarto.qmd")
+
+rmd_css <- readLines("./examples/rmd.css")
+
+qmd_css <- readLines("./examples/qmd.css")
 
 example_library <- readLines("./examples/example_library.bib")
 
-internal_files <- list(manuscript_template = manuscript_template, apa.csl = apa.csl, readme_template = readme_template, analysis_template = analysis_template, extra_css = extra_css, example_library = example_library)
+internal_files <- list(manuscript_template = manuscript_template, apa.csl = apa.csl, readme_template = readme_template, analysis_template = analysis_template, analysis_template_quarto = analysis_template_quarto, rmd_css = rmd_css, qmd_css = qmd_css, example_library = example_library)
 
 usethis::use_data(internal_files, internal = TRUE, overwrite = TRUE)
 
