@@ -73,7 +73,7 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The function install and load packages from different repositories.</p>
+    <p>The function installs and loads packages from different repositories.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -90,74 +90,10 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu">load_packages</span><span class="op">(</span>packages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kableExtra"</span>, bioconductor <span class="op">=</span> <span class="st">"ggtree"</span>, github <span class="op">=</span> <span class="st">"maRce10/Rraven"</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">load_packages</span><span class="op">(</span>packages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kableExtra"</span>, bioconductor <span class="op">=</span> <span class="st">"ggtree"</span>,</span></span>
+<span class="r-in"><span>github <span class="op">=</span> <span class="st">"maRce10/Rraven"</span><span class="op">)</span>, quite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing 1 packages: kableExtra</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing package into ‘/home/runner/work/_temp/Library’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> (as ‘lib’ is unspecified)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> also installing the dependencies ‘colorspace’, ‘selectr’, ‘farver’, ‘labeling’, ‘munsell’, ‘RColorBrewer’, ‘rvest’, ‘scales’, ‘viridisLite’, ‘rstudioapi’, ‘webshot’, ‘svglite’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: kableExtra</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Bioconductor repo https://git.bioconductor.org/packages/ggtree</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading GitHub repo GuangchuangYu/treeio@HEAD</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing 9 packages: generics, tidyselect, dplyr, Rcpp, yulab.utils, tidyr, lazyeval, ape, tidytree</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing packages into ‘/home/runner/work/_temp/Library’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> (as ‘lib’ is unspecified)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Running `R CMD build`...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for file ‘/tmp/RtmpmwsdUZ/remotes1e63504017d9/YuLab-SMU-treeio-db85803/DESCRIPTION’ ... OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * preparing ‘treeio’:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking DESCRIPTION meta-information ... OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for LF line-endings in source and make files and shell scripts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for empty or unneeded directories</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * building ‘treeio_1.23.0.tar.gz’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing package into ‘/home/runner/work/_temp/Library’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> (as ‘lib’ is unspecified)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing 17 packages: generics, Rcpp, yulab.utils, tidyselect, tidyr, lazyeval, dplyr, ape, isoband, gtable, ggplot2, gridGraphics, tidytree, patchwork, ggplotify, ggfun, aplot</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing packages into ‘/home/runner/work/_temp/Library’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> (as ‘lib’ is unspecified)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading GitHub repo GuangchuangYu/treeio@HEAD</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Skipping treeio, it is already being installed</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Running `R CMD build`...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for file ‘/tmp/RtmpmwsdUZ/file1e637198b5bc/DESCRIPTION’ ... OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * preparing ‘ggtree’:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking DESCRIPTION meta-information ... OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for LF line-endings in source and make files and shell scripts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for empty or unneeded directories</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * building ‘ggtree_3.6.2.tar.gz’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing package into ‘/home/runner/work/_temp/Library’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> (as ‘lib’ is unspecified)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: ggtree</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">ggtree v3.6.2 For help: https://yulab-smu.top/treedata-book/</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> If you use the ggtree package suite in published research, please cite</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> the appropriate paper(s):</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ggtree: an R package for visualization and annotation of phylogenetic</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> trees with their covariates and other associated data. Methods in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Ecology and Evolution. 2017, 8(1):28-36. doi:10.1111/2041-210X.12628</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> G Yu. Data Integration, Manipulation and Visualization of Phylogenetic</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Trees (1st ed.). Chapman and Hall/CRC. 2022. ISBN: 9781032233574</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Guangchuang Yu. Using ggtree to visualize data on tree-like structures.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Current Protocols in Bioinformatics. 2020, 69:e96. doi:10.1002/cpbi.96</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using github PAT from envvar GITHUB_PAT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading GitHub repo maRce10/Rraven@HEAD</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing 15 packages: signal, tuneR, moments, bitops, proxy, bioacoustics, rjson, RCurl, pbapply, monitoR, fftw, dtw, NatureSounds, seewave, warbleR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing packages into ‘/home/runner/work/_temp/Library’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> (as ‘lib’ is unspecified)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Running `R CMD build`...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for file ‘/tmp/RtmpmwsdUZ/remotes1e633914499c/maRce10-Rraven-61e7b62/DESCRIPTION’ ... OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * preparing ‘Rraven’:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking DESCRIPTION meta-information ... OK</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for LF line-endings in source and make files and shell scripts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * checking for empty or unneeded directories</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> * building ‘Rraven_1.0.14.tar.gz’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing package into ‘/home/runner/work/_temp/Library’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> (as ‘lib’ is unspecified)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: Rraven</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
