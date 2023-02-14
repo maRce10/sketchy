@@ -50,7 +50,6 @@ if (file.exists("./.git/config")){
 
 ```
 
-
 ```{r setup style, echo = FALSE, message = FALSE, warning=FALSE}
 
 # options to customize chunk outputs
@@ -67,7 +66,7 @@ knitr::opts_chunk$set(
 <!-- skyblue box -->
 <div class="alert alert-info">
 
-# Purpose
+# Purpose {.unnumbered .unlisted}
 
 - The first goal of this report
 
@@ -81,7 +80,7 @@ knitr::opts_chunk$set(
 <!-- light brown box -->
 <div class="alert alert-warning">
 
-# Report overview
+# Report overview {.unnumbered .unlisted}
 
 - You can have the sections listed here, for instance:
 
@@ -92,7 +91,7 @@ knitr::opts_chunk$set(
 
 &nbsp;
 
-# Load packages
+# Load packages {.unnumbered .unlisted}
 
 ```{r load packages}
 
@@ -139,7 +138,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut 
  
  <!-- add packages used, system details and versions  -->
  
-<font size="4">Session information</font>
+# Session information {.unnumbered .unlisted}
 
 ```{r session info, echo=F}
 
