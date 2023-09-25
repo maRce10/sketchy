@@ -48,11 +48,16 @@ load_packages <-
         # get repository
         repo <- tolower(names(packages)[x])
 
-        if (repo == "" | repo == "cran")
+        if (repo == "" | repo == "cran"){
+          if ("remotes" %in% installed.packages()[, "Package"])
           remotes::install_cran(pkgs = pkg,
                                 force = TRUE,
                                 quiet = quite,
-                                upgrade = upgrade.deps)
+                                upgrade = upgrade.deps) else
+                                  install.packages(pkgs = pkg,
+                                                        force = TRUE,
+                                                        quiet = quite)
+}
 
         if (repo == "bioconductor")
           remotes::install_bioc(repo = pkg,

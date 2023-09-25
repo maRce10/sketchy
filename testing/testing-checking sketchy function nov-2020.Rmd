@@ -251,6 +251,7 @@ devtools::document(".")
 devtools::check(".", document = TRUE, run_dont_test = FALSE, manual = FALSE)
 
 # devtools::build_manual()
+
 ```
 
 # test and build package
@@ -355,7 +356,7 @@ make_compendium(name = "projX", format = "basic", force = TRUE, path = tempdir()
 rmarkdown::render(file.path(tempdir(), "projX", "README.Rmd"))
 
 # no comments
-make_compendium(name = "projecto_x2", format = "basic", force = TRUE, path = tempdir(), comments = FALSE)
+make_compendium(name = "projecto_x2", format = "sketchy", force = TRUE, path = tempdir(), comments = FALSE)
 
 
 make_compendium(name = "pruebaX3", format = compendiums$basic$skeleton, force = TRUE, path = tempdir())
@@ -435,8 +436,9 @@ rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
 repo_name <- "repoQ"
 
 data("compendiums")
+load("~/Dropbox/R_package_testing/sketchy/R/sysdata.rda")
 
-make_compendium(name = repo_name, format = compendiums$basic$skeleton, force = TRUE, path = tempdir(), comments = compendiums$basic$comments, git = TRUE)
+make_compendium(name = repo_name, format = "sketchy", force = TRUE, path = tempdir(), git = TRUE)
 
 list.files(path = file.path(tempdir(), repo_name))
 

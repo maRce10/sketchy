@@ -1,0 +1,8 @@
+---
+output:
+  word_document
+---
+
+```{r}
+knitr::kable(cars)
+```
