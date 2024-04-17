@@ -44,12 +44,6 @@ library(sketchy)
 
 ```
 
-```{r 2, echo = FALSE}
-
-load("./data/compendiums.rda")
-```
-
-
 ## Default compendium skeletons
 
 Compendiums can be set up with the function `make_compendium()`. The function creates the folder/subfolder structure and prints a diagram of the skeleton in the console:
@@ -59,6 +53,9 @@ Compendiums can be set up with the function `make_compendium()`. The function cr
 ```{r 3, eval = TRUE}
 
 path = tempdir()
+
+# load data
+data(compendiums)
 
 make_compendium(name = "proyect_x", path = path, format = "basic")
 

@@ -7,16 +7,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-#uninstall sketchy 
-```{r reinstall sketchy from github, eval=F}
-
-remove.packages("sketchy")
- 
-# #restart R
-.rs.restartR() 
-
-```
-
 # install packages
 ```{r packages, eval=T}
 
@@ -353,26 +343,26 @@ data("compendiums")
 #tests  
 make_compendium(name = "projX", format = "basic", force = TRUE, path = tempdir())
 
-rmarkdown::render(file.path(tempdir(), "projX", "README.Rmd"))
+# rmarkdown::render(file.path(tempdir(), "projX", "README.Rmd"))
 
 # no comments
 make_compendium(name = "projecto_x2", format = "sketchy", force = TRUE, path = tempdir(), comments = FALSE)
 
 
-make_compendium(name = "pruebaX3", format = compendiums$basic$skeleton, force = TRUE, path = tempdir())
+make_compendium(name = "pruebaX3", format = "basic", force = TRUE, path = tempdir())
 
-make_compendium(name = "pruebaX31", format = compendiums$basic$skeleton, force = TRUE, path = tempdir(), comments = compendiums$basic$comments, git = TRUE)
+make_compendium(name = "pruebaX31", format = "basic", force = TRUE, path = tempdir(), comments = compendiums$basic$comments, git = TRUE)
 
-make_compendium(name = "pruebaX32", format = compendiums$figures$skeleton, force = TRUE, path = tempdir())
+make_compendium(name = "pruebaX32", format = "figures", force = TRUE, path = tempdir())
 
 make_compendium(name = "pruebaX33", format = "boettiger", force = TRUE,  path = tempdir())
 
 make_compendium(name = "pruebaX34", format = "pakillo", force = TRUE, comments = NULL, path = tempdir())
 
-make_compendium(name = "prueba6666", format = "sketchy", force = TRUE, comments = NULL, path = tempdir())
+make_compendium(name = "prueba66636", format = "sketchy", force = TRUE, path = tempdir())
 
 
-make_compendium("prueba7", format = type2, path = tempdir())
+make_compendium(name = "prueba2236", format = "rdir", path = tempdir())
 
 
 ld <- readRDS("../example_complex_structure.RDS")
@@ -675,9 +665,9 @@ rrtools <- list(skeleton = rrtools_skeleton, comments = rrtools_comments, info =
 
 #####
 
-rdir_skeleton <- c("code", "code/processed/", "code/raw", "data/raw", "data/clean", "figures","figures/exploratory", "figures/final/", "text", "text/final", "text/notes")
+rdir_skeleton <- c("code", "code/processed", "code/raw", "data", "data/raw", "data/clean", "figures","figures/exploratory", "figures/final", "text", "text/final", "text/notes")
 
-rdir_comments <- c("", "Code with the steps to clean, generate plots and output text", "Adittional code", "Original data", "Processed (tidy) data", "", "Exploratory figures", "Final figures with correct format", "", "Final text", "Log of the thought process")
+rdir_comments <- c("", "Code with the steps to clean, generate plots and output text", "Adittional code", "", "Original data", "Processed (tidy) data", "", "Exploratory figures", "Final figures with correct format", "", "Final text", "Log of the thought process")
 
 names(rdir_comments) <- rdir_skeleton
 

@@ -31,10 +31,8 @@ pre.numberSource code
 
 ```{r set root directory, echo = FALSE}
 
-# set working directory as project directory or one directory above,
-rootdir <- try(rprojroot::find_rstudio_root_file(), silent = TRUE)
-if (is(rootdir, "try-error")) rootdir <-  ".."
-knitr::opts_knit$set(root.dir = rootdir)
+# set working directory 
+knitr::opts_knit$set(root.dir =  "..")
 
 ```
 
@@ -64,7 +62,8 @@ knitr::opts_chunk$set(
 
 
 <!-- skyblue box -->
-<div class="alert alert-info">
+
+::: {.alert .alert-info}
 
 # Purpose {.unnumbered .unlisted}
 
@@ -72,13 +71,13 @@ knitr::opts_chunk$set(
 
 - The second goal of this report
 
-</div>
+:::
 
 &nbsp; 
 
 
 <!-- light brown box -->
-<div class="alert alert-warning">
+::: {.alert .alert-warning}
 
 # Report overview {.unnumbered .unlisted}
 
@@ -87,9 +86,25 @@ knitr::opts_chunk$set(
   - [Lorem ipsum](#lorem-ipsum)
   - [Takeaways](#takeaways)
 
-</div>
+:::
 
 &nbsp;
+
+# Analysis flowchart {.unnumbered .unlisted}
+```{mermaid, fig.align = "center"}
+flowchart
+  A[Read data] --> B(Format data) 
+  B --> C(Graphs)
+  C --> D(Statistical analysis)
+  D --> E(Model summary) 
+
+style A fill:#44015466
+style B fill:#3E4A894D
+style C fill:#26828E4D
+style D fill:#6DCD594D
+
+```
+
 
 # Load packages {.unnumbered .unlisted}
 
@@ -99,8 +114,16 @@ knitr::opts_chunk$set(
 # formatR is used for soft-wrapping code
 
 # install/ load packages
-sketchy::load_packages(packages = c("knitr", "formatR", "rprojroot"))
+sketchy::load_packages(packages = c("knitr", "formatR"))
 
+```
+
+```{r}
+
+
+a <- 1
+
+b <- 2
 ```
 
 # Lorem ipsum
@@ -120,13 +143,13 @@ knitr::include_graphics(file.path(R.home("doc"), "html", "logo.jpg"))
 
 <!-- light green box -->
 
-<div class="alert alert-success">
+::: {.alert .alert-success}
 
 # Takeaways {.unnumbered .unlisted}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-</div>
+::: 
 
 &nbsp;
 
