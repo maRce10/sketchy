@@ -5,7 +5,7 @@
 \title{Generate folder structures for research compendiums}
 \usage{
 make_compendium(name = "research_compendium", path = ".", force = FALSE,
-format = "basic", comments = TRUE, packrat = FALSE,
+format = "basic", packrat = FALSE,
 git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 }
 \arguments{
@@ -16,8 +16,6 @@ git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 \item{force}{Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.}
 
 \item{format}{A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included.}
-
-\item{comments}{A logical argument to control if comments of default formats are shown in the graphical representation of the folder skeleton printed on the console. Alternatively, a character string with the comments can be supplied (most useful when using a custom format). Default is \code{TRUE}.}
 
 \item{packrat}{Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.}
 

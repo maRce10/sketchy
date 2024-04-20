@@ -46,21 +46,15 @@ make_compendium <-
            readme = TRUE,
            Rproj = FALSE)
   {
-    safe.dir.create <- function(path) {
-      if (!dir.exists(path) && !dir.create(path))
-        stop2(gettextf("cannot create directory '%s'", path),
-              domain = NA)
-    }
-
     # save format
     org_format <- format[1]
 
     # allow format name or skeleton from list
     if (!is.character(format))
-      stop2("'format' must either be a character vector") else
+      .stop("'format' must either be a character vector") else
       if (length(format) == 1)
         if (!format %in% names(compendiums))
-          stop2("'format' not found (must be one of those in 'names(compendiums)')") else {
+          .stop("'format' not found (must be one of those in 'names(compendiums)')") else {
 
         comments_vector <- compendiums[[format]]$comments
 
@@ -97,12 +91,12 @@ make_compendium <-
       cat(crayon::green("Setting project on an existing directory ...\n"))
 
     if (file.exists(dir) && !force)
-      stop2(gettextf("directory '%s' already exists", dir),
+      .stop(gettextf("directory '%s' already exists", dir),
             domain = NA) else
-    safe.dir.create(dir)
+    .safe_dir_create(dir)
 
     for (i in format)
-      safe.dir.create(file.path(dir, i))
+      .safe_dir_create(file.path(dir, i))
 
     if (any(basename(format) == "manuscript")) {
       # create manuscript.Rmd
@@ -295,7 +289,7 @@ make_compendium <-
     if (git) {
       # error message if git2r is not installed
       if (!requireNamespace("git2r", quietly = TRUE))
-        stop2("must install 'git2r' to use 'git'") else
+        .stop("must install 'git2r' to use 'git'") else
         git2r::init(path = file.path(path, name))
     }
 

@@ -17,7 +17,7 @@ A list with 14 compendium formats: \describe{
  \item{large_compendium}{following Marwick et al (2018) large compendium format}
  \item{vertical}{following Vuorre \emph{et al.} (2018) \href{https://github.com/CrumpLab/vertical}{R package vertical}}
  \item{rrtools}{following Marwick (2018) (\href{https://github.com/benmarwick/rrtools}{R package rrtools})}
- \item{rdir}{following folder structure described on this \href{https://r-dir.com/blog/2013/11/folder-structure-for-data-analysis.html}{r-dir blog post}}
+ \item{rdir}{following folder structure described on at a r-dir blog post (although seems like it was removed)}
  \item{workflowr}{following Blischak \emph{et al.} (2019) \href{https://workflowr.github.io/workflowr/}{R package workflowr}}
  \item{sketchy}{same skeleton than 'basic' but including a custom Rmarkdown for documenting data analyses}
 }

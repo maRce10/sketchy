@@ -1,0 +1,10 @@
+* using log directory ‘/home/m/Dropbox/R_package_testing/sketchy/..Rcheck’
+* using R version 4.1.2 (2021-11-01)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using option ‘--as-cran’
+* checking for file ‘./DESCRIPTION’ ... ERROR
+Required field missing or empty:
+  ‘Author’
+* DONE
+Status: 1 ERROR

@@ -2,6 +2,7 @@ sketchy: create custom research compendiums
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![Dependencies](https://tinyverse.netlify.com/badge/sketchy)](https://cran.r-project.org/package=sketchy)
@@ -10,10 +11,11 @@ and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Licence](https://img.shields.io/badge/https://img.shields.io/badge/licence-GPL--2-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![minimal R
-version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.2-orange.svg?style=flat-square)](commits/develop)[![Last-changedate](https://img.shields.io/badge/last%20change-2022--12--22-yellowgreen.svg)](/commits/master)
+version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)
+<!-- badges: end -->
 
 <img src="man/figures/sketchy_sticker.png" alt="sketchy sticker" align="right" width = "25%" height="25%"/>
 
@@ -57,6 +59,9 @@ the skeleton in the console:
 
 path = tempdir()
 
+# load data
+data(compendiums)
+
 make_compendium(name = "proyect_x", path = path, format = "basic")
 ## Creating directories ...
 ## proyect_x
@@ -82,7 +87,7 @@ example we use the structured suggested by Wilson *et al.* (2017):
 
 ``` r
 
-make_compendium(name = "proyect_z", path = path, format = "large_compendium", comments = TRUE)
+make_compendium(name = "proyect_z", path = path, format = "large_compendium")
 ## Creating directories ...
 ## proyect_z
 ## │   
@@ -234,7 +239,8 @@ for (i in 1:length(compendiums)) {
 ## │   
 ## ├── code/  
 ## │   ├── processed/  
-## │   ├── raw/  
+## │   └── raw/  
+## ├── data/  
 ## │   ├── clean/  
 ## │   └── raw/  
 ## ├── figures/  

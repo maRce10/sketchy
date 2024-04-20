@@ -101,7 +101,7 @@ load_packages <-
     }, FUN.VALUE = logical(1))
 
     if (any(!load_results_l))
-      message2(paste(
+      .message(paste(
         c("the following packages were not installed/loaded:"),
         paste(packages, collapse = ", ")
       ))

@@ -14,8 +14,6 @@ The main features of the package are:
   \item Creation of (customized) folder structure
   \item Simplify the inclusion of big data files with version control software and online collaborative platforms (e.g. github)
   }
-
-License: GPL (>= 2)
 }
 \seealso{
 Useful links:

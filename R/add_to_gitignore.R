@@ -34,7 +34,7 @@
 add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path = "."){
 
   if (is.null(cutoff) & is.null(extension))
-    stop2("'cutoff' and/or 'extension' must be supplied")
+    .stop("'cutoff' and/or 'extension' must be supplied")
 
   # get files list
   if (is.null(extension))
@@ -51,7 +51,7 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
     fi <- fi[order(-fi$size), ]
 
     # get size in MB
-    file_size <- sapply(fi$size, function(x) format.object_size(x, "Mb"))
+    file_size <- sapply(fi$size, function(x) .format_object_size(x, "Mb"))
 
     # put it in a data.frame
     file_size_df <- data.frame(file.path = rownames(fi), file_size_Mb = as.numeric(gsub(" Mb","", file_size)))
@@ -95,49 +95,4 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
 
     if (length(files_found_not_ignore) == 0 & add.to.gitignore) cat(crayon::magenta("\nNo new files were added '.gitignore'"))
 
-
-}
-
-################################################################################
-
-## copied from utils:::format.object_size
-format.object_size <- function (x, units = "b", standard = "auto", digits = 1L, ...)
-{
-  known_bases <- c(legacy = 1024, IEC = 1024, SI = 1000)
-  known_units <- list(SI = c("B", "kB", "MB", "GB", "TB", "PB",
-                             "EB", "ZB", "YB"), IEC = c("B", "KiB", "MiB", "GiB",
-                                                        "TiB", "PiB", "EiB", "ZiB", "YiB"), legacy = c("b", "Kb",
-                                                                                                       "Mb", "Gb", "Tb", "Pb"), LEGACY = c("B", "KB", "MB",
-                                                                                                                                           "GB", "TB", "PB"))
-  units <- match.arg(units, c("auto", unique(unlist(known_units),
-                                             use.names = FALSE)))
-  standard <- match.arg(standard, c("auto", names(known_bases)))
-  if (is.null(digits))
-    digits <- 1L
-  if (standard == "auto") {
-    standard <- "legacy"
-    if (units != "auto") {
-      if (endsWith(units, "iB"))
-        standard <- "IEC" else if (endsWith(units, "b"))
-          standard <- "legacy" else if (units == "kB")
-            stop2("For SI units, specify 'standard = \"SI\"'")
-    }
-  }
-  base <- known_bases[[standard]]
-  units_map <- known_units[[standard]]
-  if (units == "auto") {
-    power <- if (x <= 0)
-      0L else min(as.integer(log(x, base = base)), length(units_map) -
-                    1L)
-  } else {
-    power <- match(toupper(units), toupper(units_map)) -
-      1L
-    if (is.na(power))
-      stop2(gettextf("Unit \"%s\" is not part of standard \"%s\"",
-                    sQuote(units), sQuote(standard)), domain = NA)
-  }
-  unit <- units_map[power + 1L]
-  if (power == 0 && standard == "legacy")
-    unit <- "bytes"
-  paste(round(x/base^power, digits = digits), unit)
 }

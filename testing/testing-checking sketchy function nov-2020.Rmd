@@ -242,6 +242,13 @@ devtools::check(".", document = TRUE, run_dont_test = FALSE, manual = FALSE)
 
 # devtools::build_manual()
 
+urlchecker::url_check()
+
+# devtools::run_examples(run_donttest = TRUE, run_dontrun = TRUE)
+
+devtools::clean_vignettes()
+devtools::clean_dll()
+
 ```
 
 # test and build package

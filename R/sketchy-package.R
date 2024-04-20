@@ -15,6 +15,7 @@
 # #' @importFrom git2r init
 #' @importFrom stringi stri_unescape_unicode
 #' @importFrom crayon cyan bold
+#' @importFrom cli style_bold style_italic make_ansi_style num_ansi_colors
 #' @importFrom xaringanExtra use_clipboard
 #' @importFrom remotes install_github install_bitbucket install_cran install_gitlab install_bioc
 #' @author Marcelo Araya-Salas, Beatriz Willink & Andrea Arriaga
@@ -23,6 +24,7 @@
 #'
 #' @docType package
 #' @name sketchy
+"_PACKAGE"
 #' @details License: GPL (>= 2)
 NULL
 #> NULL

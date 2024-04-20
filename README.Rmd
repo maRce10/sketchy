@@ -28,8 +28,6 @@ library(sketchy)
 
 The package is intended to facilitate the use of research compendiums for data analysis in the R environment. Standard research compendiums provide a easily recognizable means for organizing digital materials, allowing  other researchers to inspect, reproduce, and build upon that research. 
 
-<!-- Unlike other packages for setting up research compendiums, `sketchy` has very simple functionality. Hence, users can focus on the research project itself rather than on learning how to use a new R package. -->
-
 Unlike other R packages for creating research compendiums (e.g. [vertical](https://github.com/CrumpLab/vertical), [rrtools](https://github.com/benmarwick/rrtools)), `sketchy` isn't  wedded to a particular folder structure. Currently the package provides `r length(compendiums)` alternative structures (see object `compendiums`) and allows users to modify or input their own structures.   
 
 To install the latest developmental version from [github](https://github.com/) you will need the R package [remotes](https://cran.r-project.org/package=remotes):
@@ -73,8 +71,7 @@ We can use folder structures from other sources. For instance, in this example w
 
 ```{r 4, eval = TRUE}
 
-make_compendium(name = "proyect_z", path = path, format = "large_compendium", 
-                    comments = TRUE)
+make_compendium(name = "proyect_z", path = path, format = "large_compendium")
 
 ```
 
