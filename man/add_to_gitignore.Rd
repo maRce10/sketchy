@@ -42,7 +42,7 @@ path = file.path(tempdir(), "my_compendium"), extension = "csv")
 }
 \references{
 {
-Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.2.
+Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
 }
 }
 \seealso{

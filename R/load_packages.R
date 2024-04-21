@@ -2,14 +2,14 @@
 #'
 #' \code{load_packages} installs and loads packages from different repositories.
 #' @usage load_packages(packages, quite = FALSE, upgrade.deps = FALSE)
-#' @param packages Character vector with the names of the packages to be installed. The vector names indicate the repositories from which packages will be installed. If no name is included CRAN will be used as the default repository. Available repostories are: 'cran', 'github', 'gitlab', 'bitbucket' and 'bioconductor'. Note that for 'github', 'gitlab' and 'bitbucket' the string must include the user name in the form 'user/package'.
+#' @param packages Character vector with the names of the packages to be installed. The vector names indicate the repositories from which packages will be installed. If no name is included CRAN will be used as the default repository. Available repositories are: 'cran', 'github', 'gitlab', 'bitbucket' and 'bioconductor'. Note that for 'github', 'gitlab' and 'bitbucket' the string must include the user name in the form 'user/package'.
 #' @param quite Logical argument to control if package startup messages are printed. Default is \code{FALSE} (messages are printed).
-#' @param upgrade.deps Logical argument to control if package dependecies are upgraded.Default is \code{FALSE}.
+#' @param upgrade.deps Logical argument to control if package dependencies are upgraded.Default is \code{FALSE}.
 #' @return No object is returned.
 #' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
 #' @export
 #' @name load_packages
-#' @details The function installs and loads packages from different repositories.
+#' @details The function installs and loads packages from different repositories in a single call.
 #' @examples \dontrun{
 #'load_packages(packages = c("kableExtra", bioconductor = "ggtree",
 #'github = "maRce10/Rraven"), quite = TRUE)
@@ -17,7 +17,7 @@
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #' @references {
-#' Araya-Salas, M., Willink, B., Arriaga, A. (2020), sketchy: research compendiums for data analysis in R. R package version 1.0.2.
+#' Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
 #' }
 
 load_packages <-

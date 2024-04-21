@@ -246,7 +246,7 @@ urlchecker::url_check()
 
 # devtools::run_examples(run_donttest = TRUE, run_dontrun = TRUE)
 
-devtools::clean_vignettes()
+# devtools::clean_vignettes()
 devtools::clean_dll()
 
 ```
