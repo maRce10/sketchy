@@ -7,11 +7,11 @@
 load_packages(packages, quite = FALSE, upgrade.deps = FALSE)
 }
 \arguments{
-\item{packages}{Character vector with the names of the packages to be installed. The vector names indicate the repositories from which packages will be installed. If no name is included CRAN will be used as the default repository. Available repostories are: 'cran', 'github', 'gitlab', 'bitbucket' and 'bioconductor'. Note that for 'github', 'gitlab' and 'bitbucket' the string must include the user name in the form 'user/package'.}
+\item{packages}{Character vector with the names of the packages to be installed. The vector names indicate the repositories from which packages will be installed. If no name is included CRAN will be used as the default repository. Available repositories are: 'cran', 'github', 'gitlab', 'bitbucket' and 'bioconductor'. Note that for 'github', 'gitlab' and 'bitbucket' the string must include the user name in the form 'user/package'.}
 
 \item{quite}{Logical argument to control if package startup messages are printed. Default is \code{FALSE} (messages are printed).}
 
-\item{upgrade.deps}{Logical argument to control if package dependecies are upgraded.Default is \code{FALSE}.}
+\item{upgrade.deps}{Logical argument to control if package dependencies are upgraded.Default is \code{FALSE}.}
 }
 \value{
 No object is returned.
@@ -20,7 +20,7 @@ No object is returned.
 \code{load_packages} installs and loads packages from different repositories.
 }
 \details{
-The function installs and loads packages from different repositories.
+The function installs and loads packages from different repositories in a single call.
 }
 \examples{
 \dontrun{

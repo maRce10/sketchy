@@ -19,7 +19,7 @@ A list with 14 compendium formats: \describe{
  \item{rrtools}{following Marwick (2018) (\href{https://github.com/benmarwick/rrtools}{R package rrtools})}
  \item{rdir}{following folder structure described on at a r-dir blog post (although seems like it was removed)}
  \item{workflowr}{following Blischak \emph{et al.} (2019) \href{https://workflowr.github.io/workflowr/}{R package workflowr}}
- \item{sketchy}{same skeleton than 'basic' but including a custom Rmarkdown for documenting data analyses}
+ \item{sketchy}{same skeleton than 'basic' but including a custom Rmarkdown and quarto files for documenting data analyses}
 }
 }
 \usage{

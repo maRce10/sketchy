@@ -353,18 +353,18 @@ make_compendium(name = "projX", format = "basic", force = TRUE, path = tempdir()
 # rmarkdown::render(file.path(tempdir(), "projX", "README.Rmd"))
 
 # no comments
-make_compendium(name = "projecto_x2", format = "sketchy", force = TRUE, path = tempdir(), comments = FALSE)
+make_compendium(name = "projecto_x2", format = "sketchy", force = TRUE, path = tempdir())
 
 
 make_compendium(name = "pruebaX3", format = "basic", force = TRUE, path = tempdir())
 
-make_compendium(name = "pruebaX31", format = "basic", force = TRUE, path = tempdir(), comments = compendiums$basic$comments, git = TRUE)
+make_compendium(name = "pruebaX31", format = "basic", force = TRUE, path = tempdir(), git = TRUE)
 
 make_compendium(name = "pruebaX32", format = "figures", force = TRUE, path = tempdir())
 
 make_compendium(name = "pruebaX33", format = "boettiger", force = TRUE,  path = tempdir())
 
-make_compendium(name = "pruebaX34", format = "pakillo", force = TRUE, comments = NULL, path = tempdir())
+make_compendium(name = "pruebaX34", format = "pakillo", force = TRUE, path = tempdir())
 
 make_compendium(name = "prueba66636", format = "sketchy", force = TRUE, path = tempdir())
 
@@ -372,13 +372,18 @@ make_compendium(name = "prueba66636", format = "sketchy", force = TRUE, path = t
 make_compendium(name = "prueba2236", format = "rdir", path = tempdir())
 
 
-ld <- readRDS("../example_complex_structure.RDS")
+ld <- readRDS("./testing/example_complex_structure.RDS")
 
 make_compendium("pruebaZ", format =  ld, force = TRUE, path = tempdir())
 
 make_compendium(name = "research_proyect_y", path = tempdir(), format = compendiums$boettiger$skeleton)
 
 make_compendium(name = "research_proyect_y", path = tempdir(), format = compendiums$boettiger$skeleton, clone = "~/Dropbox/R_package_testing/warbleR/warbleR/", force = T)
+
+# add readme
+make_compendium(name = "666", format = "sketchy", force = TRUE, path = "~/Descargas/", readme = TRUE, git = T, packrat = TRUE)
+
+warbleR::open_wd(file.path(tempdir(), "project6"))
 
 ```
 
@@ -441,18 +446,51 @@ list.files(path = file.path(tempdir(), repo_name))
 
 saveRDS(compendiums, file.path(tempdir(), repo_name, "compendiums.RDS"))
 
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
+
 add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
+
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
 
 saveRDS(compendiums, file.path(tempdir(), repo_name, "output", "compendiums2.RDS"))
 
 add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
 
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
+
 saveRDS(compendiums, file.path(tempdir(), repo_name, "data/raw", "compendiums3.RDS"))
 
 add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
 
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
   
-print_skeleton(path = "~/Dropbox/R_package_testing/warbleR/warbleR/")
+
+library(NatureSounds)
+
+
+data("lbh.est")
+object.size(lbh.est)
+lbh.est2 <- do.call(rbind, lapply(seq_len(100), function(x) {
+  X <- lbh.est
+  X <- warbleR::rename_waves_est(X, new.sound.files = paste(X$sound.files, x, sep = "-"))
+  return(X)
+}))
+object.size(lbh.est2) / 1000 
+ 
+saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data/processed", "lbh.est.RDS"))
+
+file.size(file.path(tempdir(), repo_name, "data/processed", "lbh.est.RDS")) / 1000000
+
+saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data", "YAA.RDS"))
+
+file.size(file.path(tempdir(), repo_name, "data", "XXX.RDS")) / 1000000
+
+add_to_gitignore(add.to.gitignore = T, extension = "RDS", path = file.path(tempdir(), repo_name), cutoff = 50)
+
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
+  
+saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data", "XXXX.RDS"))
+
 
 ```
 
