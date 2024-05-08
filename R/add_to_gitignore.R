@@ -29,7 +29,6 @@
 #' @references {
 #' Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
 #' }
-#last modification on dec-26-2019 (MAS)
 
 add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path = "."){
 

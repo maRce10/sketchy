@@ -108,3 +108,32 @@
       silver = "silver"
     )[[color]]
   }
+
+
+# Flatten copy
+
+# #details
+# Copy all `.Rmd`, `.qmd`, and `.md` files from source to destination,
+# rename the `.qmd` and `.md` files with an additional `.Rmd` extension,
+# and get a flat destination structure with path-preserving file names.
+# #param from Source directory path.
+# #param to Destination directory path.
+# taken from https://nanx.me/blog/post/rmarkdown-quarto-link-checker/
+#
+# #return Destination directory path.
+.flatten_copy <- function(from, to) {
+  rmd <- list.files(from, pattern = "\\.Rmd$", recursive = TRUE, full.names = TRUE)
+  xmd <- list.files(from, pattern = "\\.qmd$|\\.md$", recursive = TRUE, full.names = TRUE)
+
+  src <- c(rmd, xmd)
+  dst <- c(rmd, paste0(xmd, ".Rmd"))
+
+  # Remove starting `./` (if any)
+  dst <- gsub("^\\./", replacement = "", x = dst)
+  # Replace the forward slash in path with Unicode big solidus
+  dst <- gsub("/", replacement = "\u29F8", x = dst)
+
+  file.copy(src, to = file.path(to, dst))
+
+  invisible(to)
+}

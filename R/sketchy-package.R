@@ -12,6 +12,7 @@
 #' @import knitr
 #' @importFrom packrat init
 #' @importFrom rmarkdown render
+#' @importFrom urlchecker url_check
 # #' @importFrom git2r init
 #' @importFrom stringi stri_unescape_unicode
 #' @importFrom crayon cyan bold
