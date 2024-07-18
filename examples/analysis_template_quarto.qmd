@@ -16,27 +16,18 @@ format:
     css: qmd.css
 ---
 
-
-<!-- this code add line numbers to code blocks -->
-<!-- only works when code folding is not used in yaml (code_folding: show) -->
-
-```{=html}
-<style>
-body
-  { counter-reset: source-line 0; }
-pre.numberSource code
-  { counter-reset: none; }
-</style>
-```
-
-```{r set root directory, echo = FALSE}
+```{r set root directory}
+#| eval: true
+#| echo: false
 
 # set working directory 
 knitr::opts_knit$set(root.dir =  "..")
 
 ```
 
-```{r add link to github repo, echo = FALSE, results='asis'}
+```{r add link to github repo}
+#| eval: true
+#| output: asis
 
 # print link to github repo if any
 if (file.exists("./.git/config")){
@@ -48,11 +39,12 @@ if (file.exists("./.git/config")){
 
 ```
 
-```{r setup style, echo = FALSE, message = FALSE, warning=FALSE}
+```{r setup style}
+#| message: false
+#| warning: false
 
 # options to customize chunk outputs
 knitr::opts_chunk$set(
-  class.source = "numberLines lineAnchors", # for code line numbers
   tidy.opts = list(width.cutoff = 65), 
   tidy = TRUE,
   message = FALSE
@@ -91,7 +83,8 @@ knitr::opts_chunk$set(
 &nbsp;
 
 # Analysis flowchart {.unnumbered .unlisted}
-```{mermaid, fig.align = "center"}
+```{mermaid}
+
 flowchart
   A[Read data] --> B(Format data) 
   B --> C(Graphs)
@@ -130,10 +123,15 @@ b <- 2
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
 
-```{r example external image, eval = TRUE, out.width = "30%", echo = FALSE, fig.align= "center", fig.cap="Fig 1. R logo, Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+```{r example external image}
+#| eval: true
+#| fig.cap: "Fig 1. R logo, Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+#| out.width: "30%"
+#| echo: FALSE
+#| fig.align: "center"
 
-# print center image
-knitr::include_graphics(file.path(R.home("doc"), "html", "logo.jpg"))
+# print image
+knitr::include_graphics("https://www.r-project.org/logo/Rlogo.svg")
 
 ```
 
