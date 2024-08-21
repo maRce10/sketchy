@@ -12,8 +12,7 @@
 #' @import knitr
 #' @importFrom packrat init
 #' @importFrom rmarkdown render
-#' @importFrom urlchecker url_check
-# #' @importFrom git2r init
+#' @importFrom stringr fixed str_detect
 #' @importFrom stringi stri_unescape_unicode
 #' @importFrom crayon cyan bold
 #' @importFrom cli style_bold style_italic make_ansi_style num_ansi_colors

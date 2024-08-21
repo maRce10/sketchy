@@ -137,3 +137,24 @@
 
   invisible(to)
 }
+
+
+# Function to list all files with specific extensions in a directory
+.list_files <- function(directory, extensions) {
+  files <- list.files(directory, pattern = paste0(paste0(".", extensions, "$"), collapse = "|"), full.names = TRUE, recursive = TRUE)
+  files <- normalizePath(files)
+  return(files)
+}
+
+# Function to check if an image file is referenced in a code file
+.is_file_used <- function(file.name, code_files) {
+  image_name <- basename(file.name)
+  for (code_file in code_files) {
+    file_content <- readLines(code_file, warn = FALSE)
+    if (any(str_detect(file_content, fixed(image_name)))) {
+      return(TRUE)
+    }
+  }
+  return(FALSE)
+}
+

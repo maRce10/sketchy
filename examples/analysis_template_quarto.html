@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Researcher name">
-<meta name="dcterms.date" content="2024-06-11">
+<meta name="dcterms.date" content="2024-08-09">
 
 <title>A very cool analysis</title>
 <style>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 11, 2024</p>
+      <p class="date">August 9, 2024</p>
     </div>
   </div>
   
@@ -125,36 +125,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: true</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set working directory </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_knit<span class="sc">$</span><span class="fu">set</span>(<span class="at">root.dir =</span>  <span class="st">".."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print link to github repo if any</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(<span class="st">"./.git/config"</span>)){</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  config <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"./.git/config"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"url"</span>,  config, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">turl = |.git$"</span>, <span class="st">""</span>, url)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Source code and data found at ["</span>, url, <span class="st">"]("</span>, url, <span class="st">")"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print link to github repo if any</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(<span class="st">"./.git/config"</span>)){</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  config <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"./.git/config"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"url"</span>,  config, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">turl = |.git$"</span>, <span class="st">""</span>, url)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Source code and data found at ["</span>, url, <span class="st">"]("</span>, url, <span class="st">")"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <p>Source code and data found at <a href="https://github.com/maRce10/sketchy">https://github.com/maRce10/sketchy</a></p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># options to customize chunk outputs</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidy.opts =</span> <span class="fu">list</span>(<span class="at">width.cutoff =</span> <span class="dv">65</span>), </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidy =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># options to customize chunk outputs</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidy.opts =</span> <span class="fu">list</span>(<span class="at">width.cutoff =</span> <span class="dv">65</span>), </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidy =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <!-- skyblue box -->
@@ -185,16 +175,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
-<pre class="mermaid mermaid-js">flowchart
-  A[Read data] --&gt; B(Format data) 
-  B --&gt; C(Graphs)
-  C --&gt; D(Statistical analysis)
-  D --&gt; E(Model summary) 
+<pre class="mermaid mermaid-js">flowchart LR
+    ML[Aprendizaje\nEstadístico] --&gt;|Datos sin\netiquetar| U[Aprendizaje\nNo Supervisado]
+    ML --&gt;|Datos\netiquetados| S[Aprendizaje\nSupervisado]
+    U --&gt;|Objetivo\nes explorar| Clus[Agrupamiento]
+    U --&gt; DR[Reducción de\nDimensionalidad]
+    S --&gt;|Objetivo\nes predecir| Reg[Regresión]
+    S --&gt; Class[Clasificación]
+    Clus --&gt; Kmeans[K-means]
+    Clus --&gt; DB[Por Densidad]
+    Clus --&gt; Hier[Jerárquico]
+    DR --&gt; PCA[PCA]
+    DR --&gt; TSNE[t-SNE]
+    DR --&gt; UMAP[UMAP]
+    Reg --&gt; Regr[Regresión]
+    Reg --&gt; RFR[Regresión\nRandom Forest]
+    Reg --&gt; NNR[Regresión de\nRed Neuronal]
+    Class --&gt; DT[Árboles de\nDecisión]
+    Class --&gt; NB[Naive Bayes]
+    Class --&gt; KNN[K vecinos\nmás cercanos]
+    Class --&gt; RF[Random Forest]
+    Class --&gt; NN[Redes\nNeuronales]
 
-style A fill:#44015466
-style B fill:#3E4A894D
-style C fill:#26828E4D
-style D fill:#6DCD594D
+    style ML fill:#f9ebae,stroke:#000,stroke-width:2px
+    style U fill:#f4d03f,stroke:#000,stroke-width:2px
+    style S fill:#52be80,stroke:#000,stroke-width:2px
+    style Clus fill:#85c1e9,stroke:#000,stroke-width:2px
+    style DR fill:#a569bd,stroke:#000,stroke-width:2px
+    style Reg fill:#ec7063,stroke:#000,stroke-width:2px
+    style Class fill:#f5b041,stroke:#000,stroke-width:2px
+    style Kmeans fill:#aed6f1,stroke:#000,stroke-width:1px
+    style DB fill:#aed6f1,stroke:#000,stroke-width:1px
+    style Hier fill:#aed6f1,stroke:#000,stroke-width:1px
+    style PCA fill:#d7bde2,stroke:#000,stroke-width:1px
+    style TSNE fill:#d7bde2,stroke:#000,stroke-width:1px
+    style UMAP fill:#d7bde2,stroke:#000,stroke-width:1px
+    style Regr fill:#f5b7b1,stroke:#000,stroke-width:1px
+    style RFR fill:#f5b7b1,stroke:#000,stroke-width:1px
+    style NNR fill:#f5b7b1,stroke:#000,stroke-width:1px
+    style DT fill:#f8c471,stroke:#000,stroke-width:1px
+    style NB fill:#f8c471,stroke:#000,stroke-width:1px
+    style KNN fill:#f8c471,stroke:#000,stroke-width:1px
+    style RF fill:#f8c471,stroke:#000,stroke-width:1px
+    style NN fill:#f8c471,stroke:#000,stroke-width:1px
 
 </pre>
 </div>
@@ -208,19 +231,19 @@ style D fill:#6DCD594D
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># knitr is require for creating html/pdf/word reports formatR is</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># used for soft-wrapping code</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install/ load packages</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sketchy<span class="sc">::</span><span class="fu">load_packages</span>(<span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"knitr"</span>, <span class="st">"formatR"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># knitr is require for creating html/pdf/word reports formatR is</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># used for soft-wrapping code</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install/ load packages</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sketchy<span class="sc">::</span><span class="fu">load_packages</span>(<span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"knitr"</span>, <span class="st">"formatR"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -253,12 +276,12 @@ style D fill:#6DCD594D
 <h1 class="unnumbered unlisted">Session information</h1>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.1.2 (2021-11-01)
-Platform: x86_64-pc-linux-gnu (64-bit)
+<pre><code>R version 4.4.1 (2024-06-14)
+Platform: x86_64-pc-linux-gnu
 Running under: Ubuntu 22.04.4 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0 
 LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.0
 
 locale:
@@ -269,20 +292,23 @@ locale:
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 [11] LC_MEASUREMENT=es_CR.UTF-8 LC_IDENTIFICATION=C       
 
+time zone: America/Costa_Rica
+tzcode source: system (glibc)
+
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] formatR_1.14 knitr_1.46  
+[1] formatR_1.14 knitr_1.48  
 
 loaded via a namespace (and not attached):
- [1] packrat_0.9.2       digest_0.6.35       crayon_1.5.2       
- [4] jsonlite_1.8.8      evaluate_0.23       stringi_1.8.4      
- [7] rlang_1.1.3         cli_3.6.2           remotes_2.5.0      
-[10] rstudioapi_0.15.0   rmarkdown_2.26      xaringanExtra_0.7.0
-[13] sketchy_1.0.3       tools_4.1.2         htmlwidgets_1.6.4  
-[16] xfun_0.43           yaml_2.3.8          fastmap_1.1.1      
-[19] compiler_4.1.2      htmltools_0.5.8.1  </code></pre>
+ [1] digest_0.6.36       fastmap_1.2.0       xfun_0.46          
+ [4] sketchy_1.0.3       remotes_2.5.0       urlchecker_1.0.1   
+ [7] htmltools_0.5.8.1   rmarkdown_2.27      packrat_0.9.2      
+[10] cli_3.6.3           compiler_4.4.1      rstudioapi_0.16.0  
+[13] tools_4.4.1         xaringanExtra_0.8.0 evaluate_0.24.0    
+[16] yaml_2.3.10         rlang_1.1.4         jsonlite_1.8.8     
+[19] crayon_1.5.3        htmlwidgets_1.6.4   stringi_1.8.4      </code></pre>
 </div>
 </div>
 <!-- -->
@@ -751,172 +777,204 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> A very cool analysis</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> A very fancy project</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &lt;a href="http://researcher.website.com/"&gt;Researcher name&lt;/a&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc-depth:</span><span class="co"> 2</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc-location:</span><span class="co"> left</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="an">highlight-style:</span><span class="co"> pygments</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: kable</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">    css: qmd.css</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r set root directory}</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: true</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="in"># set working directory </span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_knit$set(root.dir =  "..")</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{r add link to github repo}</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: true</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="in"># print link to github repo if any</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="in">if (file.exists("./.git/config")){</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="in">  config &lt;- readLines("./.git/config")</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="in">  url &lt;- grep("url",  config, value = TRUE)</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="in">  url &lt;- gsub("\\turl = |.git$", "", url)</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="in">  cat("\nSource code and data found at [", url, "](", url, ")", sep = "")</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup style}</span></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="in"># options to customize chunk outputs</span></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(</span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="in">  tidy.opts = list(width.cutoff = 65), </span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="in">  tidy = TRUE,</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="in">  message = FALSE</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="in"> )</span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- skyblue box --&gt;</span></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>::: {.alert .alert-info}</span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="fu"># Purpose {.unnumbered .unlisted}</span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The first goal of this report</span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The second goal of this report</span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span> </span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- light brown box --&gt;</span></span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>::: {.alert .alert-warning}</span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="fu"># Report overview {.unnumbered .unlisted}</span></span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can have the sections listed here, for instance:</span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Lorem ipsum</span><span class="co">](#lorem-ipsum)</span></span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Takeaways</span><span class="co">](#takeaways)</span></span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span></span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a><span class="fu"># Analysis flowchart {.unnumbered .unlisted}</span></span>
-<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart</span></span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a><span class="in">  A[Read data] --&gt; B(Format data) </span></span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a><span class="in">  B --&gt; C(Graphs)</span></span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="in">  C --&gt; D(Statistical analysis)</span></span>
-<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a><span class="in">  D --&gt; E(Model summary) </span></span>
-<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a><span class="in">style A fill:#44015466</span></span>
-<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="in">style B fill:#3E4A894D</span></span>
-<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="in">style C fill:#26828E4D</span></span>
-<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="in">style D fill:#6DCD594D</span></span>
-<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="fu"># Load packages {.unnumbered .unlisted}</span></span>
-<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r load packages}</span></span>
-<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a><span class="in"># knitr is require for creating html/pdf/word reports</span></span>
-<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="in"># formatR is used for soft-wrapping code</span></span>
-<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a><span class="in"># install/ load packages</span></span>
-<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a><span class="in">sketchy::load_packages(packages = c("knitr", "formatR"))</span></span>
-<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a><span class="fu"># Lorem ipsum</span></span>
-<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. </span>
-<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r example external image}</span></span>
-<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: true</span></span>
-<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig.cap: "Fig 1. R logo, Lorem ipsum dolor sit amet, consectetur adipiscing elit."</span></span>
-<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a><span class="in">#| out.width: "30%"</span></span>
-<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: FALSE</span></span>
-<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig.align: "center"</span></span>
-<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a><span class="in"># print image</span></span>
-<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::include_graphics("https://www.r-project.org/logo/Rlogo.svg")</span></span>
-<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- '&amp;nbsp;' adds blank space --&gt;</span></span>
-<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- light green box --&gt;</span></span>
-<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>::: {.alert .alert-success}</span>
-<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a><span class="fu"># Takeaways {.unnumbered .unlisted}</span></span>
-<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span></span>
-<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- '---' adds a gray vertical line --&gt;</span></span>
-<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span> </span>
-<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a><span class="co"> &lt;!-- add packages used, system details and versions  --&gt;</span></span>
-<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a><span class="fu"># Session information {.unnumbered .unlisted}</span></span>
-<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{r session info, echo=F}</span></span>
-<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="in">sessionInfo()</span></span>
-<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> A very cool analysis</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> A very fancy project</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &lt;a href="http://researcher.website.com/"&gt;Researcher name&lt;/a&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="an">toc-depth:</span><span class="co"> 2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc-location:</span><span class="co"> left</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="an">highlight-style:</span><span class="co"> pygments</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: kable</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">    css: qmd.css</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r set root directory}</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: true</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="in"># set working directory </span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_knit$set(root.dir =  "..")</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r add link to github repo}</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: true</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="in"># print link to github repo if any</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="in">if (file.exists("./.git/config")){</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="in">  config &lt;- readLines("./.git/config")</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="in">  url &lt;- grep("url",  config, value = TRUE)</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="in">  url &lt;- gsub("\\turl = |.git$", "", url)</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="in">  cat("\nSource code and data found at [", url, "](", url, ")", sep = "")</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup style}</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="in">#| message: false</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="in">#| warning: false</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="in"># options to customize chunk outputs</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="in">  tidy.opts = list(width.cutoff = 65), </span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="in">  tidy = TRUE,</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="in">  message = FALSE</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="in"> )</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- skyblue box --&gt;</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>::: {.alert .alert-info}</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># Purpose {.unnumbered .unlisted}</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The first goal of this report</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The second goal of this report</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span> </span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- light brown box --&gt;</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>::: {.alert .alert-warning}</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="fu"># Report overview {.unnumbered .unlisted}</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>You can have the sections listed here, for instance:</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Lorem ipsum</span><span class="co">](#lorem-ipsum)</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Takeaways</span><span class="co">](#takeaways)</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="fu"># Analysis flowchart {.unnumbered .unlisted}</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart LR</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="in">    ML[Aprendizaje\nEstadístico] --&gt;|Datos sin\netiquetar| U[Aprendizaje\nNo Supervisado]</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="in">    ML --&gt;|Datos\netiquetados| S[Aprendizaje\nSupervisado]</span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a><span class="in">    U --&gt;|Objetivo\nes explorar| Clus[Agrupamiento]</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a><span class="in">    U --&gt; DR[Reducción de\nDimensionalidad]</span></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="in">    S --&gt;|Objetivo\nes predecir| Reg[Regresión]</span></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a><span class="in">    S --&gt; Class[Clasificación]</span></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a><span class="in">    Clus --&gt; Kmeans[K-means]</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="in">    Clus --&gt; DB[Por Densidad]</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a><span class="in">    Clus --&gt; Hier[Jerárquico]</span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="in">    DR --&gt; PCA[PCA]</span></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="in">    DR --&gt; TSNE[t-SNE]</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a><span class="in">    DR --&gt; UMAP[UMAP]</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a><span class="in">    Reg --&gt; Regr[Regresión]</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a><span class="in">    Reg --&gt; RFR[Regresión\nRandom Forest]</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="in">    Reg --&gt; NNR[Regresión de\nRed Neuronal]</span></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a><span class="in">    Class --&gt; DT[Árboles de\nDecisión]</span></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a><span class="in">    Class --&gt; NB[Naive Bayes]</span></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a><span class="in">    Class --&gt; KNN[K vecinos\nmás cercanos]</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="in">    Class --&gt; RF[Random Forest]</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="in">    Class --&gt; NN[Redes\nNeuronales]</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a><span class="in">    style ML fill:#f9ebae,stroke:#000,stroke-width:2px</span></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="in">    style U fill:#f4d03f,stroke:#000,stroke-width:2px</span></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a><span class="in">    style S fill:#52be80,stroke:#000,stroke-width:2px</span></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a><span class="in">    style Clus fill:#85c1e9,stroke:#000,stroke-width:2px</span></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="in">    style DR fill:#a569bd,stroke:#000,stroke-width:2px</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a><span class="in">    style Reg fill:#ec7063,stroke:#000,stroke-width:2px</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a><span class="in">    style Class fill:#f5b041,stroke:#000,stroke-width:2px</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="in">    style Kmeans fill:#aed6f1,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="in">    style DB fill:#aed6f1,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a><span class="in">    style Hier fill:#aed6f1,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a><span class="in">    style PCA fill:#d7bde2,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="in">    style TSNE fill:#d7bde2,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a><span class="in">    style UMAP fill:#d7bde2,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a><span class="in">    style Regr fill:#f5b7b1,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="in">    style RFR fill:#f5b7b1,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="in">    style NNR fill:#f5b7b1,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a><span class="in">    style DT fill:#f8c471,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a><span class="in">    style NB fill:#f8c471,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a><span class="in">    style KNN fill:#f8c471,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a><span class="in">    style RF fill:#f8c471,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a><span class="in">    style NN fill:#f8c471,stroke:#000,stroke-width:1px</span></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a><span class="fu"># Load packages {.unnumbered .unlisted}</span></span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a><span class="in">```{r load packages}</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a><span class="in"># knitr is require for creating html/pdf/word reports</span></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a><span class="in"># formatR is used for soft-wrapping code</span></span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a><span class="in"># install/ load packages</span></span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a><span class="in">sketchy::load_packages(packages = c("knitr", "formatR"))</span></span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a><span class="fu"># Lorem ipsum</span></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. </span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{r example external image}</span></span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: true</span></span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig.cap: "Fig 1. R logo, Lorem ipsum dolor sit amet, consectetur adipiscing elit."</span></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a><span class="in">#| out.width: "30%"</span></span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: FALSE</span></span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig.align: "center"</span></span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a><span class="in"># print image</span></span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::include_graphics("https://www.r-project.org/logo/Rlogo.svg")</span></span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- '&amp;nbsp;' adds blank space --&gt;</span></span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- light green box --&gt;</span></span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>::: {.alert .alert-success}</span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a><span class="fu"># Takeaways {.unnumbered .unlisted}</span></span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span></span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- '---' adds a gray vertical line --&gt;</span></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span> </span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a><span class="co"> &lt;!-- add packages used, system details and versions  --&gt;</span></span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a><span class="fu"># Session information {.unnumbered .unlisted}</span></span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r session info, echo=F}</span></span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a><span class="in">sessionInfo()</span></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
