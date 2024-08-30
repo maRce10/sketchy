@@ -27,6 +27,9 @@ spot_unused_files(
 \description{
 \code{spot_unused_files}
 }
+\details{
+This function is used to spot/remove unused files in a project directory. It is useful to keep the project directory clean and organized.
+}
 \examples{
 {
 }

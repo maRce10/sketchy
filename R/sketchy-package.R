@@ -23,9 +23,9 @@
 #'   Maintainer: Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #'
 #' @docType package
-#' @name sketchy
-"_PACKAGE"
 #' @details License: GPL (>= 2)
+#' @keywords internal
+"_PACKAGE"
 NULL
 #> NULL
 #'
