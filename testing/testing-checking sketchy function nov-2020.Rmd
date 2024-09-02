@@ -17,7 +17,7 @@ rm(list = ls())
 # unload all non-based packages
 out <- sapply(paste('package:', names(sessionInfo()$otherPkgs), sep = ""), function(x) try(detach(x, unload = FALSE, character.only = TRUE), silent = T))
 
-x <- c( "devtools", "pkgdown", "spelling", "maRce10/sketchy")
+x <- c( "devtools", "pkgdown", "spelling")
 
 out <- lapply(x, function(y) {
   
@@ -268,7 +268,6 @@ system("R CMD check . --as-cran --resave-data")
 devtools::check()
 
 # build tar.gz package file
-setwd("./")
 system("R CMD build . --resave-data")
 
 # devtools::build()
@@ -324,6 +323,84 @@ repl.text(pattern = pattern, repl = repl, path = path)
 ```
 
 ## troubleshoot sketchy functions ####
+
+```{r add_to_gitignore}
+
+FUN <- "add_to_gitignore"
+
+#run function
+# run.all()
+source(file.path("./R", paste0(FUN, ".R")))
+
+#open in rstudio
+##open.fun(fun = FUN)
+
+# remove objects but no functions
+rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
+
+# to troubleshoot internally
+# for(i in run.def.args(FUN)) try(eval(parse(text = i)), silent = T)
+# rm(i)
+
+#tests  
+repo_name <- "repoQ"
+
+data("compendiums")
+load("~/Dropbox/R_package_testing/sketchy/R/sysdata.rda")
+
+make_compendium(name = repo_name, format = "sketchy", force = TRUE, path = tempdir(), git = TRUE)
+
+list.files(path = file.path(tempdir(), repo_name))
+
+saveRDS(compendiums, file.path(tempdir(), repo_name, "compendiums.RDS"))
+
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
+
+add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
+
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
+
+saveRDS(compendiums, file.path(tempdir(), repo_name, "output", "compendiums2.RDS"))
+
+add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
+
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
+
+saveRDS(compendiums, file.path(tempdir(), repo_name, "data/raw", "compendiums3.RDS"))
+
+add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
+
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
+  
+
+library(NatureSounds)
+
+
+data("lbh.est")
+object.size(lbh.est)
+lbh.est2 <- do.call(rbind, lapply(seq_len(100), function(x) {
+  X <- lbh.est
+  X <- warbleR::rename_waves_est(X, new.sound.files = paste(X$sound.files, x, sep = "-"))
+  return(X)
+}))
+object.size(lbh.est2) / 1000 
+ 
+saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data/processed", "lbh.est.RDS"))
+
+file.size(file.path(tempdir(), repo_name, "data/processed", "lbh.est.RDS")) / 1000000
+
+saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data", "YAA.RDS"))
+
+file.size(file.path(tempdir(), repo_name, "data", "XXX.RDS")) / 1000000
+
+add_to_gitignore(add.to.gitignore = T, extension = "RDS", path = file.path(tempdir(), repo_name), cutoff = 50)
+
+read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
+  
+saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data", "XXXX.RDS"))
+
+
+```
 
 ```{r make_compendium}
 
@@ -416,9 +493,9 @@ print_skeleton(path = file.path(tempdir(), "prue23b33a"), comments = compendiums
 
 ```
 
-```{r add_to_gitignore}
+```{r spot_unused_files}
 
-FUN <- "add_to_gitignore"
+FUN <- "spot_unused_files"
 
 #run function
 # run.all()
@@ -435,62 +512,22 @@ rm(list = setdiff(ls(), c(lsf.str(), "FUN")))
 # rm(i)
 
 #tests  
-repo_name <- "repoQ"
-
 data("compendiums")
-load("~/Dropbox/R_package_testing/sketchy/R/sysdata.rda")
 
-make_compendium(name = repo_name, format = "sketchy", force = TRUE, path = tempdir(), git = TRUE)
+make_compendium(name = "pruebaX66636", format = "sketchy", force = TRUE, path = tempdir())
 
-list.files(path = file.path(tempdir(), repo_name))
+spot_unused_files(path = ".")
 
-saveRDS(compendiums, file.path(tempdir(), repo_name, "compendiums.RDS"))
+spot_unused_files(path = ".", ignore.folder = c("./docs", "./testing"))
 
-read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
-
-add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
-
-read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
-
-saveRDS(compendiums, file.path(tempdir(), repo_name, "output", "compendiums2.RDS"))
-
-add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
-
-read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
-
-saveRDS(compendiums, file.path(tempdir(), repo_name, "data/raw", "compendiums3.RDS"))
-
-add_to_gitignore(add.to.gitignore = TRUE, extension = "RDS", path = file.path(tempdir(), repo_name))
-
-read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
-  
-
-library(NatureSounds)
+write.csv(iris, "./inst/iris.jpeg")
+write.csv(iris, "./inst/2.csv")
 
 
-data("lbh.est")
-object.size(lbh.est)
-lbh.est2 <- do.call(rbind, lapply(seq_len(100), function(x) {
-  X <- lbh.est
-  X <- warbleR::rename_waves_est(X, new.sound.files = paste(X$sound.files, x, sep = "-"))
-  return(X)
-}))
-object.size(lbh.est2) / 1000 
- 
-saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data/processed", "lbh.est.RDS"))
+spot_unused_files(path = ".", ignore.folder = c("./docs", "./testing"))
 
-file.size(file.path(tempdir(), repo_name, "data/processed", "lbh.est.RDS")) / 1000000
-
-saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data", "YAA.RDS"))
-
-file.size(file.path(tempdir(), repo_name, "data", "XXX.RDS")) / 1000000
-
-add_to_gitignore(add.to.gitignore = T, extension = "RDS", path = file.path(tempdir(), repo_name), cutoff = 50)
-
-read.table(file = file.path(tempdir(), repo_name, ".gitignore"))
-  
-saveRDS(lbh.est2, file.path(tempdir(), repo_name, "data", "XXXX.RDS"))
-
+# archive
+spot_unused_files(path = ".", ignore.folder = c("./docs", "./testing"), archive = TRUE)
 
 ```
 
@@ -522,8 +559,7 @@ basic_info <- "sketchy's own design"
 basic <- list(skeleton = basic_skeleton, comments = basic_comments, info = basic_info)
 
 
-#######
-
+#
 figures_skeleton <- c(
   "data",
   "data/raw",

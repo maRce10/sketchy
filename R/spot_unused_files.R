@@ -4,13 +4,13 @@
 #' @param path A character string with the path to the directory to be analyzed. Default is current directory.
 #' @param file.extensions A character vector with the file extensions to be considered. Default is c("png", "jpg", "jpeg", "gif", "bmp", "tiff", "tif", "csv", "xls", "xlsx", "txt").
 #' @param script.extensions A character vector with the script extensions to be considered. Default is c("R", "Rmd", "qmd").
-#' @param script.extensions A logical value indicating whether to archive the unused files. Default is FALSE.
-#' @param archive A character string with the path to the directory to be ignored. Default is "./docs".
+#' @param archive A logical value indicating whether to archive the unused files. If \code{TRUE} the spotted files will be move into the folder "./unused_files". Default is \code{FALSE}.
 #' @param ignore.folder A character string with the path or paths to the directory(ies) to be ignored. Default is "./docs".
 #' @seealso \code{\link{add_to_gitignore}}, \code{\link{make_compendium}}
 #' @export
 #' @name spot_unused_files
-#' @details This function is used to spot/remove unused files in a project directory. It is useful to keep the project directory clean and organized.
+#' @returns Returns a data frame with 2 columns: file.name (self explanatory) and folder (where the file is found).
+#' @details This function is used to spot/remove unused files in a project directory. It is useful to keep the project directory clean and organized. It is recommended to first run the function with a the argument \code{archive = FALSE} to spot which files are being spotted and then run \code{archive = TRUE} if they need to be removed.
 #' @examples {
 #' }
 #'
@@ -68,7 +68,7 @@ spot_unused_files <-
       message("All files are referenced in the code.")
     } else
       if (archive) {
-        unused_folder <- normalizePath(file.path(".", "unused_files"))
+        unused_folder <- file.path(".", "unused_files")
 
         # Create "unused" folder if it doesn't exist
         if (!dir.exists(unused_folder)) {
@@ -89,5 +89,5 @@ spot_unused_files <-
       }
 
     if (nrow(results) > 0)
-      return(results)
+      return(results[, c(1, 2)])
   }

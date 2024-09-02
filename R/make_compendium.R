@@ -90,7 +90,7 @@ make_compendium <-
       cat(crayon::green("Creating directories ...\n")) else
       cat(crayon::green("Setting project on an existing directory ...\n"))
 
-    if (file.exists(dir) && !force)
+    if (dir_existed <- file.exists(dir) && !force)
       .stop(gettextf("directory '%s' already exists", dir),
             domain = NA) else
     .safe_dir_create(dir)
@@ -329,7 +329,7 @@ make_compendium <-
         readme_file[2] <- paste('title:', name)
         writeLines(readme_file, file.path(dir, "README.Rmd"))
 
-        rmarkdown::render(file.path(dir, "README.Rmd"), quiet = TRUE)
+        rmarkdown::render(file.path(dir, "README.Rmd"), quiet = TRUE, output_format = "md_document")
       } else
         cat(crayon::green("README.Rmd already exists.\n"))
 

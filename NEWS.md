@@ -1,9 +1,11 @@
-sketchy 1.0.3
+sketchy 1.0.4
 =========================
 
 ### NEW FEATURES
 
 * New function `spot_unused_files()` to spot/remove unused files in a project directory
+
+* New function `open_wd()` to open the current working directory
 
 sketchy 1.0.3
 =========================
