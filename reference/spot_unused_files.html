@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sketchy</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,11 +62,11 @@
 
 
 <dt id="arg-script-extensions">script.extensions<a class="anchor" aria-label="anchor" href="#arg-script-extensions"></a></dt>
-<dd><p>A logical value indicating whether to archive the unused files. Default is FALSE.</p></dd>
+<dd><p>A character vector with the script extensions to be considered. Default is c("R", "Rmd", "qmd").</p></dd>
 
 
 <dt id="arg-archive">archive<a class="anchor" aria-label="anchor" href="#arg-archive"></a></dt>
-<dd><p>A character string with the path to the directory to be ignored. Default is "./docs".</p></dd>
+<dd><p>A logical value indicating whether to archive the unused files. If <code>TRUE</code> the spotted files will be move into the folder "./unused_files". Default is <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-ignore-folder">ignore.folder<a class="anchor" aria-label="anchor" href="#arg-ignore-folder"></a></dt>
@@ -74,8 +74,12 @@
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>Returns a data frame with 2 columns: file.name (self explanatory) and folder (where the file is found).</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This function is used to spot/remove unused files in a project directory. It is useful to keep the project directory clean and organized.</p>
+    <p>This function is used to spot/remove unused files in a project directory. It is useful to keep the project directory clean and organized. It is recommended to first run the function with a the argument <code>archive = FALSE</code> to spot which files are being spotted and then run <code>archive = TRUE</code> if they need to be removed.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
