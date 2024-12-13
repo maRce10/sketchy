@@ -1,9 +1,0 @@
-citHeader("Please cite 'sketchy' as follows:")
-
-bibentry(bibtype = "Manual",
-         title = "sketchy: research compendiums for data analysis in R",
-        author = c(as.person("M. Araya-Salas"), as.person("A.Y. Arriaga")),
-        year = "2023",
-        textVersion = "Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3."
-)
-
