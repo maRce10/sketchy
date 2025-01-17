@@ -1,3 +1,10 @@
+sketchy 1.0.5
+=========================
+
+### BUG FIXES
+
+* Problem with directory path in Windows OS in `add_to_gitignore()` 
+
 sketchy 1.0.4
 =========================
 

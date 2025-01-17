@@ -32,6 +32,9 @@
 
 add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path = "."){
 
+  # ensure the path is in the correct format for your system
+  path <- normalizePath(path)
+
   if (is.null(cutoff) & is.null(extension))
     .stop("'cutoff' and/or 'extension' must be supplied")
 
@@ -60,7 +63,7 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
     files_found <- file_size_df$file.path[file_size_df$file_size_Mb > cutoff]
 
     # remove project directory
-    files_found <- gsub(path, "", files_found)
+    files_found <- basename(files_found)
 
     # remove ./
     files_found <- gsub("^./", "", files_found)

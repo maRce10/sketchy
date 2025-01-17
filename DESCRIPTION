@@ -1,7 +1,7 @@
 Package: sketchy
 Type: Package
 Title: Create Custom Research Compendiums  
-Version: 1.0.4
+Version: 1.0.5
 Maintainer: Marcelo Araya-Salas <marcelo.araya@ucr.ac.cr>
 Description: Provides functions to create and manage research compendiums for data analysis. Research compendiums are a standard and intuitive folder structure for organizing the digital materials of a research project, which can significantly improve reproducibility. The package offers several compendium structure options that fit different research project as well as the ability of duplicating the folder structure of existing projects or implementing custom structures. It also simplifies the use of version control.
 License: GPL (>= 2)
