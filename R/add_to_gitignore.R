@@ -35,6 +35,8 @@ add_to_gitignore <- function(add.to.gitignore = FALSE, cutoff = NULL, extension 
   # ensure the path is in the correct format for your system
   path <- normalizePath(path)
 
+  print("asasd")
+
   if (is.null(cutoff) & is.null(extension))
     .stop("'cutoff' and/or 'extension' must be supplied")
 

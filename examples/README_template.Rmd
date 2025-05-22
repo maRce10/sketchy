@@ -10,7 +10,7 @@ editor_options:
 <!-- Short Description  -->
 This is a short description of the project
 
-*Updated on `r Sys.time()`*
+*Updated on `r format(Sys.time(), "%Y-%m-%d %H:%M:%S")`*
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
