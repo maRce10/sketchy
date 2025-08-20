@@ -1,6 +1,6 @@
 ---
 title: A very cool analysis
-subtitle: A very fancy projec
+subtitle: A very fancy project
 author: <a href="http://researcher.website.com/">Researcher name</a>
 date: "`r Sys.Date()`"
 output:
@@ -152,6 +152,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut 
 
 ```{r session info, echo=F}
 
-sessionInfo()
+# if devtools is installed use devtools::session_info()
+if (requireNamespace("devtools", quietly = TRUE)) {
+  devtools::session_info()
+} else {
+  sessionInfo()
+}
 
 ```

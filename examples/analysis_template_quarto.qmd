@@ -4,7 +4,7 @@ subtitle: A very fancy project
 author: <a href="http://researcher.website.com/">Researcher name</a>
 date: "`r Sys.Date()`"
 toc: true
-toc-depth: 2
+toc-depth: 3
 toc-location: left
 number-sections: true
 highlight-style: pygments
@@ -14,6 +14,8 @@ format:
     code-fold: show
     code-tools: true
     css: qmd.css
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r set root directory}
@@ -28,12 +30,14 @@ knitr::opts_knit$set(root.dir =  "..")
 ```{r add link to github repo}
 #| eval: true
 #| output: asis
+#| echo: false
 
 # print link to github repo if any
 if (file.exists("./.git/config")){
   config <- readLines("./.git/config")
   url <- grep("url",  config, value = TRUE)
   url <- gsub("\\turl = |.git$", "", url)
+  if (nchar(url) > 1)
   cat("\nSource code and data found at [", url, "](", url, ")", sep = "")
   }
 
@@ -52,37 +56,33 @@ knitr::opts_chunk$set(
 
 ```
 
-
 <!-- skyblue box -->
 
 ::: {.alert .alert-info}
-
 # Purpose {.unnumbered .unlisted}
 
-- The first goal of this report
+-   The first goal of this report
 
-- The second goal of this report
-
+-   The second goal of this report
 :::
 
-&nbsp; 
-
+ 
 
 <!-- light brown box -->
-::: {.alert .alert-warning}
 
+::: {.alert .alert-warning}
 # Report overview {.unnumbered .unlisted}
 
-- You can have the sections listed here, for instance:
+-   You can have the sections listed here, for instance:
 
-  - [Lorem ipsum](#lorem-ipsum)
-  - [Takeaways](#takeaways)
-
+    -   [Lorem ipsum](#lorem-ipsum)
+    -   [Takeaways](#takeaways)
 :::
 
-&nbsp;
+ 
 
 # Analysis flowchart {.unnumbered .unlisted}
+
 ```{mermaid}
 
 flowchart
@@ -91,13 +91,12 @@ flowchart
   C --> D(Statistical analysis)
   D --> E(Model summary) 
 
-style A fill:#44015466
-style B fill:#3E4A894D
-style C fill:#26828E4D
-style D fill:#6DCD594D
+style A fill:#382A5433
+style B fill:#395D9C33
+style C fill:#3497A933
+style D fill:#60CEAC33
 
 ```
-
 
 # Load packages {.unnumbered .unlisted}
 
@@ -119,9 +118,9 @@ a <- 1
 b <- 2
 ```
 
-# Lorem ipsum
+# Lorem ipsum {#lorem-ipsum}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ex neque. Nunc ultricies et ante ac feugiat. Nulla quam ex, viverra eget mollis non, porttitor nec ante. Donec non felis a nisi elementum consectetur tempor in mauris. Curabitur leo nunc, posuere in erat sit amet, varius aliquam mi. Nullam lacinia odio neque, et semper erat fermentum ut. Praesent mi massa, convallis in vehicula mattis, condimentum ac risus. In eget metus eget nunc pulvinar finibus. Proin nec tellus sed lorem malesuada aliquet sed laoreet augue.
 
 ```{r example external image}
 #| eval: true
@@ -137,32 +136,37 @@ knitr::include_graphics("https://www.r-project.org/logo/Rlogo.svg")
 
 <!-- '&nbsp;' adds blank space -->
 
-
-
 <!-- light green box -->
 
 ::: {.alert .alert-success}
-
-# Takeaways {.unnumbered .unlisted}
+# Takeaways {#takeaways .unnumbered .unlisted}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
 
-::: 
-
-&nbsp;
+ 
 
 <!-- '---' adds a gray vertical line -->
 
----
+------------------------------------------------------------------------
 
-&nbsp; 
- 
- <!-- add packages used, system details and versions  -->
- 
+ 
+
+<!-- add packages used, system details and versions  -->
+
 # Session information {.unnumbered .unlisted}
 
-```{r session info, echo=F}
+<details>
+  <summary>Click to see</summary>
+```{r session info}
+#| echo: false
 
-sessionInfo()
+# if devtools is installed use devtools::session_info()
+if (requireNamespace("devtools", quietly = TRUE)) {
+  devtools::session_info()
+} else {
+  sessionInfo()
+}
 
 ```
+</details>

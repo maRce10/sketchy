@@ -7,7 +7,7 @@
 #' @param name character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".
 #' @param path Path to put the project directory in. Default is current directory.
 #' @param force Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.
-#' @param format A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included.
+#' @param format A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included (e.g. \code{c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2")}).
 #' @param packrat Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.
 #' @param git Logical to control if a git repository is initialized (\code{git2r::init()}) when creating the compendium. Default is \code{FALSE}.
 #' @param clone Path to a directory containing a folder structure to be cloned. Default is \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.
@@ -21,8 +21,14 @@
 #' @examples {
 #' data(compendiums)
 #'
-#'make_compendium(name = "mycompendium", path = tempdir(), format = "basic",
+#' # default format
+#' make_compendium(name = "mycompendium", path = tempdir(), format = "basic",
 #' force = TRUE)
+#'
+#' # custom format
+#' make_compendium(name = "my_second_compendium", path = tempdir(),
+#'  format = c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2"),
+#'  force = TRUE)
 #' }
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
@@ -190,10 +196,13 @@ make_compendium <-
           ignore.case = TRUE,
           value = TRUE
         )[1],
-        "analysis_template.Rmd"
-      )))
+        "analysis_template_rmarkdown.Rmd"
+      ))){
+        rmarkdown_template <- internal_files$analysis_template_rmarkdown
+        rmarkdown_template[3] <- paste("subtitle:", name)
+
         writeLines(
-          internal_files$analysis_template,
+          rmarkdown_template,
           file.path(
             path,
             name,
@@ -203,9 +212,10 @@ make_compendium <-
               ignore.case = TRUE,
               value = TRUE
             )[1],
-            "analysis_template.Rmd"
+            "analysis_template_rmarkdown.Rmd"
           )
         )
+        }
 
       # save analysis template in quarto format
       if (!file.exists(file.path(
@@ -218,9 +228,13 @@ make_compendium <-
           value = TRUE
         )[1],
         "analysis_template_quarto.qmd"
-      )))
+      ))){
+        # change subtitle
+        quarto_template <- internal_files$analysis_template_quarto
+        quarto_template[3] <- paste("subtitle:", name)
+
         writeLines(
-          internal_files$analysis_template_quarto,
+          quarto_template,
           file.path(
             path,
             name,
@@ -233,7 +247,7 @@ make_compendium <-
             "analysis_template_quarto.qmd"
           )
         )
-
+}
       # save rmd.css
       if (!file.exists(file.path(
         path,

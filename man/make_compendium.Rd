@@ -15,7 +15,7 @@ git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 
 \item{force}{Logical controlling whether existing folders with the same name are used for setting the folder structure. The function will never overwrite existing files or folders.}
 
-\item{format}{A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included.}
+\item{format}{A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included (e.g. \code{c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2")}).}
 
 \item{packrat}{Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.}
 
@@ -40,7 +40,12 @@ The function takes predefined folder structures to generate the directory skelet
 {
 data(compendiums)
 
+# default format
 make_compendium(name = "mycompendium", path = tempdir(), format = "basic",
+force = TRUE)
+
+# custom format
+make_compendium(name = "mycompendium", path = tempdir(), format = c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2"),
 force = TRUE)
 }
 

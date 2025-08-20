@@ -462,6 +462,10 @@ make_compendium(name = "666", format = "sketchy", force = TRUE, path = "~/Descar
 
 warbleR::open_wd(file.path(tempdir(), "project6"))
 
+# custom format
+make_compendium(name = "projass", format = c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2"), force = TRUE, path = tempdir())
+ 
+
 ```
 
 ```{r print_skeleton}
@@ -815,7 +819,7 @@ manuscript_template <- readLines("./examples/manuscript_template.Rmd")
 
 readme_template <- readLines("./examples/README_template.Rmd")
 
-analysis_template <- readLines("./examples/analysis_template.Rmd")
+analysis_template_rmarkdown <- readLines("./examples/analysis_template_rmarkdown.Rmd")
 
 analysis_template_quarto <- readLines("./examples/analysis_template_quarto.qmd")
 
@@ -825,7 +829,7 @@ qmd_css <- readLines("./examples/qmd.css")
 
 example_library <- readLines("./examples/example_library.bib")
 
-internal_files <- list(manuscript_template = manuscript_template, apa.csl = apa.csl, readme_template = readme_template, analysis_template = analysis_template, analysis_template_quarto = analysis_template_quarto, rmd_css = rmd_css, qmd_css = qmd_css, example_library = example_library)
+internal_files <- list(manuscript_template = manuscript_template, apa.csl = apa.csl, readme_template = readme_template, analysis_template_rmarkdown = analysis_template_rmarkdown, analysis_template_quarto = analysis_template_quarto, rmd_css = rmd_css, qmd_css = qmd_css, example_library = example_library)
 
 usethis::use_data(internal_files, internal = TRUE, overwrite = TRUE)
 
