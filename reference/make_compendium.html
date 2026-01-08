@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sketchy</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,8 +115,9 @@
 <span class="r-in"><span>force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># custom format</span></span></span>
-<span class="r-in"><span><span class="fu">make_compendium</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"mycompendium"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"folder_1"</span>, <span class="st">"folder_1/subfolder_1"</span>, <span class="st">"folder_1/subfolder_2"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">make_compendium</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"my_second_compendium"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"folder_1"</span>, <span class="st">"folder_1/subfolder_1"</span>, <span class="st">"folder_1/subfolder_2"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Creating directories ...</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">mycompendium</span></span>
@@ -128,19 +129,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">├──</span> output/ <span style="color: #555555;"> # all non-data products of data analysis</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">└──</span> scripts/ <span style="color: #555555;"> # code</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Done.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Setting project on an existing directory ...</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">README.Rmd already exists.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">mycompendium</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Creating directories ...</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">my_second_compendium</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB; font-weight: bold;">│   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">├──</span> data/ <span style="color: #555555;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">│   ├──</span> processed/ <span style="color: #555555;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">│   └──</span> raw/ <span style="color: #555555;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">├──</span> folder_1/ <span style="color: #555555;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">│   ├──</span> subfolder_1/ <span style="color: #555555;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">│   └──</span> subfolder_2/ <span style="color: #555555;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">├──</span> manuscript/ <span style="color: #555555;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">├──</span> output/ <span style="color: #555555;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">└──</span> scripts/ <span style="color: #555555;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">└──</span> folder_1/ <span style="color: #555555;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #00BBBB;">├──</span> subfolder_1/ <span style="color: #555555;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #00BBBB;">└──</span> subfolder_2/ <span style="color: #555555;"> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Done.</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -155,7 +149,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
