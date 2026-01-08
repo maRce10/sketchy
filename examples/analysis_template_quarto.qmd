@@ -22,6 +22,11 @@ editor_options:
 #| eval: true
 #| echo: false
 
+# install knitr package if not installed
+if (!requireNamespace("knitr", quietly = TRUE)) {
+  install.packages("knitr")
+}
+
 # set working directory 
 knitr::opts_knit$set(root.dir =  "..")
 
@@ -105,8 +110,15 @@ style D fill:#60CEAC33
 # knitr is require for creating html/pdf/word reports
 # formatR is used for soft-wrapping code
 
+# install knitr package if not installed
+if (!requireNamespace("sketchy", quietly = TRUE)) {
+  install.packages("sketchy")
+}
+
+packages <- c("knitr", "formatR")
+
 # install/ load packages
-sketchy::load_packages(packages = c("knitr", "formatR"))
+sketchy::load_packages(packages = packages)
 
 ```
 
@@ -154,10 +166,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut 
 
 <!-- add packages used, system details and versions  -->
 
-# Session information {.unnumbered .unlisted}
+::: {.callout-note collapse="true"}
+## Session information {.unnumbered .unlisted}
 
-<details>
-  <summary>Click to see</summary>
 ```{r session info}
 #| echo: false
 
@@ -169,4 +180,4 @@ if (requireNamespace("devtools", quietly = TRUE)) {
 }
 
 ```
-</details>
+:::

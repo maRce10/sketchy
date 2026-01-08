@@ -1,3 +1,10 @@
+sketchy 1.0.6
+=========================
+
+### MINOR IMPROVEMENTS
+
+* Name of project is added to the subtitle of Rmarkdown/quarto files in `make_compendium()`
+
 sketchy 1.0.5
 =========================
 

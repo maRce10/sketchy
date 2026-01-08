@@ -45,8 +45,9 @@ make_compendium(name = "mycompendium", path = tempdir(), format = "basic",
 force = TRUE)
 
 # custom format
-make_compendium(name = "mycompendium", path = tempdir(), format = c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2"),
-force = TRUE)
+make_compendium(name = "my_second_compendium", path = tempdir(),
+ format = c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2"),
+ force = TRUE)
 }
 
 }

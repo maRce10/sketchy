@@ -1,17 +1,18 @@
-#' Spot/remove unused files
+#' Spot/remove unused image and data files
 #'
-#' \code{spot_unused_files}
+#' \code{spot_unused_files} allow user to identify and optionally archive unused image or data files in a project directory
 #' @param path A character string with the path to the directory to be analyzed. Default is current directory.
-#' @param file.extensions A character vector with the file extensions to be considered. Default is c("png", "jpg", "jpeg", "gif", "bmp", "tiff", "tif", "csv", "xls", "xlsx", "txt").
+#' @param file.extensions A character vector with the file extensions to be considered. By default the function looks for the following image and file extensions: "png", "jpg", "jpeg", "gif", "bmp", "tiff", "tif", "csv", "xls", "xlsx" and "txt".
 #' @param script.extensions A character vector with the script extensions to be considered. Default is c("R", "Rmd", "qmd").
 #' @param archive A logical value indicating whether to archive the unused files. If \code{TRUE} the spotted files will be move into the folder "./unused_files". Default is \code{FALSE}.
-#' @param ignore.folder A character string with the path or paths to the directory(ies) to be ignored. Default is "./docs".
+#' @param ignore.folder A character string with the path or paths to the directory(ies) to be ignored. Default is \code{NULL}.
 #' @seealso \code{\link{add_to_gitignore}}, \code{\link{make_compendium}}
 #' @export
 #' @name spot_unused_files
 #' @returns Returns a data frame with 2 columns: file.name (self explanatory) and folder (where the file is found).
-#' @details This function is used to spot/remove unused files in a project directory. It is useful to keep the project directory clean and organized. It is recommended to first run the function with a the argument \code{archive = FALSE} to spot which files are being spotted and then run \code{archive = TRUE} if they need to be removed.
-#' @examples {
+#' @details This function is used to spot/remove unused files in a project directory. The function will find all R script files (extensions R, Rmd and qmd) and all files recursively It is useful to keep the project directory clean and organized. It is recommended to first run the function with a the argument \code{archive = FALSE} to spot which files are being spotted and then run \code{archive = TRUE} if they need to be removed.
+#' @examples \dontrun {
+#' spot_unused_files(path = "path/to/your/project")
 #' }
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
@@ -35,12 +36,12 @@ spot_unused_files <-
                                "txt"),
            script.extensions = c("R", "Rmd", "qmd"),
            archive = FALSE,
-           ignore.folder = "./docs") {
+           ignore.folder = NULL) {
     # List all files in the specified directory with the specified extensions
     # List all images and code files
     all_files <-
       .list_files(directory = path, extensions = file.extensions)
-    script_files <- .list_files(directory = path, script.extensions)
+    script_files <- .list_files(directory = path, extensions = script.extensions)
 
     # Check which images are referenced
     used_files <-
@@ -57,9 +58,10 @@ spot_unused_files <-
     results <- results[basename(results$folder) != "unused_files",]
 
     # ignore folders
+    if (!is.null(ignore.folder)){
     results <-
       results[grep(paste(paste0(normalizePath(ignore.folder), "/"),  collapse = "|"), results$folder, invert = TRUE),]
-
+}
     # keep only unused files
     results <- results[!results$used,]
 

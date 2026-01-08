@@ -19,10 +19,11 @@
 #' }
 #'
 #' @author Nan Xiao (\email{me@@nanx.me})
-#' @references {
+#' @references
 #' Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
+#'
 #' Xiao, N. (2023). A General-Purpose Link Checker for R Markdown and Quarto Projects. Blog post. https://nanx.me/blog/post/rmarkdown-quarto-link-checker/
-#' }
+#'
 
 check_urls <- function(path = ".") {
   # Create a source package directory

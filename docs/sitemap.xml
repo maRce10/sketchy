@@ -1,39 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://marce10.github.io/brmsish/404.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/index.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/add_to_gitignore.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/compendium_skeleton.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/compendiums.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/git_ignore_files.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/make_compendium.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/manuscript_template.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/print_skeleton.html</loc>
-  </url>
-  <url>
-    <loc>https://marce10.github.io/brmsish/reference/sketchy.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://marce10.github.io/brmsish/404.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/authors.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/index.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/news/index.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/add_to_gitignore.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/check_urls.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/compendium_skeleton.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/compendiums.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/git_ignore_files.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/index.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/load_packages.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/make_compendium.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/manuscript_template.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/open_wd.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/print_skeleton.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/sketchy-package.html</loc></url>
+<url><loc>https://marce10.github.io/brmsish/reference/spot_unused_files.html</loc></url>
 </urlset>
+

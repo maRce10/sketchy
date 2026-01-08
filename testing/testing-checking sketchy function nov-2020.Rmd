@@ -230,9 +230,6 @@ run.all()
 # check
 ```{r check}
 
-#delete NAMESPACE file
-unlink("./NAMESPACE")
-
 #run document twice
 devtools::document(".")
 devtools::document(".")
@@ -276,7 +273,7 @@ unlink(list.files(pattern = "sketchy\\.pdf", path = "./"))
 
 # only build manual 
 setwd(".")
-system("R CMD Rd2pdf ./R\ package\ testing/sketchy/sketchy")
+system("R CMD Rd2pdf .")
 
 setwd(".")
 

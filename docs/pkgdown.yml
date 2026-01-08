@@ -1,9 +1,8 @@
-pandoc: 2.19.2
-pkgdown: 2.0.6
+pandoc: '3.2'
+pkgdown: 2.1.2
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-12-22T14:20Z
+last_built: 2026-01-06T20:37Z
 urls:
   reference: https://marce10.github.io/brmsish/reference
   article: https://marce10.github.io/brmsish/articles
-
