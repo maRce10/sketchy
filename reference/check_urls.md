@@ -28,9 +28,11 @@ are broken. Taken from Nan Xiao's blogpost
 ## References
 
 Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for
-data analysis in R. R package version 1.0.3. Xiao, N. (2023). A
-General-Purpose Link Checker for R Markdown and Quarto Projects. Blog
-post. https://nanx.me/blog/post/rmarkdown-quarto-link-checker/
+data analysis in R. R package version 1.0.3.
+
+Xiao, N. (2023). A General-Purpose Link Checker for R Markdown and
+Quarto Projects. Blog post.
+https://nanx.me/blog/post/rmarkdown-quarto-link-checker/
 
 ## See also
 

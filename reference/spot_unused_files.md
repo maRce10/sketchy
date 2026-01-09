@@ -1,6 +1,7 @@
-# Spot/remove unused files
+# Spot/remove unused image and data files
 
-`spot_unused_files`
+`spot_unused_files` allow user to identify and optionally archive unused
+image or data files in a project directory
 
 ## Usage
 
@@ -11,7 +12,7 @@ spot_unused_files(
     "xlsx", "txt"),
   script.extensions = c("R", "Rmd", "qmd"),
   archive = FALSE,
-  ignore.folder = "./docs"
+  ignore.folder = NULL
 )
 ```
 
@@ -24,9 +25,10 @@ spot_unused_files(
 
 - file.extensions:
 
-  A character vector with the file extensions to be considered. Default
-  is c("png", "jpg", "jpeg", "gif", "bmp", "tiff", "tif", "csv", "xls",
-  "xlsx", "txt").
+  A character vector with the file extensions to be considered. By
+  default the function looks for the following image and file
+  extensions: "png", "jpg", "jpeg", "gif", "bmp", "tiff", "tif", "csv",
+  "xls", "xlsx" and "txt".
 
 - script.extensions:
 
@@ -42,7 +44,7 @@ spot_unused_files(
 - ignore.folder:
 
   A character string with the path or paths to the directory(ies) to be
-  ignored. Default is "./docs".
+  ignored. Default is `NULL`.
 
 ## Value
 
@@ -52,10 +54,11 @@ folder (where the file is found).
 ## Details
 
 This function is used to spot/remove unused files in a project
-directory. It is useful to keep the project directory clean and
-organized. It is recommended to first run the function with a the
-argument `archive = FALSE` to spot which files are being spotted and
-then run `archive = TRUE` if they need to be removed.
+directory. The function will find all R script files (extensions R, Rmd
+and qmd) and all files recursively It is useful to keep the project
+directory clean and organized. It is recommended to first run the
+function with a the argument `archive = FALSE` to spot which files are
+being spotted and then run `archive = TRUE` if they need to be removed.
 
 ## References
 
@@ -74,7 +77,7 @@ Marcelo Araya-Salas (<marcelo.araya@ucr.ac.cr>)
 ## Examples
 
 ``` r
-{
-}
-#> NULL
+if (FALSE) { # \dontrun{
+spot_unused_files(path = "path/to/your/project")
+} # }
 ```

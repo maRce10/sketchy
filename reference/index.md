@@ -17,4 +17,4 @@
 - [`print_skeleton()`](https://marce10.github.io/brmsish/reference/print_skeleton.md)
   : Print folder structures
 - [`spot_unused_files()`](https://marce10.github.io/brmsish/reference/spot_unused_files.md)
-  : Spot/remove unused files
+  : Spot/remove unused image and data files
