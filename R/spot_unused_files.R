@@ -11,15 +11,15 @@
 #' @name spot_unused_files
 #' @returns Returns a data frame with 2 columns: file.name (self explanatory) and folder (where the file is found).
 #' @details This function is used to spot/remove unused files in a project directory. The function will find all R script files (extensions R, Rmd and qmd) and all files recursively It is useful to keep the project directory clean and organized. It is recommended to first run the function with a the argument \code{archive = FALSE} to spot which files are being spotted and then run \code{archive = TRUE} if they need to be removed.
-#' @examples \dontrun {
+#' @examples
+#' \dontrun{
 #' spot_unused_files(path = "path/to/your/project")
 #' }
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
-#' @references {
+#' @references
 #' Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
-#' }
-
+#'
 
 spot_unused_files <-
   function(path = ".",
