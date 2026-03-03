@@ -12,7 +12,8 @@ spot_unused_files(
     "xlsx", "txt"),
   script.extensions = c("R", "Rmd", "qmd"),
   archive = FALSE,
-  ignore.folder = NULL
+  ignore.folder = NULL,
+  remove.empty = FALSE
 )
 ```
 
@@ -45,6 +46,11 @@ spot_unused_files(
 
   A character string with the path or paths to the directory(ies) to be
   ignored. Default is `NULL`.
+
+- remove.empty:
+
+  A logical value indicating whether to remove empty folders after
+  moving the unused files. Default is `FALSE`.
 
 ## Value
 

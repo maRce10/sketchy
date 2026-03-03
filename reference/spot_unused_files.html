@@ -45,7 +45,8 @@
 <span>    <span class="st">"xlsx"</span>, <span class="st">"txt"</span><span class="op">)</span>,</span>
 <span>  script.extensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"R"</span>, <span class="st">"Rmd"</span>, <span class="st">"qmd"</span><span class="op">)</span>,</span>
 <span>  archive <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  ignore.folder <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  ignore.folder <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  remove.empty <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -71,6 +72,10 @@
 
 <dt id="arg-ignore-folder">ignore.folder<a class="anchor" aria-label="anchor" href="#arg-ignore-folder"></a></dt>
 <dd><p>A character string with the path or paths to the directory(ies) to be ignored. Default is <code>NULL</code>.</p></dd>
+
+
+<dt id="arg-remove-empty">remove.empty<a class="anchor" aria-label="anchor" href="#arg-remove-empty"></a></dt>
+<dd><p>A logical value indicating whether to remove empty folders after moving the unused files. Default is <code>FALSE</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

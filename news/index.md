@@ -5,7 +5,7 @@
 #### MINOR IMPROVEMENTS
 
 - [`spot_unused_files()`](https://marce10.github.io/brmsish/reference/spot_unused_files.md)
-  now returns a data frame with more details about the files found
+  can remove empty folders
 
 ## sketchy 1.0.6
 
