@@ -38,12 +38,12 @@ spot_unused_files <-
            archive = FALSE,
            ignore.folder = NULL) {
     # List all files in the specified directory with the specified extensions
-    # List all images and code files
+    # List all target format files
     all_files <-
       .list_files(directory = path, extensions = file.extensions)
     script_files <- .list_files(directory = path, extensions = script.extensions)
 
-    # Check which images are referenced
+    # Check which files are referenced
     used_files <-
       sapply(all_files, .is_file_used, code_files = script_files)
 
