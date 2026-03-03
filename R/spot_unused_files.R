@@ -6,6 +6,7 @@
 #' @param script.extensions A character vector with the script extensions to be considered. Default is c("R", "Rmd", "qmd").
 #' @param archive A logical value indicating whether to archive the unused files. If \code{TRUE} the spotted files will be move into the folder "./unused_files". Default is \code{FALSE}.
 #' @param ignore.folder A character string with the path or paths to the directory(ies) to be ignored. Default is \code{NULL}.
+#' @param remove.empty A logical value indicating whether to remove empty folders after moving the unused files. Default is \code{FALSE}.
 #' @seealso \code{\link{add_to_gitignore}}, \code{\link{make_compendium}}
 #' @export
 #' @name spot_unused_files
@@ -36,7 +37,8 @@ spot_unused_files <-
                                "txt"),
            script.extensions = c("R", "Rmd", "qmd"),
            archive = FALSE,
-           ignore.folder = NULL) {
+           ignore.folder = NULL,
+           remove.empty = FALSE) {
     # List all files in the specified directory with the specified extensions
     # List all target format files
     all_files <-
@@ -50,10 +52,15 @@ spot_unused_files <-
     # Create a data frame with the results
     results <- data.frame(
       file.name = basename(all_files),
-      folder = paste0(dirname(all_files), "/"),
+      folder = if (length(all_files) > 0) paste0(dirname(all_files), "/") else all_files,
       used = used_files,
       row.names = NULL
     )
+
+    if (nrow(results) == 0) {
+      message("No files with the specified extensions were found.")
+      return(invisible(NULL))
+    }
 
     results <- results[basename(results$folder) != "unused_files",]
 
@@ -89,6 +96,22 @@ spot_unused_files <-
             warning("No files were copied")
         }
       }
+
+    # remove empty folders
+    if (remove.empty) {
+      # find empty folders
+      all_dirs <- list.dirs(path, recursive = TRUE)
+        empty_dirs <- all_dirs[sapply(all_dirs, function(x) length(list.files(x)) == 0)]
+
+        if (length(empty_dirs) > 0) {
+          message(paste("Removing", length(empty_dirs), "empty folders:"))
+          print(empty_dirs)
+        }
+
+        # remove empty folders
+        out <- sapply(empty_dirs, unlink, recursive = TRUE)
+
+    }
 
     if (nrow(results) > 0)
       return(results[, c(1, 2)])

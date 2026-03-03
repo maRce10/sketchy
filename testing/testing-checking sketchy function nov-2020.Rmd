@@ -517,13 +517,17 @@ data("compendiums")
 
 make_compendium(name = "pruebaX66636", format = "sketchy", force = TRUE, path = tempdir())
 
-spot_unused_files(path = ".")
+spot_unused_files(path = file.path(tempdir(), "pruebaX66636"), remove.empty = TRUE)
 
-spot_unused_files(path = ".", ignore.folder = c("./docs", "./testing"))
 
-write.csv(iris, "./inst/iris.jpeg")
-write.csv(iris, "./inst/2.csv")
+write.csv(iris, file.path(tempdir(),"pruebaX66636/data/iris.jpeg"))
+write.csv(iris, file.path(tempdir(),"pruebaX66636/data/iris.jpeg"))
 
+
+spot_unused_files(path = file.path(tempdir(), "pruebaX66636"))
+
+
+spot_unused_files(path = file.path(tempdir(), "pruebaX66636"), remove.empty = TRUE)
 
 spot_unused_files(path = ".", ignore.folder = c("./docs", "./testing"))
 

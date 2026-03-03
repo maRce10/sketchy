@@ -14,7 +14,7 @@ NeedsCompilation: no
 Suggests: 
     testthat, 
     formatR
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Repository: CRANs
 Language: en-US
 Authors@R: c(person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "marcelo.araya@ucr.ac.cr", comment = c(ORCID = "0000-0003-3594-619X")), person("Andrea Yure", "Arriaga Madrigal", role = c("aut"), email = "arriagamadrigal@gmail.com"))

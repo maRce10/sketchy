@@ -3,7 +3,7 @@ sketchy 1.0.7
 
 ### MINOR IMPROVEMENTS
 
-* `spot_unused_files()` now returns a data frame with more details about the files found
+* `spot_unused_files()` can remove empty folders
 
 sketchy 1.0.6
 =========================

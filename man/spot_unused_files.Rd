@@ -10,7 +10,8 @@ spot_unused_files(
     "xlsx", "txt"),
   script.extensions = c("R", "Rmd", "qmd"),
   archive = FALSE,
-  ignore.folder = NULL
+  ignore.folder = NULL,
+  remove.empty = FALSE
 )
 }
 \arguments{
@@ -23,6 +24,8 @@ spot_unused_files(
 \item{archive}{A logical value indicating whether to archive the unused files. If \code{TRUE} the spotted files will be move into the folder "./unused_files". Default is \code{FALSE}.}
 
 \item{ignore.folder}{A character string with the path or paths to the directory(ies) to be ignored. Default is \code{NULL}.}
+
+\item{remove.empty}{A logical value indicating whether to remove empty folders after moving the unused files. Default is \code{FALSE}.}
 }
 \value{
 Returns a data frame with 2 columns: file.name (self explanatory) and folder (where the file is found).
