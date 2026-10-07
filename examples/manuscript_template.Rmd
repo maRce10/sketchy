@@ -23,32 +23,36 @@ editor_options:
 
 ```{r load packages, echo = FALSE, message = FALSE, warning=FALSE}
 
-# github packages must include user name ("user/package")
-# knitr is require for creating html/pdf/word reports
-# kableExtra is used to print pretty formatted tables 
-# formatR is used for soft-wrapping code
-# klippy is used for adding a copy button to each code block
-pkgs <- c("kableExtra", "knitr", "rprojroot", "sciRmdTheme", "rmdwc", "whereami",  "RefManageR", "bibtex")
+# packages to use: CRAN name, "bioc::package" for Bioconductor,
+# "user/repo" for GitHub (e.g. "maRce10/Rraven")
+# knitr is required for creating html/pdf/word reports
+# kableExtra is used to print pretty formatted tables
+# sciRmdTheme sets the document theme
+# rmdwc counts words, RefManageR and bibtex handle references
+packages <- c("kableExtra", "knitr", "rprojroot", "sciRmdTheme", "rmdwc", "whereami", "RefManageR", "bibtex")
 
-# install/ load packages
-out <- lapply(pkgs, function(y) {
-  
-  # get pakage name
-  pkg <- strsplit(y, "/")[[1]]
-  pkg <- pkg[length(pkg)]
-  
-  # check if installed, if not then install 
-  if (!pkg %in% installed.packages()[,"Package"])  {
+# package names (specification without source prefix or version)
+# note: won't work if a GitHub repo name differs from its package name
+package_names <- sub(".*[/:]", "", sub("@.*$", "", packages))
 
-      if (grepl("/", y))  remotes::install_github(y, force = TRUE) else
-    install.packages(y) 
-    }
+# install missing packages (with pak)
+missing <- !vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+if (any(missing)) {
+  if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
+  try(pak::pkg_install(packages[missing]), silent = TRUE)
 
-  # load package
-  a <- try(require(pkg, character.only = T), silent = T)
+  # stop with a clear message if any package could not be installed/loaded
+  missing <- !vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+  if (any(missing))
+    stop("These packages could not be installed or loaded: ",
+         paste(packages[missing], collapse = ", "),
+         "\nIf they were just installed, restart R and render again (packages already loaded may have been updated).",
+         "\nOtherwise run pak::pkg_install(c(\"", paste(packages[missing], collapse = "\", \""),
+         "\")) to see the details", call. = FALSE)
+}
 
-  if (!a) remove.packages(pkg)
-  })
+# load packages
+invisible(lapply(package_names, library, character.only = TRUE))
 
 ```
 

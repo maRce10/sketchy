@@ -141,8 +141,8 @@
 
 # Function to list all files with specific extensions in a directory
 .list_files <- function(directory, extensions) {
-  files <- list.files(directory, pattern = paste0(paste0(".", extensions, "$"), collapse = "|"), full.names = TRUE, recursive = TRUE)
-  files <- normalizePath(files)
+  files <- list.files(directory, pattern = paste0(paste0("\\.", extensions, "$"), collapse = "|"), full.names = TRUE, recursive = TRUE)
+  files <- normalizePath(files, winslash = "/")
   return(files)
 }
 
@@ -158,3 +158,42 @@
   return(FALSE)
 }
 
+
+# write lines to a file only if it doesn't exist yet (creating its folder if needed)
+.write_if_missing <- function(lines, file) {
+  if (!file.exists(file)) {
+    .safe_dir_create(dirname(file))
+    writeLines(lines, file)
+  }
+  invisible(file)
+}
+
+# convert 'packages' (as in load_packages()) into pak package specifications and package names
+.pkg_specs <- function(packages) {
+  repos <- if (is.null(names(packages))) rep("", length(packages)) else tolower(names(packages))
+  packages <- unname(packages)
+
+  valid_repos <- c("", "cran", "github", "gitlab", "bitbucket", "bioconductor")
+  if (any(!repos %in% valid_repos))
+    .stop(paste0(
+      "invalid repository name(s): ",
+      paste(unique(repos[!repos %in% valid_repos]), collapse = ", "),
+      " (must be one of: ", paste(valid_repos[-1], collapse = ", "), ")"
+    ))
+
+  needs_user <- repos %in% c("github", "gitlab", "bitbucket") & !grepl("/", packages)
+  if (any(needs_user))
+    .stop(paste0("'", packages[needs_user][1], "' must be in the form 'user/package' for ", repos[needs_user][1]))
+
+  specs <- packages
+  specs[repos == "bioconductor"] <- paste0("bioc::", packages[repos == "bioconductor"])
+  specs[repos == "gitlab"] <- paste0("gitlab::", packages[repos == "gitlab"])
+  specs[repos == "bitbucket"] <- paste0("git::https://bitbucket.org/", packages[repos == "bitbucket"], ".git")
+
+  # package name: remove version/reference, '.git' extension and source prefix
+  pkg_names <- sub("[@#].*$", "", specs)
+  pkg_names <- sub("\\.git$", "", pkg_names)
+  pkg_names <- sub(".*[/:]", "", pkg_names)
+
+  data.frame(spec = specs, name = pkg_names, stringsAsFactors = FALSE)
+}

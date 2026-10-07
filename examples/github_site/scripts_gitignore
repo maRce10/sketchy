@@ -1,0 +1,6 @@
+/.quarto/
+/_site/
+**/*.quarto_ipynb
+**/*.rmarkdown
+**/*.knit.md
+**/*_files/

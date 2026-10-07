@@ -1,108 +1,94 @@
 #' Install and load packages
 #'
 #' \code{load_packages} installs and loads packages from different repositories.
-#' @usage load_packages(packages, quite = FALSE, upgrade.deps = FALSE)
-#' @param packages Character vector with the names of the packages to be installed. The vector names indicate the repositories from which packages will be installed. If no name is included CRAN will be used as the default repository. Available repositories are: 'cran', 'github', 'gitlab', 'bitbucket' and 'bioconductor'. Note that for 'github', 'gitlab' and 'bitbucket' the string must include the user name in the form 'user/package'.
-#' @param quite Logical argument to control if package startup messages are printed. Default is \code{FALSE} (messages are printed).
-#' @param upgrade.deps Logical argument to control if package dependencies are upgraded.Default is \code{FALSE}.
-#' @return No object is returned.
-#' @seealso \code{\link{compendiums}}, \code{\link{make_compendium}}
+#'
+#' \strong{Superseded}: this function will keep working, but it is no longer recommended. Using it in reports or scripts makes projects depend on 'sketchy'. Install packages with \code{pak::pkg_install()} and load them with \code{library()} instead (as in the templates added by \code{\link{make_compendium}}), and use \code{make_compendium(renv = TRUE)} to record the package versions used in a project. For example:
+#' \preformatted{
+#' packages <- c("kableExtra", "bioc::ggtree", "maRce10/Rraven")
+#' package_names <- sub(".*[/:]", "", sub("@.*$", "", packages))
+#' missing <- !vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+#' if (any(missing)) pak::pkg_install(packages[missing])
+#' invisible(lapply(package_names, library, character.only = TRUE))
+#' }
+#' @usage load_packages(packages, quiet = FALSE, upgrade.deps = FALSE, quite = NULL)
+#' @param packages Character vector with the packages to be installed (if missing) and loaded. Packages can be given as \href{https://pak.r-lib.org/reference/pak_package_sources.html}{pak package specifications}: a package name for CRAN (e.g. \code{"kableExtra"}), \code{"bioc::package"} for Bioconductor, \code{"user/repo"} for GitHub, \code{"gitlab::user/repo"} for GitLab or \code{"git::url"} for any git repository. Specific versions can be requested (e.g. \code{"user/repo@v1.0"} or \code{"kableExtra@1.4.0"}). Alternatively, the vector names can indicate the repository: 'cran', 'github', 'gitlab', 'bitbucket' or 'bioconductor' (for 'github', 'gitlab' and 'bitbucket' the string must be in the form 'user/package').
+#' @param quiet Logical argument to control if installation output and package startup messages are suppressed. Default is \code{FALSE} (messages are printed).
+#' @param upgrade.deps Logical argument to control if dependencies of the packages being installed are upgraded to their latest version. Default is \code{FALSE} (dependencies are only upgraded if required). Packages that are already installed are never upgraded.
+#' @param quite Deprecated. Use 'quiet' instead.
+#' @return Invisibly returns a named logical vector indicating which packages were successfully loaded.
+#' @seealso \code{\link[pak]{pkg_install}}, \code{\link{make_compendium}}
 #' @export
 #' @name load_packages
-#' @details The function installs and loads packages from different repositories in a single call.
+#' @details The function installs missing packages and loads (attaches) all packages in a single call. Packages that are already installed are just loaded (no internet connection is needed). Installation is done with \code{\link[pak]{pkg_install}} (the 'pak' package is installed from CRAN if needed). The package name to load is taken from the package specification (e.g. "Rraven" for "maRce10/Rraven"), so it won't work for repositories in which the package name differs from the repository name or the package is in a sub-folder.
 #' @examples \dontrun{
-#'load_packages(packages = c("kableExtra", bioconductor = "ggtree",
-#'github = "maRce10/Rraven"), quite = TRUE)
+#' # CRAN, Bioconductor and GitHub packages
+#' load_packages(packages = c("kableExtra", "bioc::ggtree", "maRce10/Rraven"))
+#'
+#' # same packages using vector names to indicate the repository
+#' load_packages(packages = c("kableExtra", bioconductor = "ggtree",
+#' github = "maRce10/Rraven"), quiet = TRUE)
 #' }
 #'
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
-#' @references {
-#' Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
-#' }
+#' @references
+#' Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom Research Compendiums. R package (run \code{citation("sketchy")} for the current version).
 
 load_packages <-
   function(packages,
-           quite = FALSE,
-           upgrade.deps = FALSE)
+           quiet = FALSE,
+           upgrade.deps = FALSE,
+           quite = NULL)
   {
-    # fix names
-    if (is.null(names(packages)))
-      names(packages) <- rep("", length(packages))
+    # deprecated argument
+    if (!is.null(quite)) {
+      .warning("'quite' is deprecated, use 'quiet' instead")
+      quiet <- quite
+    }
 
-    # install/ load packages
-    load_results_l <- vapply(seq_along(packages), function(x) {
-      # get package
-      user_pkg <- packages[x]
+    # get pak specifications and package names
+    pkgs <- .pkg_specs(packages)
 
-      if (grepl("/", user_pkg)) {
-        user_pkg_vector <- strsplit(user_pkg, "/")[[1]]
-        user <- user_pkg_vector[1]
-        pkg <- user_pkg_vector[2]
-      } else {
-        user <- ""
-        pkg <- user_pkg
+    # install missing packages
+    missing <- !vapply(pkgs$name, requireNamespace, logical(1), quietly = TRUE)
+    installed <- !missing
+
+    if (any(missing)) {
+      if (!requireNamespace("pak", quietly = TRUE)) {
+        .message("installing 'pak' (used to install packages)")
+        utils::install.packages("pak", quiet = quiet)
       }
 
-      # check if installed, if not then install
-      if (!pkg %in% installed.packages()[, "Package"])  {
-        # get repository
-        repo <- tolower(names(packages)[x])
-
-        if (repo == "" | repo == "cran"){
-          if ("remotes" %in% installed.packages()[, "Package"])
-          remotes::install_cran(pkgs = pkg,
-                                force = TRUE,
-                                quiet = quite,
-                                upgrade = upgrade.deps) else
-                                  install.packages(pkgs = pkg,
-                                                        force = TRUE,
-                                                        quiet = quite)
-}
-
-        if (repo == "bioconductor")
-          remotes::install_bioc(repo = pkg,
-                                force = TRUE,
-                                quite = quite,
-                                upgrade = upgrade.deps)
-
-        if (repo == "github")
-          remotes::install_github(
-            repo = paste(user, pkg, sep = "/"),
-            force = TRUE,
-            quite = quite,
-            upgrade = upgrade.deps
-          )
-
-        if (repo == "bitbucket")
-          remotes::install_bitbucket(
-            paste(user, pkg, sep = "/"),
-            force = TRUE,
-            quite = quite,
-            upgrade = upgrade.deps
-          )
-
-        if (repo == "gitlab")
-          remotes::install_gitlab(
-            paste(user, pkg, sep = "/"),
-            force = TRUE,
-            quite = quite,
-            upgrade = upgrade.deps
-          )
+      install <- function(specs) {
+        res <- try(if (quiet)
+          suppressMessages(pak::pkg_install(specs, upgrade = upgrade.deps, ask = FALSE)) else
+            pak::pkg_install(specs, upgrade = upgrade.deps, ask = FALSE),
+          silent = quiet)
+        !inherits(res, "try-error")
       }
 
-      # load package
-      result <- require(pkg, character.only = TRUE, quietly = quite)
+      # install all together and, if that fails, one by one to find out which failed
+      if (install(pkgs$spec[missing]))
+        installed[missing] <- TRUE else
+          installed[missing] <- vapply(pkgs$spec[missing], install, logical(1))
+    }
 
-      if (!result)
-        try_remove <- try(remove.packages(pkg), silent = TRUE)
+    # load packages
+    load_results_l <- vapply(seq_along(pkgs$name), function(x) {
+      if (!installed[x])
+        return(FALSE)
 
-      return(result)
-
+      if (quiet)
+        suppressPackageStartupMessages(require(pkgs$name[x], character.only = TRUE, quietly = TRUE)) else
+          require(pkgs$name[x], character.only = TRUE)
     }, FUN.VALUE = logical(1))
+
+    names(load_results_l) <- pkgs$name
 
     if (any(!load_results_l))
       .message(paste(
-        c("the following packages were not installed/loaded:"),
-        paste(packages, collapse = ", ")
+        "the following packages were not installed/loaded:",
+        paste(pkgs$name[!load_results_l], collapse = ", ")
       ))
+
+    invisible(load_results_l)
   }

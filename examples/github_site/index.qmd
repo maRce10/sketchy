@@ -1,0 +1,23 @@
+---
+title: "PROJECT_NAME"
+subtitle: "Data and code repository"
+toc: false
+---
+
+::: {.alert .alert-info}
+This site holds the analysis code and data behind the study *A study about the effect of X on Y*.
+:::
+
+::: {.alert .alert-warning}
+**Please cite the paper as:**
+
+Author 1, Author 2 & Author 3 (in prep). A study about the effect of X on Y. *Journal TBD*. DOI: TBD
+:::
+
+## Analyses
+
+-   [Analysis](analysis.qmd): short description of the analysis
+
+---
+
+Source code and data: [github.com/USER/PROJECT_NAME](https://github.com/USER/PROJECT_NAME).

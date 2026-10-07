@@ -16,7 +16,7 @@ add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path
 \item{path}{Path to the project directory. Default is current directory.}
 }
 \value{
-Prints the name of the files matching the searching parameters. If \code{add.to.ignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') would be added 'gitignore' (a file used by git to exclude files form version control, including adding them to github).
+Prints the name of the files matching the searching parameters and invisibly returns them (paths relative to 'path'). If \code{add.to.gitignore = TRUE} the files matching the search parameters ('cutoff' and/or 'extension') are added to '.gitignore' (a file used by git to exclude files from version control, including adding them to github), using their path relative to 'path'. Files already listed in '.gitignore' are not added again.
 }
 \description{
 \code{add_to_gitignore} adds entries to gitignore based on file extension or file size
@@ -41,9 +41,7 @@ path = file.path(tempdir(), "my_compendium"), extension = "csv")
 
 }
 \references{
-{
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
-}
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom Research Compendiums. R package (run \code{citation("sketchy")} for the current version).
 }
 \seealso{
 \code{\link{compendiums}}, \code{\link{make_compendium}}

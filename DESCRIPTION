@@ -5,16 +5,21 @@ Version: 1.0.7
 Maintainer: Marcelo Araya-Salas <marcelo.araya@ucr.ac.cr>
 Description: Provides functions to create and manage research compendiums for data analysis. Research compendiums are a standard and intuitive folder structure for organizing the digital materials of a research project, which can significantly improve reproducibility. The package offers several compendium structure options that fit different research project as well as the ability of duplicating the folder structure of existing projects or implementing custom structures. It also simplifies the use of version control.
 License: GPL (>= 2)
-Imports: knitr, stringi, crayon, packrat, utils, git2r, xaringanExtra, rmarkdown, remotes, cli, urlchecker, stringr
+Imports: knitr, crayon, utils, git2r, rmarkdown, cli, urlchecker, stringr
 Depends: R (>= 3.5.0)
 LazyData: TRUE
 URL: https://github.com/maRce10/sketchy
 BugReports: https://github.com/maRce10/sketchy/issues
 NeedsCompilation: no
 Suggests: 
-    testthat, 
-    formatR
-RoxygenNote: 7.3.3
+    testthat (>= 3.0.0),
+    withr,
+    formatR,
+    pak,
+    renv
+Config/testthat/edition: 3
 Repository: CRANs
 Language: en-US
+Encoding: UTF-8
 Authors@R: c(person("Marcelo", "Araya-Salas", role = c("aut", "cre"), email = "marcelo.araya@ucr.ac.cr", comment = c(ORCID = "0000-0003-3594-619X")), person("Andrea Yure", "Arriaga Madrigal", role = c("aut"), email = "arriagamadrigal@gmail.com"))
+Config/roxygen2/version: 8.0.0

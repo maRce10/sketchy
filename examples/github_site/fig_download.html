@@ -1,0 +1,29 @@
+<!-- adds a "Download" button (300 dpi image) under every figure in the page body.
+     Figures are rendered at 300 dpi (fig-dpi in _quarto.yml) and the
+     embedded images in images/ are 300 dpi already, so the link simply
+     points at the image itself. -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("main img").forEach(function (img) {
+    var src = img.getAttribute("src");
+    if (!src || src.startsWith("data:")) return;
+    // skip interactive widgets (e.g. leaflet tiles from map_locations())
+    if (img.closest(".html-widget, .leaflet-container")) return;
+
+    var link = document.createElement("a");
+    link.href = src;
+    link.download = decodeURIComponent(src.split("/").pop());
+    link.className = "fig-download-btn";
+    link.title = "Download 300 dpi image";
+    link.innerHTML = '<i class="bi bi-download"></i> Download';
+
+    var p = document.createElement("p");
+    p.className = "fig-download";
+    p.appendChild(link);
+
+    // place after the whole figure block (incl. caption) when there is one
+    var anchor = img.closest("figure, .cell-output-display, p") || img;
+    anchor.insertAdjacentElement("afterend", p);
+  });
+});
+</script>

@@ -9,12 +9,12 @@ print_skeleton(path = ".", comments = NULL, folders = NULL)
 \arguments{
 \item{path}{path to the directory to be printed. Default is current directory.}
 
-\item{comments}{A character string with the comments to be added to each folder in the graphical representation of the folder skeleton printed on the console.}
+\item{comments}{A character vector with the comments to be added to folders in the graphical representation of the folder skeleton printed on the console. If named, names must match folder paths (e.g. \code{c("data/raw" = "raw data")}) and only some folders can be commented. If unnamed, it must have one element per folder (in alphabetical order of folder paths).}
 
-\item{folders}{A character vector including the name of the sub-directories of the project.}
+\item{folders}{A character vector including the name of the sub-directories of the project. If supplied, 'path' is only used as the name of the root folder in the printed tree (e.g. \code{path = "my_project"}).}
 }
 \value{
-The folder skeleton is printed in the console.
+The folder skeleton is printed in the console. A \code{cli_tree} object (see \code{\link[cli]{tree}}) is returned invisibly.
 }
 \description{
 \code{print_skeleton} prints the folder structure of a research compendium.
@@ -26,16 +26,15 @@ The function prints the folder structure of an existing project.
 {
 data(compendiums)
 
-make_compendium(name = "my_other_compendium", path = tempdir(), format = "basic")
+make_compendium(name = "my_other_compendium", path = tempdir(), format = "basic",
+force = TRUE)
 
-print_skeleton(path = file.path(tempdir(), "mycompendium"))
+print_skeleton(path = file.path(tempdir(), "my_other_compendium"))
 }
 
 }
 \references{
-{
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
-}
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom Research Compendiums. R package (run \code{citation("sketchy")} for the current version).
 }
 \seealso{
 \code{\link{compendiums}}, \code{\link{make_compendium}}

@@ -49,29 +49,6 @@ if (file.exists("./.git/config")){
 
 ```
 
-```{r setup style, echo = FALSE, message = FALSE, warning=FALSE}
-
-# options to customize chunk outputs
-knitr::opts_chunk$set(
-  class.source = "numberLines lineAnchors", # for code line numbers
-  tidy.opts = list(width.cutoff = 65), 
-  tidy = TRUE,
-  message = FALSE
- )
-
-# to add copy button to code blocks
-htmltools::tagList(
-  xaringanExtra::use_clipboard(
-    button_text = "<i class=\"fa fa-clipboard\"></i>",
-    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
-    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
-  ),
-  rmarkdown::html_dependency_font_awesome()
-)
-
-```
-
-
 <!-- skyblue box -->
 <div class="alert alert-info">
 
@@ -86,17 +63,104 @@ htmltools::tagList(
 &nbsp; 
 
 
-```{r load packages}
+```{r load packages, message = FALSE}
 
-# github packages must include user name ("user/package")
-# knitr is require for creating html/pdf/word reports
+# packages to use: CRAN name, "bioc::package" for Bioconductor,
+# "user/repo" for GitHub (e.g. "maRce10/Rraven")
+# knitr is required for creating html/pdf/word reports
 # formatR is used for soft-wrapping code
-# xaringanExtra::use_clipboard is used for adding a copy button to each code block
+packages <- c("kableExtra", "knitr", "formatR", "rprojroot")
 
-# install/ load packages
-sketchy::load_packages(packages = c("kableExtra", "knitr", "formatR", "rprojroot", "xaringanExtra"))
+# package names (specification without source prefix or version)
+# note: won't work if a GitHub repo name differs from its package name
+package_names <- sub(".*[/:]", "", sub("@.*$", "", packages))
+
+# install missing packages (with pak)
+missing <- !vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+if (any(missing)) {
+  if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
+  try(pak::pkg_install(packages[missing]), silent = TRUE)
+
+  # stop with a clear message if any package could not be installed/loaded
+  missing <- !vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+  if (any(missing))
+    stop("These packages could not be installed or loaded: ",
+         paste(packages[missing], collapse = ", "),
+         "\nIf they were just installed, restart R and render again (packages already loaded may have been updated).",
+         "\nOtherwise run pak::pkg_install(c(\"", paste(packages[missing], collapse = "\", \""),
+         "\")) to see the details", call. = FALSE)
+}
+
+# load packages
+invisible(lapply(package_names, library, character.only = TRUE))
 
 ```
+
+```{r setup style, echo = FALSE, message = FALSE, warning=FALSE}
+
+# options to customize chunk outputs
+knitr::opts_chunk$set(
+  class.source = "numberLines lineAnchors", # for code line numbers
+  tidy = TRUE, # soft-wrap code in output
+  tidy.opts = list(width.cutoff = 65), # width cutoff for soft-wrapping code
+  message = FALSE # hide package startup and other messages
+ )
+
+# font awesome icons for the copy button of code blocks (see script below)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+```
+
+<!-- add a copy button to each code block -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var icons = {
+    copy: '<i class="fa fa-clipboard"></i>',
+    done: '<i class="fa fa-check" style="color: #90BE6D"></i>',
+    fail: '<i class="fa fa-times-circle" style="color: #F94144"></i>'
+  };
+
+  // fallback when the clipboard API is not available or not allowed
+  function copyFallback(text) {
+    var area = document.createElement("textarea");
+    area.value = text;
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(area);
+    return ok ? Promise.resolve() : Promise.reject();
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext)
+      return navigator.clipboard.writeText(text).catch(function () { return copyFallback(text); });
+    return copyFallback(text);
+  }
+
+  document.querySelectorAll("pre.sourceCode, pre.r").forEach(function (pre) {
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "copy-code-btn";
+    button.title = "Copy code";
+    button.innerHTML = icons.copy;
+    button.addEventListener("click", function () {
+      var code = pre.querySelector("code") || pre;
+      copyText(code.innerText).then(
+        function () { button.innerHTML = icons.done; },
+        function () { button.innerHTML = icons.fail; }
+      );
+      setTimeout(function () { button.innerHTML = icons.copy; }, 2000);
+    });
+    // add button to the (non-scrolling) code block container
+    var box = pre.parentElement.classList.contains("sourceCode") ? pre.parentElement : pre;
+    box.classList.add("has-copy-btn");
+    box.appendChild(button);
+  });
+});
+</script>
 
 <!-- light brown box -->
 <div class="alert alert-warning">

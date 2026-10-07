@@ -27,12 +27,12 @@ make_compendium(name = "my_compendium", path = tempdir(),
 format = "basic", force = TRUE)
 
 # check urls in scripts
-check_urls(path = file.path(tempdir(), "./scripts"))
+check_urls(path = file.path(tempdir(), "my_compendium", "scripts"))
 }
 
 }
 \references{
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom Research Compendiums. R package (run \code{citation("sketchy")} for the current version).
 
 Xiao, N. (2023). A General-Purpose Link Checker for R Markdown and Quarto Projects. Blog post. https://nanx.me/blog/post/rmarkdown-quarto-link-checker/
 }

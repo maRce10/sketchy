@@ -2,16 +2,17 @@ sketchy: create custom research compendiums
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-[![Dependencies](https://tinyverse.netlify.com/badge/sketchy)](https://cran.r-project.org/package=sketchy)
+[![Dependencies](https://tinyverse.netlify.app/badge/sketchy)](https://cran.r-project.org/package=sketchy)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Licence](https://img.shields.io/badge/https://img.shields.io/badge/licence-GPL--2-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Licence](https://img.shields.io/badge/licence-GPL%20%28%3E%3D%202%29-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![minimal R
-version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)
+version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.7-orange.svg?style=flat-square)](commits/develop)[![Last-changedate](https://img.shields.io/badge/last%20change-2026--10--07-yellowgreen.svg)](/commits/master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)
@@ -25,13 +26,11 @@ provide a easily recognizable means for organizing digital materials,
 allowing other researchers to inspect, reproduce, and build upon that
 research.
 
-<!-- Unlike other packages for setting up research compendiums, `sketchy` has very simple functionality. Hence, users can focus on the research project itself rather than on learning how to use a new R package. -->
-
 Unlike other R packages for creating research compendiums
 (e.g. [vertical](https://github.com/CrumpLab/vertical),
 [rrtools](https://github.com/benmarwick/rrtools)), `sketchy` isn’t
 wedded to a particular folder structure. Currently the package provides
-14 alternative structures (see object `compendiums`) and allows users to
+15 alternative structures (see object `compendiums`) and allows users to
 modify or input their own structures.
 
 To install the latest developmental version from
@@ -65,13 +64,12 @@ data(compendiums)
 make_compendium(name = "proyect_x", path = path, format = "basic")
 ## Creating directories ...
 ## proyect_x
-## │   
-## ├── data/  
-## │   ├── processed/  # modified/rearranged data
-## │   └── raw/  # original data
-## ├── manuscript/  # manuscript/poster figures
-## ├── output/  # all non-data products of data analysis
-## └── scripts/  # code
+## ├─data/
+## │ ├─processed/ # modified/rearranged data
+## │ └─raw/ # original data
+## ├─manuscript/ # manuscript/poster figures
+## ├─output/ # all non-data products of data analysis
+## └─scripts/ # code
 ## Done.
 ```
 
@@ -90,13 +88,12 @@ example we use the structured suggested by Wilson *et al.* (2017):
 make_compendium(name = "proyect_z", path = path, format = "large_compendium")
 ## Creating directories ...
 ## proyect_z
-## │   
-## ├── analysis/  # Data, scripts, RMarkdown reports and Makefile
-## │   ├── data/  # Raw data in open formats, not changed once created
-## │   └── scripts/  # R code used to analyse and visualise data
-## ├── man/  # Auto-generated documentation for the custom R functions
-## ├── R/  # Custom R functions used repeatedly throughout the project
-## └── tests/  # Unit tests of R functions to ensure they perform as expected
+## ├─analysis/ # Data, scripts, RMarkdown reports and Makefile
+## │ ├─data/ # Raw data in open formats, not changed once created
+## │ └─scripts/ # R code used to analyse and visualise data
+## ├─man/ # Auto-generated documentation for the custom R functions
+## ├─R/ # Custom R functions used repeatedly throughout the project
+## └─tests/ # Unit tests of R functions to ensure they perform as expected
 ## Done.
 ```
 
@@ -112,170 +109,153 @@ We can check all compendium structure available as follows:
 
 for (i in 1:length(compendiums)) {
     print("---------------", quote = FALSE)
-    print(names(compendiums)[i], quote = FALSE)
-    print_skeleton(folders = compendiums[[i]]$skeleton)
+    print_skeleton(path = names(compendiums)[i], folders = compendiums[[i]]$skeleton)
 }
 ## [1] ---------------
-## [1] basic
-## .
-## │   
-## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## └── scripts/  
+## basic
+## ├─data/
+## │ ├─processed/
+## │ └─raw/
+## ├─manuscript/
+## ├─output/
+## └─scripts/
 ## [1] ---------------
-## [1] figures
-## .
-## │   
-## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## │   └── figures/  
-## │       ├── exploratory/  
-## │       └── final/  
-## └── scripts/  
+## figures
+## ├─data/
+## │ ├─processed/
+## │ └─raw/
+## ├─manuscript/
+## ├─output/
+## │ └─figures/
+## │   ├─exploratory/
+## │   └─final/
+## └─scripts/
 ## [1] ---------------
-## [1] project_template
-## .
-## │   
-## ├── cache/  
-## ├── config/  
-## ├── data/  
-## ├── diagnostics/  
-## ├── docs/  
-## ├── graphs/  
-## ├── lib/  
-## ├── logs/  
-## ├── munge/  
-## ├── profiling/  
-## ├── reports/  
-## ├── src/  
-## └── tests/  
+## project_template
+## ├─cache/
+## ├─config/
+## ├─data/
+## ├─diagnostics/
+## ├─docs/
+## ├─graphs/
+## ├─lib/
+## ├─logs/
+## ├─munge/
+## ├─profiling/
+## ├─reports/
+## ├─src/
+## └─tests/
 ## [1] ---------------
-## [1] pakillo
-## .
-## │   
-## ├── analyses/  
-## ├── data/  
-## ├── data-raw/  
-## ├── docs/  
-## ├── inst/  
-## ├── man/  
-## ├── manuscript/  
-## ├── R/  
-## └── tests/  
+## pakillo
+## ├─analyses/
+## ├─data/
+## ├─data-raw/
+## ├─docs/
+## ├─inst/
+## ├─man/
+## ├─manuscript/
+## ├─R/
+## └─tests/
 ## [1] ---------------
-## [1] boettiger
-## .
-## │   
-## ├── man/  
-## ├── R/  
-## ├── tests/  
-## └── vignettes/  
+## boettiger
+## ├─man/
+## ├─R/
+## ├─tests/
+## └─vignettes/
 ## [1] ---------------
-## [1] wilson
-## .
-## │   
-## ├── data/  
-## ├── doc/  
-## ├── requirements/  
-## ├── results/  
-## └── src/  
+## wilson
+## ├─data/
+## ├─doc/
+## ├─requirements/
+## ├─results/
+## └─src/
 ## [1] ---------------
-## [1] small_compendium
-## .
-## │   
-## ├── analysis/  
-## └── data/  
+## small_compendium
+## ├─analysis/
+## └─data/
 ## [1] ---------------
-## [1] medium_compendium
-## .
-## │   
-## ├── analysis/  
-## ├── data/  
-## ├── man/  
-## └── R/  
+## medium_compendium
+## ├─analysis/
+## ├─data/
+## ├─man/
+## └─R/
 ## [1] ---------------
-## [1] large_compendium
-## .
-## │   
-## ├── analysis/  
-## │   ├── data/  
-## │   └── scripts/  
-## ├── man/  
-## ├── R/  
-## └── tests/  
+## large_compendium
+## ├─analysis/
+## │ ├─data/
+## │ └─scripts/
+## ├─man/
+## ├─R/
+## └─tests/
 ## [1] ---------------
-## [1] vertical
-## .
-## │   
-## ├── data/  
-## ├── data-raw/  
-## ├── docs/  
-## ├── experiments/  
-## ├── man/  
-## ├── manuscripts/  
-## ├── model/  
-## ├── posters/  
-## ├── R/  
-## ├── slides/  
-## └── vignettes/  
+## vertical
+## ├─data/
+## ├─data-raw/
+## ├─docs/
+## ├─experiments/
+## ├─man/
+## ├─manuscripts/
+## ├─model/
+## ├─posters/
+## ├─R/
+## ├─slides/
+## └─vignettes/
 ## [1] ---------------
-## [1] rrtools
-## .
-## │   
-## ├── analysis/  
-## ├── data/  
-## ├── figures/  
-## ├── paper/  
-## └── templates/  
+## rrtools
+## ├─analysis/
+## ├─data/
+## ├─figures/
+## ├─paper/
+## └─templates/
 ## [1] ---------------
-## [1] rdir
-## .
-## │   
-## ├── code/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── data/  
-## │   ├── clean/  
-## │   └── raw/  
-## ├── figures/  
-## │   ├── exploratory/  
-## │   └── final/  
-## └── text/  
-##     ├── final/  
-##     └── notes/  
+## rdir
+## ├─code/
+## │ ├─processed/
+## │ └─raw/
+## ├─data/
+## │ ├─clean/
+## │ └─raw/
+## ├─figures/
+## │ ├─exploratory/
+## │ └─final/
+## └─text/
+##   ├─final/
+##   └─notes/
 ## [1] ---------------
-## [1] workflowr
-## .
-## │   
-## ├── analysis/  
-## ├── code/  
-## ├── data/  
-## ├── docs/  
-## └── output/  
+## workflowr
+## ├─analysis/
+## ├─code/
+## ├─data/
+## ├─docs/
+## └─output/
 ## [1] ---------------
-## [1] sketchy
-## .
-## │   
-## ├── data/  
-## │   ├── processed/  
-## │   └── raw/  
-## ├── manuscript/  
-## ├── output/  
-## └── scripts/
+## sketchy
+## ├─data/
+## │ ├─processed/
+## │ └─raw/
+## ├─manuscript/
+## ├─output/
+## └─scripts/
+## [1] ---------------
+## github_site
+## ├─.github/
+## │ └─workflows/
+## ├─archive/
+## ├─data/
+## │ ├─processed/
+## │ └─raw/
+## ├─manuscript/
+## ├─output/
+## └─scripts/
 ```
 
 ------------------------------------------------------------------------
 
 Please cite [sketchy](https://marce10.github.io/sketchy/) as follows:
 
-Araya-Salas, M., Willink, B., Arriaga, A. (2020), *sketchy: research
-compendiums for data analysis in R*. R package version 1.0.0.
+Araya-Salas M, Arriaga Madrigal A (2026). *sketchy: Create Custom
+Research Compendiums*. R package version 1.0.7,
+<https://github.com/maRce10/sketchy>.
 
 # References
 

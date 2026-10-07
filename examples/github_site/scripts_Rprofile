@@ -1,0 +1,10 @@
+# activate the project's renv library when R is started within 'scripts/'
+# (e.g. when quarto renders the site), as R only reads the '.Rprofile' of the
+# directory where it starts
+if (file.exists("../renv/activate.R")) {
+  local({
+    owd <- setwd("..")
+    on.exit(setwd(owd))
+    source("renv/activate.R")
+  })
+}

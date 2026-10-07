@@ -11,8 +11,11 @@
 \details{
 The main features of the package are:
   \itemize{
-  \item Creation of (customized) folder structure
+  \item Creation of (customized) folder structures, including templates for analysis reports (Rmarkdown/quarto) and manuscripts
+  \item Creation of projects published as websites on GitHub Pages (format "github_site")
+  \item Recording package versions with renv
   \item Simplify the inclusion of big data files with version control software and online collaborative platforms (e.g. github)
+  \item Spotting/archiving unused files and checking urls in dynamic reports
   }
 
 License: GPL (>= 2)
@@ -26,7 +29,7 @@ Useful links:
 
 }
 \author{
-Marcelo Araya-Salas, Beatriz Willink & Andrea Arriaga
+Marcelo Araya-Salas & Andrea Yure Arriaga Madrigal
 
   Maintainer: Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})
 }

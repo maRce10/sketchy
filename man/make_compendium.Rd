@@ -6,7 +6,7 @@
 \usage{
 make_compendium(name = "research_compendium", path = ".", force = FALSE,
 format = "basic", packrat = FALSE,
-git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
+git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE, renv = FALSE)
 }
 \arguments{
 \item{name}{character string: the research compendium directory name. No special characters should be used. Default is "research_compendium".}
@@ -17,24 +17,36 @@ git = FALSE, clone = NULL, readme = TRUE, Rproj = FALSE)
 
 \item{format}{A character vector of length 1 with the name of the built-in compendiums available in the example object `compendiums` (see \code{\link{compendiums}} for available formats). Default is 'basic'. Alternatively, it can be a character vector with 2 or more elements with the names of the folders and subfolders to be included (e.g. \code{c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2")}).}
 
-\item{packrat}{Logical to control if packrat is initialized (\code{packrat::init()}) when creating the compendium. Default is \code{FALSE}.}
+\item{packrat}{Deprecated (packrat has been superseded by renv). Use 'renv' instead.}
 
 \item{git}{Logical to control if a git repository is initialized (\code{git2r::init()}) when creating the compendium. Default is \code{FALSE}.}
 
-\item{clone}{Path to a directory containing a folder structure to be cloned. Default is \code{NULL}. If provided 'format' is ignored. Folders starting with \code{^\\.git|^\.Rproj.user|^\\.\\.Rcheck} will be ignored.}
+\item{clone}{Path to a directory containing a folder structure to be cloned. Default is \code{NULL}. If provided 'format' is ignored. The folders '.git', '.Rproj.user', '..Rcheck' and '.quarto' (and their sub-folders) are ignored.}
 
 \item{readme}{Logical. Controls if a readme file (in Rmd format) is added to the project. The file has predefined fields for documenting objectives and current status of the project. Default is \code{TRUE}.}
 
 \item{Rproj}{Logical. If \code{TRUE} a R project is created (i.e. a .Rproj file is saved in the main project directory).}
+
+\item{renv}{Logical to control if \href{https://rstudio.github.io/renv/}{renv} is initialized (\code{renv::init()}) when creating the compendium. renv records the exact version of the packages used in the project (in the 'renv.lock' file) so they can be restored later or by other users with \code{renv::restore()}. renv is set to record all packages installed in the project library (\code{renv::settings$snapshot.type("all")}), so packages installed by the templates' package lists are recorded when running \code{renv::snapshot()}. The project is not activated in the current R session (it is activated when the project is opened in a new R session). Default is \code{FALSE}.}
 }
 \value{
-A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. If the compendium format includes a "manuscript" or "doc(s)" folder the function saves a manuscript template in Rmarkdown format ("manuscript.Rmd"), a BibTex file ("example_library.bib", for showing how to add citations) and APA citation style file ("apa.csl") inside that folder.
+A folder skeleton for a research compendium. In addition the structure of the compendium is printed in the console. Template files are also added depending on the format (existing files are never overwritten):
+\itemize{
+ \item If the compendium includes a "manuscript" folder: a manuscript template in Rmarkdown format ("manuscript.Rmd"), a BibTex file ("references.bib", for showing how to add citations) and an APA citation style file ("apa.csl").
+ \item \code{format = "sketchy"}: analysis templates in Rmarkdown ("analysis_template_rmarkdown.Rmd") and quarto ("analysis_template_quarto.qmd") format, with their style files ("rmd.css" and "qmd.css"), in the "scripts" folder.
+ \item \code{format = "github_site"}: a quarto website in the "scripts" folder and a GitHub action to publish it (see details).
+ \item \code{readme = TRUE}: "README.Rmd" (and its rendered "README.md").
+ \item \code{Rproj = TRUE}: an R project file ("name.Rproj").
+ \item \code{renv = TRUE}: renv files ("renv.lock", ".Rprofile" and "renv" folder).
+}
 }
 \description{
 \code{make_compendium} generates the folder structure of a research compendium.
 }
 \details{
 The function takes predefined folder structures to generate the directory skeleton of a research compendium.
+
+The format "github_site" sets up a project that is published as a website on GitHub Pages (see \url{https://github.com/maRce10/suwo_publication} for an example). The 'scripts' folder is a quarto website ('_quarto.yml', 'index.qmd' home page and 'analysis.qmd' analysis template) and '.github/workflows/publish.yml' contains a GitHub action that renders and publishes the site every time changes are pushed to the 'main' (or 'master') branch. Pages rendered locally are not re-run on GitHub: their results are taken from the 'scripts/_freeze' folder (\code{execute: freeze: true}), which must be committed. Without renv, only the packages needed to replay these results are installed on GitHub, so the site must be rendered locally ('quarto render' within 'scripts/') before pushing. With \code{renv = TRUE} the packages recorded in 'renv.lock' are installed on GitHub, so pages that have not been rendered locally are run there (data used must be committed too). In this case a 'scripts/.Rprofile' file is added so renv is also activated when quarto renders the site from the 'scripts' folder. To publish the site, push the project to GitHub and set 'Source' to 'GitHub Actions' in the repository Settings > Pages. Note that \href{https://quarto.org}{quarto} must be installed.
 }
 \examples{
 {
@@ -44,6 +56,10 @@ data(compendiums)
 make_compendium(name = "mycompendium", path = tempdir(), format = "basic",
 force = TRUE)
 
+# quarto website to be published on GitHub Pages
+make_compendium(name = "my_site_compendium", path = tempdir(),
+ format = "github_site", force = TRUE)
+
 # custom format
 make_compendium(name = "my_second_compendium", path = tempdir(),
  format = c("folder_1", "folder_1/subfolder_1", "folder_1/subfolder_2"),
@@ -52,13 +68,11 @@ make_compendium(name = "my_second_compendium", path = tempdir(),
 
 }
 \references{
-{
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom Research Compendiums. R package (run \code{citation("sketchy")} for the current version).
 
 Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging Data Analytical Work Reproducibly Using R (and Friends). American Statistician, 72(1), 80-88.
 
 Alston, J., & Rick, J. (2020). A Beginners Guide to Conducting Reproducible Research.
-}
 }
 \seealso{
 \code{\link{compendiums}}, \code{\link{print_skeleton}}

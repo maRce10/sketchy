@@ -1,6 +1,6 @@
 #' List with compendium skeletons
 #'
-#' @format A list with 14 compendium formats: \describe{
+#' @format A list with 15 compendium formats: \describe{
 #'  \item{basic}{basic sketchy format}
 #'  \item{figures}{similar to basic, but including output/figures folders}
 #'  \item{project_template}{following Kenton White's \href{http://projecttemplate.net/index.html}{ProjectTemplate}}
@@ -15,14 +15,15 @@
 #'  \item{rdir}{following folder structure described on at a r-dir blog post (although seems like it was removed)}
 #'  \item{workflowr}{following Blischak \emph{et al.} (2019) \href{https://workflowr.github.io/workflowr/}{R package workflowr}}
 #'  \item{sketchy}{same skeleton than 'basic' but including a custom Rmarkdown and quarto files for documenting data analyses}
+#'  \item{github_site}{quarto website published on GitHub Pages through a GitHub action (as in \href{https://github.com/maRce10/suwo_publication}{this repo}), including 'manuscript' and 'archive' folders (see \code{\link{make_compendium}})}
 #' }
 #'
-#' @description \code{compendiums} is a list containing the format of 14  different project folder skeletons. For each format 3 elements are provided: `$skeleton` (folder structure), `$comments` and `$info` (reference to the original source).
+#' @description \code{compendiums} is a list containing the format of 15 different project folder skeletons. For each format 3 elements are provided: `$skeleton` (folder structure), `$comments` and `$info` (reference to the original source).
 #'
 #'
 #' @usage data(compendiums)
 #'
-#'@references {
+#'@references
 #'
 #'  Blischak, J. D., Carbonetto, P., & Stephens, M. 2019. \emph{Creating and sharing reproducible research code the workflowr way}. F1000Research, 8.
 #'
@@ -34,6 +35,5 @@
 #'
 #'  Wilson G, Bryan J, Cranston K, Kitzes J, Nederbragt L. & Teal, T. K.. 2017. \emph{Good enough practices in scientific computing}. PLOS Computational Biology 13(6): e1005510.
 #'
-#'}
 #'
 "compendiums"

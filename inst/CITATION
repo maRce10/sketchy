@@ -1,0 +1,17 @@
+year <- if (!is.null(meta$`Date/Publication`)) sub("-.*", "", meta$`Date/Publication`) else format(Sys.Date(), "%Y")
+
+bibentry(
+  bibtype = "Manual",
+  title = "sketchy: Create Custom Research Compendiums",
+  author = c(
+    person("Marcelo", "Araya-Salas"),
+    person("Andrea Yure", "Arriaga Madrigal")
+  ),
+  year = year,
+  note = paste("R package version", meta$Version),
+  url = "https://github.com/maRce10/sketchy",
+  textVersion = paste0(
+    "Araya-Salas, M., & Arriaga Madrigal, A. Y. (", year, "). sketchy: Create Custom Research Compendiums. ",
+    "R package version ", meta$Version, ". https://github.com/maRce10/sketchy"
+  )
+)

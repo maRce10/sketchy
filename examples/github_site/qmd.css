@@ -88,50 +88,41 @@ table p {
 h1.title {
   font-weight: bold;
   font-size: 180%;
-  text-align: center
 }
 
-h2.subtitle {
-  font-size: 120%;
-  text-align: center
+.fig-download {
+    margin-top: 4px;
 }
 
-h3.subtitle {
-  font-size: 120%;
-  text-align: center
-}
-
-h4.author {
-  font-size: 120%;
-  text-align: center
-}
-
-h4.date {
-  font-size: 120%;
-  text-align: center
-}
-
-/* copy button of code blocks (added by the script in the Rmarkdown template) */
-.has-copy-btn {
-    position: relative;
-}
-
-.copy-code-btn {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    padding: 1px 6px;
+.fig-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 9px;
     font-size: 13px;
     color: #34699A;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    opacity: 0;
-    transition: opacity 0.15s ease;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    text-decoration: none;
 }
 
-.has-copy-btn:hover > .copy-code-btn,
-.copy-code-btn:focus {
-    opacity: 1;
-    border-color: currentColor;
+.fig-download-btn:hover {
+    background-color: #34699A;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* small ORCID iD badge after author names (index.qmd citation) */
+a.orcid {
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    margin-left: 3px;
+    vertical-align: -0.05em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23A6CE39'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-size='16' font-weight='bold' fill='%23fff'%3EiD%3C/text%3E%3C/svg%3E") no-repeat center / contain;
+    transition: transform 0.15s ease;
+}
+
+a.orcid:hover {
+    transform: scale(1.25);
 }

@@ -4,38 +4,51 @@
 \alias{load_packages}
 \title{Install and load packages}
 \usage{
-load_packages(packages, quite = FALSE, upgrade.deps = FALSE)
+load_packages(packages, quiet = FALSE, upgrade.deps = FALSE, quite = NULL)
 }
 \arguments{
-\item{packages}{Character vector with the names of the packages to be installed. The vector names indicate the repositories from which packages will be installed. If no name is included CRAN will be used as the default repository. Available repositories are: 'cran', 'github', 'gitlab', 'bitbucket' and 'bioconductor'. Note that for 'github', 'gitlab' and 'bitbucket' the string must include the user name in the form 'user/package'.}
+\item{packages}{Character vector with the packages to be installed (if missing) and loaded. Packages can be given as \href{https://pak.r-lib.org/reference/pak_package_sources.html}{pak package specifications}: a package name for CRAN (e.g. \code{"kableExtra"}), \code{"bioc::package"} for Bioconductor, \code{"user/repo"} for GitHub, \code{"gitlab::user/repo"} for GitLab or \code{"git::url"} for any git repository. Specific versions can be requested (e.g. \code{"user/repo@v1.0"} or \code{"kableExtra@1.4.0"}). Alternatively, the vector names can indicate the repository: 'cran', 'github', 'gitlab', 'bitbucket' or 'bioconductor' (for 'github', 'gitlab' and 'bitbucket' the string must be in the form 'user/package').}
 
-\item{quite}{Logical argument to control if package startup messages are printed. Default is \code{FALSE} (messages are printed).}
+\item{quiet}{Logical argument to control if installation output and package startup messages are suppressed. Default is \code{FALSE} (messages are printed).}
 
-\item{upgrade.deps}{Logical argument to control if package dependencies are upgraded.Default is \code{FALSE}.}
+\item{upgrade.deps}{Logical argument to control if dependencies of the packages being installed are upgraded to their latest version. Default is \code{FALSE} (dependencies are only upgraded if required). Packages that are already installed are never upgraded.}
+
+\item{quite}{Deprecated. Use 'quiet' instead.}
 }
 \value{
-No object is returned.
+Invisibly returns a named logical vector indicating which packages were successfully loaded.
 }
 \description{
 \code{load_packages} installs and loads packages from different repositories.
 }
 \details{
-The function installs and loads packages from different repositories in a single call.
+\strong{Superseded}: this function will keep working, but it is no longer recommended. Using it in reports or scripts makes projects depend on 'sketchy'. Install packages with \code{pak::pkg_install()} and load them with \code{library()} instead (as in the templates added by \code{\link{make_compendium}}), and use \code{make_compendium(renv = TRUE)} to record the package versions used in a project. For example:
+\preformatted{
+packages <- c("kableExtra", "bioc::ggtree", "maRce10/Rraven")
+package_names <- sub(".*[/:]", "", sub("@.*$", "", packages))
+missing <- !vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+if (any(missing)) pak::pkg_install(packages[missing])
+invisible(lapply(package_names, library, character.only = TRUE))
+}
+
+The function installs missing packages and loads (attaches) all packages in a single call. Packages that are already installed are just loaded (no internet connection is needed). Installation is done with \code{\link[pak]{pkg_install}} (the 'pak' package is installed from CRAN if needed). The package name to load is taken from the package specification (e.g. "Rraven" for "maRce10/Rraven"), so it won't work for repositories in which the package name differs from the repository name or the package is in a sub-folder.
 }
 \examples{
 \dontrun{
+# CRAN, Bioconductor and GitHub packages
+load_packages(packages = c("kableExtra", "bioc::ggtree", "maRce10/Rraven"))
+
+# same packages using vector names to indicate the repository
 load_packages(packages = c("kableExtra", bioconductor = "ggtree",
-github = "maRce10/Rraven"), quite = TRUE)
+github = "maRce10/Rraven"), quiet = TRUE)
 }
 
 }
 \references{
-{
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
-}
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom Research Compendiums. R package (run \code{citation("sketchy")} for the current version).
 }
 \seealso{
-\code{\link{compendiums}}, \code{\link{make_compendium}}
+\code{\link[pak]{pkg_install}}, \code{\link{make_compendium}}
 }
 \author{
 Marcelo Araya-Salas (\email{marcelo.araya@ucr.ac.cr})

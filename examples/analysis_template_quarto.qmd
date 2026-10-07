@@ -48,19 +48,6 @@ if (file.exists("./.git/config")){
 
 ```
 
-```{r setup style}
-#| message: false
-#| warning: false
-
-# options to customize chunk outputs
-knitr::opts_chunk$set(
-  tidy.opts = list(width.cutoff = 65), 
-  tidy = TRUE,
-  message = FALSE
- )
-
-```
-
 <!-- skyblue box -->
 
 ::: {.alert .alert-info}
@@ -71,7 +58,6 @@ knitr::opts_chunk$set(
 -   The second goal of this report
 :::
 
- 
 
 <!-- light brown box -->
 
@@ -84,7 +70,6 @@ knitr::opts_chunk$set(
     -   [Takeaways](#takeaways)
 :::
 
- 
 
 # Analysis flowchart {.unnumbered .unlisted}
 
@@ -106,19 +91,49 @@ style D fill:#60CEAC33
 # Load packages {.unnumbered .unlisted}
 
 ```{r load packages}
+#| message: false
 
-# knitr is require for creating html/pdf/word reports
+# packages to use: CRAN name, "bioc::package" for Bioconductor,
+# "user/repo" for GitHub (e.g. "maRce10/Rraven")
+# knitr is required for creating html/pdf/word reports
 # formatR is used for soft-wrapping code
-
-# install knitr package if not installed
-if (!requireNamespace("sketchy", quietly = TRUE)) {
-  install.packages("sketchy")
-}
-
 packages <- c("knitr", "formatR")
 
-# install/ load packages
-sketchy::load_packages(packages = packages)
+# package names (specification without source prefix or version)
+# note: won't work if a GitHub repo name differs from its package name
+package_names <- sub(".*[/:]", "", sub("@.*$", "", packages))
+
+# install missing packages (with pak)
+missing <- !vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+if (any(missing)) {
+  if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
+  try(pak::pkg_install(packages[missing]), silent = TRUE)
+
+  # stop with a clear message if any package could not be installed/loaded
+  missing <- !vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+  if (any(missing))
+    stop("These packages could not be installed or loaded: ",
+         paste(packages[missing], collapse = ", "),
+         "\nIf they were just installed, restart R and render again (packages already loaded may have been updated).",
+         "\nOtherwise run pak::pkg_install(c(\"", paste(packages[missing], collapse = "\", \""),
+         "\")) to see the details", call. = FALSE)
+}
+
+# load packages
+invisible(lapply(package_names, library, character.only = TRUE))
+
+```
+
+```{r setup style}
+#| message: false
+#| warning: false
+
+# options to customize chunk outputs
+knitr::opts_chunk$set(
+  tidy = TRUE, # soft-wrap code in output
+  tidy.opts = list(width.cutoff = 65), # width cutoff for soft-wrapping code
+  message = FALSE # hide package startup and other messages
+ )
 
 ```
 
@@ -156,13 +171,11 @@ knitr::include_graphics("https://www.r-project.org/logo/Rlogo.svg")
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis ut mauris consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 :::
 
- 
 
 <!-- '---' adds a gray vertical line -->
 
-------------------------------------------------------------------------
+---
 
- 
 
 <!-- add packages used, system details and versions  -->
 

@@ -4,21 +4,20 @@
 #'
 #' The main features of the package are:
 #'   \itemize{
-#'   \item Creation of (customized) folder structure
+#'   \item Creation of (customized) folder structures, including templates for analysis reports (Rmarkdown/quarto) and manuscripts
+#'   \item Creation of projects published as websites on GitHub Pages (format "github_site")
+#'   \item Recording package versions with renv
 #'   \item Simplify the inclusion of big data files with version control software and online collaborative platforms (e.g. github)
+#'   \item Spotting/archiving unused files and checking urls in dynamic reports
 #'   }
 #'
 #' @import utils
 #' @import knitr
-#' @importFrom packrat init
 #' @importFrom rmarkdown render
 #' @importFrom stringr fixed str_detect
-#' @importFrom stringi stri_unescape_unicode
 #' @importFrom crayon cyan bold
 #' @importFrom cli style_bold style_italic make_ansi_style num_ansi_colors
-#' @importFrom xaringanExtra use_clipboard
-#' @importFrom remotes install_github install_bitbucket install_cran install_gitlab install_bioc
-#' @author Marcelo Araya-Salas, Beatriz Willink & Andrea Arriaga
+#' @author Marcelo Araya-Salas & Andrea Yure Arriaga Madrigal
 #'
 #'   Maintainer: Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 #'

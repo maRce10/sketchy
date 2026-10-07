@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "PROJECT_NAME"
+  description: "Analysis code and data for PROJECT_NAME"
+  navbar:
+    background: light
+    left:
+      - href: index.qmd
+        text: Home
+      - href: analysis.qmd
+        text: Analysis
+    right:
+      - icon: github
+        # replace 'USER' with your GitHub user (or organization) name
+        href: https://github.com/USER/PROJECT_NAME
+        aria-label: GitHub repository
+
+format:
+  html:
+    css: qmd.css
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    highlight-style: pygments
+    code-fold: true
+    code-tools: true
+    df-print: kable
+    fig-dpi: 300
+    include-after-body: fig_download.html
+
+# code is only re-run when rendering locally; the GitHub workflow replays
+# the results stored in '_freeze/' (commit that folder!)
+execute:
+  freeze: true
+
+knitr:
+  opts_chunk:
+    fig.retina: 1  # keep figures at exactly fig-dpi (300), not 2x

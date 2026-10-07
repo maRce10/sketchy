@@ -21,20 +21,20 @@ spot_unused_files(
 
 \item{script.extensions}{A character vector with the script extensions to be considered. Default is c("R", "Rmd", "qmd").}
 
-\item{archive}{A logical value indicating whether to archive the unused files. If \code{TRUE} the spotted files will be move into the folder "./unused_files". Default is \code{FALSE}.}
+\item{archive}{A logical value indicating whether to archive the unused files. If \code{TRUE} the spotted files will be moved into the folder "archive" within 'path', keeping their original sub-folder structure. Default is \code{FALSE}.}
 
 \item{ignore.folder}{A character string with the path or paths to the directory(ies) to be ignored. Default is \code{NULL}.}
 
-\item{remove.empty}{A logical value indicating whether to remove empty folders after moving the unused files. Default is \code{FALSE}.}
+\item{remove.empty}{A logical value indicating whether to remove empty folders within 'path' after moving the unused files. Hidden folders (e.g. '.git') and their contents are never removed. Default is \code{FALSE}.}
 }
 \value{
-Returns a data frame with 2 columns: file.name (self explanatory) and folder (where the file is found).
+A data frame with 2 columns: file.name (self explanatory) and folder (where the file was found) with the unused files. If no unused files are found \code{NULL} is returned invisibly.
 }
 \description{
 \code{spot_unused_files} allow user to identify and optionally archive unused image or data files in a project directory
 }
 \details{
-This function is used to spot/remove unused files in a project directory. The function will find all R script files (extensions R, Rmd and qmd) and all files recursively It is useful to keep the project directory clean and organized. It is recommended to first run the function with a the argument \code{archive = FALSE} to spot which files are being spotted and then run \code{archive = TRUE} if they need to be removed.
+This function is used to spot/archive unused files in a project directory. The function searches recursively for all script files ('script.extensions') and all files with the target extensions ('file.extensions'). A file is considered unused when its name is not found in any of the scripts. Files already in the "archive" folder are ignored. It is useful to keep the project directory clean and organized. It is recommended to first run the function with \code{archive = FALSE} to check which files are spotted and then run \code{archive = TRUE} to move them into the "archive" folder.
 }
 \examples{
 \dontrun{
@@ -43,7 +43,7 @@ spot_unused_files(path = "path/to/your/project")
 
 }
 \references{
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom Research Compendiums. R package (run \code{citation("sketchy")} for the current version).
 }
 \seealso{
 \code{\link{add_to_gitignore}}, \code{\link{make_compendium}}

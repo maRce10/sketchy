@@ -16,9 +16,8 @@
 #' \donttest{open_wd()}
 #' }
 #' 
-#' @references {
-#' Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for data analysis in R. R package version 1.0.3.
-#' }
+#' @references
+#' Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom Research Compendiums. R package (run \code{citation("sketchy")} for the current version).
 #' @author Marcelo Araya-Salas (\email{marcelo.araya@@ucr.ac.cr})
 
 
@@ -28,10 +27,10 @@ open_wd <- function(path = ".", verbose = TRUE){
   if (!dir.exists(path)) .stop("'path' provided does not exist") else
     path <- normalizePath(path)
   
-    if (.Platform['OS.type'] == "windows"){
+  if (.Platform$OS.type == "windows"){
     shell.exec(path)
   } else {
-    system(paste(Sys.getenv("R_BROWSER"), path), ignore.stdout = TRUE, ignore.stderr = TRUE)
+    system(paste(Sys.getenv("R_BROWSER"), shQuote(path)), ignore.stdout = TRUE, ignore.stderr = TRUE, wait = FALSE)
   }
 
   if (verbose)
