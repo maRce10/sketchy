@@ -10,11 +10,11 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/maRce10/sketchy/blob/main/DESCRIPTION)
+[`inst/CITATION`](https://github.com/maRce10/sketchy/blob/main/inst/CITATION)
 
-Araya-Salas M, Arriaga Madrigal A (2026). *sketchy: Create Custom
-Research Compendiums*. R package version 1.0.7,
-<https://github.com/maRce10/sketchy>.
+Araya-Salas, M., & Arriaga Madrigal, A. Y. (2026). sketchy: Create
+Custom Research Compendiums. R package version 1.0.7.
+https://github.com/maRce10/sketchy
 
     @Manual{,
       title = {sketchy: Create Custom Research Compendiums},

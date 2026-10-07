@@ -34,11 +34,13 @@ add_to_gitignore(add.to.gitignore = FALSE, cutoff = NULL, extension = NULL, path
 
 ## Value
 
-Prints the name of the files matching the searching parameters. If
-`add.to.ignore = TRUE` the files matching the search parameters
-('cutoff' and/or 'extension') would be added 'gitignore' (a file used by
-git to exclude files form version control, including adding them to
-github).
+Prints the name of the files matching the searching parameters and
+invisibly returns them (paths relative to 'path'). If
+`add.to.gitignore = TRUE` the files matching the search parameters
+('cutoff' and/or 'extension') are added to '.gitignore' (a file used by
+git to exclude files from version control, including adding them to
+github), using their path relative to 'path'. Files already listed in
+'.gitignore' are not added again.
 
 ## Details
 
@@ -50,8 +52,9 @@ editor.
 
 ## References
 
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for
-data analysis in R. R package version 1.0.3.
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom
+Research Compendiums. R package (run `citation("sketchy")` for the
+current version).
 
 ## See also
 
@@ -80,16 +83,15 @@ path = file.path(tempdir(), "my_compendium"), extension = "csv")
 }
 #> Creating directories ...
 #> my_compendium
-#> │   
-#> ├── data/  
-#> │   ├── processed/  # modified/rearranged data
-#> │   └── raw/  # original data
-#> ├── manuscript/  # manuscript/poster figures
-#> ├── output/  # all non-data products of data analysis
-#> └── scripts/  # code
+#> ├─data/
+#> │ ├─processed/ # modified/rearranged data
+#> │ └─raw/ # original data
+#> ├─manuscript/ # manuscript/poster figures
+#> ├─output/ # all non-data products of data analysis
+#> └─scripts/ # code
 #> Done.
 #> '.gitignore' file not found so it was created
-#> The following file(s) match(es) the extension and exceed(s) the cutoff:
+#> The following file(s) match(es) the extension:
 #> iris.csv
 #> 
 #> File(s) added to '.gitignore':

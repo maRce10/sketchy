@@ -1,6 +1,6 @@
 # List with compendium skeletons
 
-`compendiums` is a list containing the format of 14 different project
+`compendiums` is a list containing the format of 15 different project
 folder skeletons. For each format 3 elements are provided:
 \`\$skeleton\` (folder structure), \`\$comments\` and \`\$info\`
 (reference to the original source).
@@ -13,7 +13,7 @@ data(compendiums)
 
 ## Format
 
-A list with 14 compendium formats:
+A list with 15 compendium formats:
 
 - basic:
 
@@ -79,15 +79,27 @@ A list with 14 compendium formats:
   same skeleton than 'basic' but including a custom Rmarkdown and quarto
   files for documenting data analyses
 
+- github_site:
+
+  quarto website published on GitHub Pages through a GitHub action (as
+  in [this repo](https://github.com/maRce10/suwo_publication)),
+  including 'manuscript' and 'archive' folders (see
+  [`make_compendium`](https://marce10.github.io/brmsish/reference/make_compendium.md))
+
 ## References
 
 Blischak, J. D., Carbonetto, P., & Stephens, M. 2019. *Creating and
 sharing reproducible research code the workflowr way*. F1000Research, 8.
+
 Marwick, B. 2018. *rrtools: Creates a reproducible research compendium*.
+
 Marwick, B., Boettiger, C., & Mullen, L. 2018. *Packaging data
 analytical work reproducibly using R (and friends)*. The American
-Statistician, 72(1), 80-88. Vuorre, Matti, and Matthew J. C. Crump.
-2020. *Sharing and Organizing Research Products as R Packages*.
-PsyArXiv. January 15. Wilson G, Bryan J, Cranston K, Kitzes J,
-Nederbragt L. & Teal, T. K.. 2017. *Good enough practices in scientific
-computing*. PLOS Computational Biology 13(6): e1005510.
+Statistician, 72(1), 80-88.
+
+Vuorre, Matti, and Matthew J. C. Crump. 2020. *Sharing and Organizing
+Research Products as R Packages*. PsyArXiv. January 15.
+
+Wilson G, Bryan J, Cranston K, Kitzes J, Nederbragt L. & Teal, T. K..
+2017. *Good enough practices in scientific computing*. PLOS
+Computational Biology 13(6): e1005510.

@@ -31,8 +31,9 @@ simplify the manipulation of files and folders in a project.
 
 ## References
 
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for
-data analysis in R. R package version 1.0.3.
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom
+Research Compendiums. R package (run `citation("sketchy")` for the
+current version).
 
 ## See also
 

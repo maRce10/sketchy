@@ -10,10 +10,18 @@ research.
 
 The main features of the package are:
 
-- Creation of (customized) folder structure
+- Creation of (customized) folder structures, including templates for
+  analysis reports (Rmarkdown/quarto) and manuscripts
+
+- Creation of projects published as websites on GitHub Pages (format
+  "github_site")
+
+- Recording package versions with renv
 
 - Simplify the inclusion of big data files with version control software
   and online collaborative platforms (e.g. github)
+
+- Spotting/archiving unused files and checking urls in dynamic reports
 
 License: GPL (\>= 2)
 
@@ -27,6 +35,6 @@ Useful links:
 
 ## Author
 
-Marcelo Araya-Salas, Beatriz Willink & Andrea Arriaga
+Marcelo Araya-Salas & Andrea Yure Arriaga Madrigal
 
 Maintainer: Marcelo Araya-Salas (<marcelo.araya@ucr.ac.cr>)

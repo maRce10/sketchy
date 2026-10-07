@@ -27,8 +27,9 @@ are broken. Taken from Nan Xiao's blogpost
 
 ## References
 
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for
-data analysis in R. R package version 1.0.3.
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom
+Research Compendiums. R package (run `citation("sketchy")` for the
+current version).
 
 Xiao, N. (2023). A General-Purpose Link Checker for R Markdown and
 Quarto Projects. Blog post.
@@ -54,19 +55,21 @@ make_compendium(name = "my_compendium", path = tempdir(),
 format = "basic", force = TRUE)
 
 # check urls in scripts
-check_urls(path = file.path(tempdir(), "./scripts"))
+check_urls(path = file.path(tempdir(), "my_compendium", "scripts"))
 }
 #> Setting project on an existing directory ...
 #> README.Rmd already exists.
 #> my_compendium
-#> │   
-#> ├── data/  
-#> │   ├── processed/  # modified/rearranged data
-#> │   └── raw/  # original data
-#> ├── manuscript/  # manuscript/poster figures
-#> ├── output/  # all non-data products of data analysis
-#> └── scripts/  # code
+#> ├─data/
+#> │ ├─processed/ # modified/rearranged data
+#> │ └─raw/ # original data
+#> ├─manuscript/ # manuscript/poster figures
+#> ├─output/ # all non-data products of data analysis
+#> └─scripts/ # code
 #> Done.
 #> 
+#> ℹ Package NA
+#> ℹ Checking that VignetteBuilder package knitr is installed.
+#> ✔ VignetteBuilder package knitr is installed.
 #> ✔ All URLs are correct!
 ```

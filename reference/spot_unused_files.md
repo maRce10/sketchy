@@ -39,8 +39,9 @@ spot_unused_files(
 - archive:
 
   A logical value indicating whether to archive the unused files. If
-  `TRUE` the spotted files will be move into the folder
-  "./unused_files". Default is `FALSE`.
+  `TRUE` the spotted files will be moved into the folder "archive"
+  within 'path', keeping their original sub-folder structure. Default is
+  `FALSE`.
 
 - ignore.folder:
 
@@ -49,27 +50,33 @@ spot_unused_files(
 
 - remove.empty:
 
-  A logical value indicating whether to remove empty folders after
-  moving the unused files. Default is `FALSE`.
+  A logical value indicating whether to remove empty folders within
+  'path' after moving the unused files. Hidden folders (e.g. '.git') and
+  their contents are never removed. Default is `FALSE`.
 
 ## Value
 
-Returns a data frame with 2 columns: file.name (self explanatory) and
-folder (where the file is found).
+A data frame with 2 columns: file.name (self explanatory) and folder
+(where the file was found) with the unused files. If no unused files are
+found `NULL` is returned invisibly.
 
 ## Details
 
-This function is used to spot/remove unused files in a project
-directory. The function will find all R script files (extensions R, Rmd
-and qmd) and all files recursively It is useful to keep the project
-directory clean and organized. It is recommended to first run the
-function with a the argument `archive = FALSE` to spot which files are
-being spotted and then run `archive = TRUE` if they need to be removed.
+This function is used to spot/archive unused files in a project
+directory. The function searches recursively for all script files
+('script.extensions') and all files with the target extensions
+('file.extensions'). A file is considered unused when its name is not
+found in any of the scripts. Files already in the "archive" folder are
+ignored. It is useful to keep the project directory clean and organized.
+It is recommended to first run the function with `archive = FALSE` to
+check which files are spotted and then run `archive = TRUE` to move them
+into the "archive" folder.
 
 ## References
 
-Araya-Salas, M., Arriaga, A. (2023), sketchy: research compendiums for
-data analysis in R. R package version 1.0.3.
+Araya-Salas, M., & Arriaga Madrigal, A. Y. sketchy: Create Custom
+Research Compendiums. R package (run `citation("sketchy")` for the
+current version).
 
 ## See also
 
