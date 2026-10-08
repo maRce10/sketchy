@@ -7,7 +7,7 @@
 #' @export
 #' @name check_urls
 #' @details The function can be used to check if url addresses in dynamic reports are broken. Taken from Nan Xiao's blogpost (\url{https://nanx.me/blog/post/rmarkdown-quarto-link-checker/}).
-#' @examples {
+#' @examples \donttest{
 #' data(compendiums)
 #'
 #' # make compendiums

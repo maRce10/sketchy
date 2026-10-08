@@ -19,7 +19,7 @@ A url_checker_db object with an added class with a custom print method.
 The function can be used to check if url addresses in dynamic reports are broken. Taken from Nan Xiao's blogpost (\url{https://nanx.me/blog/post/rmarkdown-quarto-link-checker/}).
 }
 \examples{
-{
+\donttest{
 data(compendiums)
 
 # make compendiums

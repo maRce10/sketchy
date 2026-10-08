@@ -12,7 +12,7 @@ and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Licence](https://img.shields.io/badge/licence-GPL%20%28%3E%3D%202%29-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![minimal R
-version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.7-orange.svg?style=flat-square)](commits/develop)[![Last-changedate](https://img.shields.io/badge/last%20change-2026--10--07-yellowgreen.svg)](/commits/master)
+version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.7-orange.svg?style=flat-square)](https://github.com/maRce10/sketchy/commits/master)[![Last-changedate](https://img.shields.io/badge/last%20change-2026--10--07-yellowgreen.svg)](https://github.com/maRce10/sketchy/commits/master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
 [![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)
