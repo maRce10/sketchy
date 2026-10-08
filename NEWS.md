@@ -27,6 +27,8 @@ sketchy 1.0.7
 
 * Tests added (testthat)
 
+* Name of project is added to the subtitle of Rmarkdown/quarto files in `make_compendium()`
+
 ### BUG FIXES
 
 * `make_compendium(format = "sketchy")` wrote an empty Rmarkdown analysis template (internal data was out of date). Internal data can now be rebuilt from 'examples/' with 'data-raw/internal_data.R'
@@ -46,13 +48,6 @@ sketchy 1.0.7
 * `open_wd()` failed with paths containing spaces
 
 * Fixed examples in `print_skeleton()` and `check_urls()`
-
-sketchy 1.0.6
-=========================
-
-### MINOR IMPROVEMENTS
-
-* Name of project is added to the subtitle of Rmarkdown/quarto files in `make_compendium()`
 
 sketchy 1.0.5
 =========================
