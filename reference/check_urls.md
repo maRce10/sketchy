@@ -47,16 +47,12 @@ Nan Xiao (<me@nanx.me>)
 ## Examples
 
 ``` r
-{
+# \donttest{
 data(compendiums)
 
 # make compendiums
 make_compendium(name = "my_compendium", path = tempdir(),
 format = "basic", force = TRUE)
-
-# check urls in scripts
-check_urls(path = file.path(tempdir(), "my_compendium", "scripts"))
-}
 #> Setting project on an existing directory ...
 #> README.Rmd already exists.
 #> my_compendium
@@ -68,8 +64,12 @@ check_urls(path = file.path(tempdir(), "my_compendium", "scripts"))
 #> └─scripts/ # code
 #> Done.
 #> 
+
+# check urls in scripts
+check_urls(path = file.path(tempdir(), "my_compendium", "scripts"))
 #> ℹ Package NA
 #> ℹ Checking that VignetteBuilder package knitr is installed.
 #> ✔ VignetteBuilder package knitr is installed.
 #> ✔ All URLs are correct!
+# }
 ```

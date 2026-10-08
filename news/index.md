@@ -65,6 +65,9 @@
 
 - Tests added (testthat)
 
+- Name of project is added to the subtitle of Rmarkdown/quarto files in
+  [`make_compendium()`](https://marce10.github.io/brmsish/reference/make_compendium.md)
+
 #### BUG FIXES
 
 - `make_compendium(format = "sketchy")` wrote an empty Rmarkdown
@@ -104,13 +107,6 @@
   [`print_skeleton()`](https://marce10.github.io/brmsish/reference/print_skeleton.md)
   and
   [`check_urls()`](https://marce10.github.io/brmsish/reference/check_urls.md)
-
-## sketchy 1.0.6
-
-#### MINOR IMPROVEMENTS
-
-- Name of project is added to the subtitle of Rmarkdown/quarto files in
-  [`make_compendium()`](https://marce10.github.io/brmsish/reference/make_compendium.md)
 
 ## sketchy 1.0.5
 
