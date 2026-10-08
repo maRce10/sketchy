@@ -241,7 +241,7 @@ for (i in 1:length(compendiums)) {
 Please cite [sketchy](https://marce10.github.io/sketchy/) as follows:
 
 Araya-Salas M, Arriaga Madrigal A (2026). *sketchy: Create Custom
-Research Compendiums*. R package version 1.0.7,
+Research Compendiums*. R package version 1.0.6,
 <https://github.com/maRce10/sketchy>.
 
 # References

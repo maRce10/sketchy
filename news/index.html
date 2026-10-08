@@ -33,13 +33,13 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.0.7" id="sketchy-107">sketchy 1.0.7<a class="anchor" aria-label="anchor" href="#sketchy-107"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.0.6" id="sketchy-106">sketchy 1.0.6<a class="anchor" aria-label="anchor" href="#sketchy-106"></a></h2>
 <div class="section level4">
-<h4 id="new-features-1-0-7">NEW FEATURES<a class="anchor" aria-label="anchor" href="#new-features-1-0-7"></a></h4>
+<h4 id="new-features-1-0-6">NEW FEATURES<a class="anchor" aria-label="anchor" href="#new-features-1-0-6"></a></h4>
 <ul><li>New compendium format “github_site” in <code><a href="../reference/make_compendium.html">make_compendium()</a></code>: a quarto website (in ‘scripts/’) that is rendered and published on GitHub Pages by a GitHub action (‘.github/workflows/publish.yml’). It also includes ‘manuscript’ and ‘archive’ folders. With <code>renv = TRUE</code> the GitHub action installs the packages in ‘renv.lock’, so pages don’t need to be rendered locally before publishing</li>
 </ul></div>
 <div class="section level4">
-<h4 id="minor-improvements-1-0-7">MINOR IMPROVEMENTS<a class="anchor" aria-label="anchor" href="#minor-improvements-1-0-7"></a></h4>
+<h4 id="minor-improvements-1-0-6">MINOR IMPROVEMENTS<a class="anchor" aria-label="anchor" href="#minor-improvements-1-0-6"></a></h4>
 <ul><li><p><code><a href="../reference/spot_unused_files.html">spot_unused_files()</a></code> can remove empty folders</p></li>
 <li><p><code><a href="../reference/load_packages.html">load_packages()</a></code> now installs packages with ‘pak’ (instead of ‘remotes’, no longer a dependency), accepting pak package specifications (e.g. <code>"bioc::ggtree"</code>, <code>"user/repo@v1.0"</code>) in addition to the vector-name syntax. It gains argument <code>quiet</code> (<code>quite</code> is deprecated), returns (invisibly) which packages were loaded and validates repository names</p></li>
 <li><p>The Rmarkdown analysis template adds copy buttons to code blocks with a small script, so ‘xaringanExtra’ is no longer needed (and no longer a dependency of sketchy)</p></li>
@@ -53,7 +53,7 @@
 <li><p>Name of project is added to the subtitle of Rmarkdown/quarto files in <code><a href="../reference/make_compendium.html">make_compendium()</a></code></p></li>
 </ul></div>
 <div class="section level4">
-<h4 id="bug-fixes-1-0-7">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-7"></a></h4>
+<h4 id="bug-fixes-1-0-6">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-6"></a></h4>
 <ul><li><p><code>make_compendium(format = "sketchy")</code> wrote an empty Rmarkdown analysis template (internal data was out of date). Internal data can now be rebuilt from ‘examples/’ with ‘data-raw/internal_data.R’</p></li>
 <li><p><code><a href="../reference/make_compendium.html">make_compendium()</a></code> failed when called as <code><a href="../reference/make_compendium.html">sketchy::make_compendium()</a></code> without attaching the package</p></li>
 <li><p><code><a href="../reference/print_skeleton.html">print_skeleton()</a></code> and <code>make_compendium(clone = ...)</code> ignored any folder starting with ‘.git’ (e.g. ‘.github’)</p></li>
