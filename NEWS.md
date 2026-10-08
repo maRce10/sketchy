@@ -1,4 +1,4 @@
-sketchy 1.0.7
+sketchy 1.0.6
 =========================
 
 ### NEW FEATURES

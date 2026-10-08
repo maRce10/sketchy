@@ -12,10 +12,9 @@ and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Licence](https://img.shields.io/badge/licence-GPL%20%28%3E%3D%202%29-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![minimal R
-version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.7-orange.svg?style=flat-square)](https://github.com/maRce10/sketchy/commits/master)[![Last-changedate](https://img.shields.io/badge/last%20change-2026--10--07-yellowgreen.svg)](https://github.com/maRce10/sketchy/commits/master)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
-[![Total
-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)
+version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.6-orange.svg?style=flat-square)](https://github.com/maRce10/sketchy/commits/master)[![Last-changedate](https://img.shields.io/badge/last%20change-2026--10--08-yellowgreen.svg)](https://github.com/maRce10/sketchy/commits/master)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
+<https://cranlogs.r-pkg.org/badges/grand-total/sketchy>
 <!-- badges: end -->
 
 <img src="man/figures/sketchy_sticker.png" alt="sketchy sticker" align="right" width = "25%" height="25%"/>
@@ -100,7 +99,7 @@ make_compendium(name = "proyect_z", path = path, format = "large_compendium")
  
 
 When creating a compendium that includes a “manuscript” folder the
-package adds a “manuscript_template.Rmd” file for facilitating paper
+package adds a “manuscript\_template.Rmd” file for facilitating paper
 writing within the compendium itself.
 
 We can check all compendium structure available as follows:
@@ -249,12 +248,12 @@ for (i in 1:length(compendiums)) {
 ## └─scripts/
 ```
 
-------------------------------------------------------------------------
+-----
 
 Please cite [sketchy](https://marce10.github.io/sketchy/) as follows:
 
 Araya-Salas M, Arriaga Madrigal A (2026). *sketchy: Create Custom
-Research Compendiums*. R package version 1.0.7,
+Research Compendiums*. R package version 1.0.6,
 <https://github.com/maRce10/sketchy>.
 
 # References
