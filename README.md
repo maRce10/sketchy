@@ -12,9 +12,16 @@ and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Licence](https://img.shields.io/badge/licence-GPL%20%28%3E%3D%202%29-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![minimal R
-version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.6-orange.svg?style=flat-square)](https://github.com/maRce10/sketchy/commits/master)[![Last-changedate](https://img.shields.io/badge/last%20change-2026--10--08-yellowgreen.svg)](https://github.com/maRce10/sketchy/commits/master)
+version](https://img.shields.io/badge/R%3E%3D-%3E=%203.5.0-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-1.0.6-orange.svg?style=flat-square)](https://github.com/maRce10/sketchy/commits/master)[![Last-changedate](https://img.shields.io/badge/last%20change-2026--10--09-yellowgreen.svg)](https://github.com/maRce10/sketchy/commits/master)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/sketchy)](https://cran.r-project.org/package=sketchy)
-<https://cranlogs.r-pkg.org/badges/grand-total/sketchy>
+[![Total
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/sketchy)](https://cran.r-project.org/package=sketchy)
+[![Monthly
+Downloads](https://cranlogs.r-pkg.org/badges/sketchy)](https://cran.r-project.org/package=sketchy)
+[![GitHub
+stars](https://img.shields.io/github/stars/maRce10/sketchy.svg)](https://github.com/maRce10/sketchy/stargazers)
+[![GitHub
+issues](https://img.shields.io/github/issues/maRce10/sketchy.svg)](https://github.com/maRce10/sketchy/issues)
 <!-- badges: end -->
 
 <img src="man/figures/sketchy_sticker.png" alt="sketchy sticker" align="right" width = "25%" height="25%"/>
