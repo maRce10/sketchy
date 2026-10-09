@@ -2,6 +2,8 @@
 
 ## sketchy 1.0.6
 
+CRAN release: 2026-10-08
+
 #### NEW FEATURES
 
 - New compendium format “github_site” in
